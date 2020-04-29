@@ -1,11 +1,12 @@
 % btbytes.github.io
 % Pradeep Gowda
-% Aug 16, 2016
+% Apr 29, 2020
 
 Here:
 
 * [Liked](/liked)
 * [Today I Learned](/til/)
+* [bari](/bari/) demo pages for [bari](https://github.com/btbytes/bari) static site generator.
 
 Elsewhere:
 
