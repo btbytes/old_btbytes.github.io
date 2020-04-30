@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+
+import time
+import subprocess
+from pathlib import Path
+import sys
+import glob
+
+suf = None
+if len(sys.argv) > 1:
+    suf = sys.argv[1]
+today = time.strftime('%Y-%m-%d')
+cnt = len(glob.glob('%s*.md' % (today, ))) + 1
+if suf:
+    fname = '%s-%s-%s.md' % (today, str(cnt).zfill(2), suf)
+else:
+    fname = '%s-%s.md' % (today, str(cnt).zfill(2))
+print(fname)
+p = Path(fname)
+p.touch()
+subprocess.call(['open', fname])
