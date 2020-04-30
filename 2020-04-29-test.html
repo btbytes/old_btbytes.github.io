@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-04-29" />
+  <title>git post-commit hooks to build these pages</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav>
+  <span><a href="index.html" title="Home">Home</a></span> ◊ <span><a href="tags.html">Tags</a></span> ◊ <span><a href="archive.html">Archive</a></span>
+</nav>
+<article>
+
+<header id="title-block-header">
+<h1 class="title">git post-commit hooks to build these pages</h1>
+<p class="date">2020-04-29</p>
+</header>
+<p>To try the git <code>post-commit</code> hook and build the gh-pages.</p>
+<pre><code>$ cat .git/hooks/post-commit
+#!/bin/bash
+branch=master
+if [ `git rev-parse --abbrev-ref HEAD` == &quot;$branch&quot; ]; then
+  git checkout gh-pages &amp;&amp; ./build &amp;&amp; git checkout master
+fi</code></pre>
+<p><a href="tags.html#git" class="tag">git</a></p>
+</article>
+</body>
+</html>

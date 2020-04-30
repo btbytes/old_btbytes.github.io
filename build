@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+make
+git add .
+git commit -am "A new build"
+git push origin
+

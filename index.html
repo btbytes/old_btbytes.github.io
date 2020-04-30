@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>index</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav>
+  <span><a href="index.html" title="Home">Home</a></span> ◊ <span><a href="tags.html">Tags</a></span> ◊ <span><a href="archive.html">Archive</a></span>
+</nav>
+<article>
+
+<div class="post">
+<p><a href="2020-04-29-test.html"><date>2020-04-29</date></a> git post-commit hooks to build these pages</p>
+<p>To try the git <code>post-commit</code> hook and build the gh-pages.</p>
+<pre><code>$ cat .git/hooks/post-commit
+#!/bin/bash
+branch=master
+if [ `git rev-parse --abbrev-ref HEAD` == &quot;$branch&quot; ]; then
+  git checkout gh-pages &amp;&amp; ./build &amp;&amp; git checkout master
+fi</code></pre>
+<p><a href="tags.html#git" class="tag">git</a></p>
+</div>
+<div class="post">
+<p><a href="2020-04-29-pipx.html"><date>2020-04-29</date></a> pipx is like brew for python applications</p>
+<p><a href="https://pypi.org/project/pipx/" class="uri">https://pypi.org/project/pipx/</a></p>
+<p>also similar to how cargo works for rust.</p>
+<p><a href="tags.html#python" class="tag">python</a></p>
+</div>
+<div class="post">
+<p><a href="2020-04-29-courier.html"><date>2020-04-29</date></a> Courier is a nice monospace font.</p>
+<p>See <a href="https://sveinbjorn.org/files/manpages/platypus.man.html">this man page</a></p>
+<p><a href="tags.html#fonts" class="tag">fonts</a></p>
+</div>
+<div class="post">
+<p><a href="2020-04-29-conwayslaw.html"><date>2020-04-29</date></a> Conway’s law</p>
+<p>named after (not John H Conway of game of life fame) programmer <a href="http://www.melconway.com/Home/Conways_Law.html">Mel Conway</a> which states that:</p>
+<blockquote>
+<p>Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization’s communication structure.</p>
+</blockquote>
+<p><a href="tags.html#computing" class="tag">computing</a></p>
+</div>
+</article>
+</body>
+</html>

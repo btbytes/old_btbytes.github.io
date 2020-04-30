@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+
+
+def gen_tags(allmd):
+    tags = {}
+    for md in allmd:
+        with open(md, 'r') as f:
+            lines = f.readlines()
+            title = lines[0].strip()
+            date = md[:10]
+            for line in lines:
+                if line.startswith('◊'):
+                    doctags = [
+                        tag.lstrip('◊').strip() for tag in line.split(' ')
+                    ]
+                    for dt in doctags:
+                        link = md.replace('.md', '.html')
+                        meta = {'title': title, 'date': date, 'link': link}
+                        if dt in tags.keys():
+                            tags[dt].append(meta)
+                        else:
+                            tags[dt] = [meta]
+
+    with open('tags.md', 'w') as f:
+        for k in sorted(tags.keys()):
+            f.write('\n## {k}\n\n'.format(k=k))
+            for meta in tags[k]:
+                f.write('{date} -- [{title}]({link})\n\n'.format(**meta))
+
+
+def gen_index(allmd):
+    if len(allmd) > 10:
+        s = 10
+    else:
+        s = len(allmd)
+    selected = allmd[-s:]
+    with open('index.md', 'w') as f:
+        for post in reversed(selected):
+            with open(post, 'r') as fn:
+                name = post[:10]
+                html = post.replace('.md', '.html')
+                lines = fn.readlines()
+                first = lines[0]
+                f.write('<div class="post">')
+                f.write('[<date>%s</date>](%s) %s' % (name, html, first))
+                for line in proc_file(post):
+                    f.write(line)
+                f.write('</div>\n')
+
+
+def gen_archive(allmd):
+    years = list(reversed(sorted(list(set([md[:4] for md in allmd])))))
+    with open('archive.md', 'w') as a:
+        for post in reversed(allmd):
+            name = post[:10]
+            with open(post, 'r') as fn:
+                lines = fn.readlines()
+                title = lines[0]
+                html = post.replace('.md', '.html')
+                year = post[:4]
+                if year in years:
+                    a.write('## {year}\n'.format(year=year))
+                    years.remove(year)
+                a.write('[%s](%s) -- %s\n' % (name, html, title))
+
+
+def process_file(fpath):
+    print(''.join(proc_file(fpath)))
+
+
+def proc_file(fpath):
+    compiled = []
+    with open(fpath) as f:
+        lines = f.readlines()
+        for line in lines[1:]:
+            if line.startswith('◊'):
+                doctags = [tag.lstrip('◊').strip() for tag in line.split(' ')]
+                compiled.append(' '.join([
+                    '<a href="tags.html#{tag}" class="tag">{tag}</a> '.format(
+                        tag=tag) for tag in doctags
+                ]))
+                compiled.append('\n')
+            else:
+                compiled.append(line)
+    return compiled
+
+
+if __name__ == '__main__':
+    import glob
+    import sys
+    allmd = glob.glob('2*.md')
+    allmd.sort()
+    if len(sys.argv) < 2:
+        print('usage: ./bari archive|index')
+        sys.exit(0)
+    if sys.argv[1] == 'archive':
+        gen_archive(allmd)
+    if sys.argv[1] == 'index':
+        gen_index(allmd)
+    if sys.argv[1] == 'tags':
+        gen_tags(allmd)
+    if sys.argv[1] == 'process':
+        if len(sys.argv) < 3:
+            print('usage: ./bari process fname.md')
+            sys.exit(0)
+        else:
+            process_file(sys.argv[2])
