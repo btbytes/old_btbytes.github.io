@@ -37,12 +37,12 @@ def gen_index(allmd):
     with open('index.md', 'w') as f:
         for post in reversed(selected):
             with open(post, 'r') as fn:
-                name = post[:10]
-                html = post.replace('.md', '.html')
+                date = post[:10]
+                link = post.replace('.md', '.html')
                 lines = fn.readlines()
                 first = lines[0]
                 f.write('<div class="post">')
-                f.write('[<date>%s</date>](%s) %s' % (name, html, first))
+                f.write('[<date>%s</date>](%s) %s' % (date, link, first))
                 for line in proc_file(post):
                     f.write(line)
                 f.write('</div>\n')
@@ -52,16 +52,16 @@ def gen_archive(allmd):
     years = list(reversed(sorted(list(set([md[:4] for md in allmd])))))
     with open('archive.md', 'w') as a:
         for post in reversed(allmd):
-            name = post[:10]
+            date = post[:10]
             with open(post, 'r') as fn:
                 lines = fn.readlines()
                 title = lines[0]
-                html = post.replace('.md', '.html')
+                link = post.replace('.md', '.html')
                 year = post[:4]
                 if year in years:
                     a.write('## {year}\n'.format(year=year))
                     years.remove(year)
-                a.write('[%s](%s) -- %s\n' % (name, html, title))
+                a.write('%s -- [%s](%s)\n' % (date, title, link))
 
 
 def process_file(fpath):
