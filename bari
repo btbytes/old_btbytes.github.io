@@ -25,7 +25,8 @@ def gen_tags(allmd):
         for k in sorted(tags.keys()):
             f.write('\n## {k}\n\n'.format(k=k))
             for meta in tags[k]:
-                f.write('{date} -- [{title}]({link})\n\n'.format(**meta))
+                f.write('<date>{date}</date> [{title}]({link})\n\n'.format(
+                    **meta))
 
 
 def gen_index(allmd):
@@ -40,12 +41,13 @@ def gen_index(allmd):
                 date = post[:10]
                 link = post.replace('.md', '.html')
                 lines = fn.readlines()
-                first = lines[0]
+                title = lines[0]
                 f.write('<div class="post">')
-                f.write('[<date>%s</date>](%s) %s' % (date, link, first))
+                f.write('<date>%s</date> [%s](%s)\n' % (date, title, link))
                 for line in proc_file(post):
                     f.write(line)
                 f.write('</div>\n')
+        f.write('----\n\nSee [all posts](archive.html)\n\n')
 
 
 def gen_archive(allmd):
@@ -61,7 +63,7 @@ def gen_archive(allmd):
                 if year in years:
                     a.write('## {year}\n'.format(year=year))
                     years.remove(year)
-                a.write('%s -- [%s](%s)\n' % (date, title, link))
+                a.write('<date>%s</date> [%s](%s)\n\n' % (date, title, link))
 
 
 def process_file(fpath):

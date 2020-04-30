@@ -7,9 +7,9 @@ div.post p:first-of-type {
 	color: Teal;
 }
 
-div.post p:first-of-type a date{
+date, p.date{
 	margin-right: 0.5em;
-	border-bottom: solid 1px DarkBlue;
+	font-family: Courier, monospace;
 }
 
 nav {
