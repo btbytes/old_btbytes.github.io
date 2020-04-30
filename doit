@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+git add *.md
+
+git commit -am "Adding one more TIL"
+
+git push origin master
