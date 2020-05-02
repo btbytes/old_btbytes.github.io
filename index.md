@@ -1,4 +1,5 @@
-<div class="post"><date>2020-04-29</date> [pipx is like brew for python applications
+<div class="post"><date>2020-04-29</date>
+[pipx is like brew for python applications
 ](2020-04-29-pipx.html)
 
 <https://pypi.org/project/pipx/>
@@ -8,14 +9,16 @@ also similar to how cargo works for rust.
 <a href="tags.html#python" class="tag">python</a> 
 
 </div>
-<div class="post"><date>2020-04-29</date> [Courier is a nice monospace font
+<div class="post"><date>2020-04-29</date>
+[Courier is a nice monospace font
 ](2020-04-29-courier.html)
 
 See [this man page](https://sveinbjorn.org/files/manpages/platypus.man.html)
 
 <a href="tags.html#fonts" class="tag">fonts</a> 
 </div>
-<div class="post"><date>2020-04-29</date> [Conway's law
+<div class="post"><date>2020-04-29</date>
+[Conway's law
 ](2020-04-29-conwayslaw.html)
 
 named after (not John H Conway of game of life fame) programmer [Mel Conway](http://www.melconway.com/Home/Conways_Law.html) which states that:
@@ -24,7 +27,12 @@ named after (not John H Conway of game of life fame) programmer [Mel Conway](htt
 
 <a href="tags.html#computing" class="tag">computing</a> 
 </div>
-----
 
-See [all posts](archive.html)
+## Tags
 
+
+**computing**: [Conway's law](2020-04-29-conwayslaw.html)
+
+**fonts**: [Courier is a nice monospace font](2020-04-29-courier.html)
+
+**python**: [pipx is like brew for python applications](2020-04-29-pipx.html)

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+SHOW_ON_HOME_PAGE = 5
+
 
 def gen_tags(allmd):
     tags = {}
@@ -21,17 +23,17 @@ def gen_tags(allmd):
                         else:
                             tags[dt] = [meta]
 
-    with open('tags.md', 'w') as f:
+    with open('index.md', 'a') as f:
+        f.write('\n## Tags\n')
         for k in sorted(tags.keys()):
-            f.write('\n## {k}\n\n'.format(k=k))
-            for meta in tags[k]:
-                f.write('<date>{date}</date> [{title}]({link})\n\n'.format(
-                    **meta))
+            f.write('\n\n**{k}**: '.format(k=k))
+            tsoup = ' '.join(['[{title}]({link})'.format(**meta) for meta in tags[k]])
+            f.write(tsoup)
 
 
-def gen_index(allmd):
-    if len(allmd) > 10:
-        s = 10
+def gen_home(allmd):
+    if len(allmd) > SHOW_ON_HOME_PAGE:
+        s = SHOW_ON_HOME_PAGE
     else:
         s = len(allmd)
     selected = allmd[-s:]
@@ -43,17 +45,20 @@ def gen_index(allmd):
                 lines = fn.readlines()
                 title = lines[0]
                 f.write('<div class="post">')
-                f.write('<date>%s</date> [%s](%s)\n' % (date, title, link))
+                f.write(f'<date>{date}</date>\n')
+                f.write(f'[{title}]({link})\n')
                 for line in proc_file(post):
                     f.write(line)
                 f.write('</div>\n')
-        f.write('----\n\nSee [all posts](archive.html)\n\n')
 
 
 def gen_archive(allmd):
     years = list(reversed(sorted(list(set([md[:4] for md in allmd])))))
-    with open('archive.md', 'w') as a:
-        for post in reversed(allmd):
+    if len(allmd) < SHOW_ON_HOME_PAGE:
+        return
+    with open('index.md', 'a') as a:
+        a.write('\n## Archive\n')
+        for post in reversed(allmd[SHOW_ON_HOME_PAGE:]):
             date = post[:10]
             with open(post, 'r') as fn:
                 lines = fn.readlines()
@@ -61,7 +66,7 @@ def gen_archive(allmd):
                 link = post.replace('.md', '.html')
                 year = post[:4]
                 if year in years:
-                    a.write('## {year}\n'.format(year=year))
+                    a.write('### {year}\n'.format(year=year))
                     years.remove(year)
                 a.write('<date>%s</date> [%s](%s)\n\n' % (date, title, link))
 
@@ -92,18 +97,10 @@ if __name__ == '__main__':
     import sys
     allmd = glob.glob('2*.md')
     allmd.sort()
-    if len(sys.argv) < 2:
-        print('usage: ./bari archive|index')
-        sys.exit(0)
-    if sys.argv[1] == 'archive':
-        gen_archive(allmd)
-    if sys.argv[1] == 'index':
-        gen_index(allmd)
-    if sys.argv[1] == 'tags':
-        gen_tags(allmd)
-    if sys.argv[1] == 'process':
-        if len(sys.argv) < 3:
-            print('usage: ./bari process fname.md')
-            sys.exit(0)
-        else:
+    if len(sys.argv) > 2:
+        if sys.argv[1] == 'process':
             process_file(sys.argv[2])
+    else:
+        gen_home(allmd)
+        gen_archive(allmd)
+        gen_tags(allmd)
