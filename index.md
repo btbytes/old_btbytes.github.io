@@ -39,6 +39,15 @@ The shortcut method is a very good approximation of the true calculation, and it
 
 This is surprisingly handy when you are at a negotiating table (eg: Car purchase). This is the kind of mentral tricks that are really useful in the "real world". Try it out.
 
+----
+
+Update: The original paper is a page long, so I put the image here:
+
+![](https://i.imgur.com/wTzH0Cy.png)
+
+Credit: [Dr Peyman Milanfar](https://twitter.com/docmilanfar/status/1254535223733186560).
+
+
 <a href="index.html#mathematics" class="tag mathematics">mathematics</a> 
 </div>
 <div class="post"><date>2020-04-29</date>
