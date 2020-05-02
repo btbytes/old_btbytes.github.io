@@ -4,11 +4,14 @@
 
 [Quip] from Salesforce looks like "Jupyter notebooks" for sales and service workers.
 
-I came across this site while reading [The Best Medium-Hard Data Analyst SQL Interview Questions  ](https://quip.com/2gwZArKuWk7W). Looking at this document and the "tour", it appears to be a turbo charged "Word" / Google Docs more than full fledged data analytics platform. 
+I came across this site while reading [The Best Medium-Hard Data Analyst SQL Interview Questions  ](https://quip.com/2gwZArKuWk7W). Looking at this document and the "tour", it appears to be a turbo charged "Word" / Google Docs more than full fledged data analytics platform.
 
-I have never used "Sharepoint", so I can't compare it to that. 
+I have never used "Sharepoint", so I can't compare it to that.
 
-There is no "free tier" to try out. </div>
+There is no "free tier" to try out.
+
+<a href="index.html#software" class="tag software">software</a> 
+</div>
 <div class="post"><date>2020-05-01</date>
 [A worked exmaple of - A persian folk method of figuring interest
 ](2020-05-01-01-interest-calculation.html)
@@ -103,3 +106,5 @@ named after (not John H Conway of game of life fame) programmer [Mel Conway](htt
 <span id="mathematics" class="tagged">mathematics</span>: ◊[A worked exmaple of - A persian folk method of figuring interest](2020-05-01-01-interest-calculation.html)
 
 <span id="python" class="tagged">python</span>: ◊[pipx is like brew for python applications](2020-04-29-pipx.html)
+
+<span id="software" class="tagged">software</span>: ◊[Quip](2020-05-02-01-quip.html)
