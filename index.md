@@ -2,7 +2,7 @@
 [Quip
 ](2020-05-02-01-quip.html)
 
-[Quip] from Salesforce looks like "Jupyter notebooks" for sales and service workers.
+[Quip](https://quip.com/) from Salesforce looks like "Jupyter notebooks" for sales and service workers.
 
 I came across this site while reading [The Best Medium-Hard Data Analyst SQL Interview Questions  ](https://quip.com/2gwZArKuWk7W). Looking at this document and the "tour", it appears to be a turbo charged "Word" / Google Docs more than full fledged data analytics platform.
 
