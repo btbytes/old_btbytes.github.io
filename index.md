@@ -74,10 +74,10 @@ named after (not John H Conway of game of life fame) programmer [Mel Conway](htt
 ## Tags
 
 
-<span id="computing"><emph>computing</emph></span>: ◊[Conway's law](2020-04-29-conwayslaw.html)
+<span id="computing" class="tagged">computing</span>: ◊[Conway's law](2020-04-29-conwayslaw.html)
 
-<span id="fonts"><emph>fonts</emph></span>: ◊[Courier is a nice monospace font](2020-04-29-courier.html)
+<span id="fonts" class="tagged">fonts</span>: ◊[Courier is a nice monospace font](2020-04-29-courier.html)
 
-<span id="mathematics"><emph>mathematics</emph></span>: ◊[A worked exmaple of - A persian folk method of figuring interest](2020-05-01-01-interest-calculation.html)
+<span id="mathematics" class="tagged">mathematics</span>: ◊[A worked exmaple of - A persian folk method of figuring interest](2020-05-01-01-interest-calculation.html)
 
-<span id="python"><emph>python</emph></span>: ◊[pipx is like brew for python applications](2020-04-29-pipx.html)
+<span id="python" class="tagged">python</span>: ◊[pipx is like brew for python applications](2020-04-29-pipx.html)

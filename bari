@@ -26,7 +26,7 @@ def gen_tags(allmd):
     with open('index.md', 'a') as f:
         f.write('\n## Tags\n')
         for k in sorted(tags.keys()):
-            f.write('\n\n<span id="{k}"><emph>{k}</emph></span>: '.format(k=k))
+            f.write('\n\n<span id="{k}" class="tagged">{k}</span>: '.format(k=k))
             tsoup = ' '.join(
                 ['◊[{title}]({link})'.format(**meta) for meta in tags[k]])
             f.write(tsoup)
