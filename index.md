@@ -29,7 +29,7 @@ where,
 
 	r = monthly interest rate => 0.07 / 12
 	N = total number of months => 48
-	P = principal
+	P = principal => 10,000
 
 therefore we have,
 
