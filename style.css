@@ -7,6 +7,7 @@ div.post {
 }
 div.post:first-of-type {
 	background-color: #ffe;
+	transition: background-color 3s linear;
 }
 div.post:first-of-type p:first-of-type{
 	font-weight: bold;
