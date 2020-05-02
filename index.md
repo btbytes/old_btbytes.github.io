@@ -39,7 +39,7 @@ The shortcut method is a very good approximation of the true calculation, and it
 
 This is surprisingly handy when you are at a negotiating table (eg: Car purchase). This is the kind of mentral tricks that are really useful in the "real world". Try it out.
 
-<a href="tags.html#mathematics" class="tag">mathematics</a> 
+<a href="index.html#mathematics" class="tag mathematics">mathematics</a> 
 </div>
 <div class="post"><date>2020-04-29</date>
 [pipx is like brew for python applications
@@ -49,7 +49,7 @@ This is surprisingly handy when you are at a negotiating table (eg: Car purchase
 
 also similar to how cargo works for rust.
 
-<a href="tags.html#python" class="tag">python</a> 
+<a href="index.html#python" class="tag python">python</a> 
 
 </div>
 <div class="post"><date>2020-04-29</date>
@@ -58,7 +58,7 @@ also similar to how cargo works for rust.
 
 See [this man page](https://sveinbjorn.org/files/manpages/platypus.man.html)
 
-<a href="tags.html#fonts" class="tag">fonts</a> 
+<a href="index.html#fonts" class="tag fonts">fonts</a> 
 </div>
 <div class="post"><date>2020-04-29</date>
 [Conway's law
@@ -68,7 +68,7 @@ named after (not John H Conway of game of life fame) programmer [Mel Conway](htt
 
 > Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization's communication structure.
 
-<a href="tags.html#computing" class="tag">computing</a> 
+<a href="index.html#computing" class="tag computing">computing</a> 
 </div>
 
 ## Tags

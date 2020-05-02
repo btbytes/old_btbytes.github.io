@@ -27,7 +27,8 @@ def gen_tags(allmd):
         f.write('\n## Tags\n')
         for k in sorted(tags.keys()):
             f.write('\n\n**{k}**: '.format(k=k))
-            tsoup = ' '.join(['[{title}]({link})'.format(**meta) for meta in tags[k]])
+            tsoup = ' '.join(
+                ['[{title}]({link})'.format(**meta) for meta in tags[k]])
             f.write(tsoup)
 
 
@@ -83,8 +84,8 @@ def proc_file(fpath):
             if line.startswith('◊'):
                 doctags = [tag.lstrip('◊').strip() for tag in line.split(' ')]
                 compiled.append(' '.join([
-                    '<a href="tags.html#{tag}" class="tag">{tag}</a> '.format(
-                        tag=tag) for tag in doctags
+                    '<a href="index.html#{tag}" class="tag {tag}">{tag}</a> '.
+                    format(tag=tag) for tag in doctags
                 ]))
                 compiled.append('\n')
             else:
