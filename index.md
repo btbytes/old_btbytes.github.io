@@ -94,8 +94,6 @@ named after (not John H Conway of game of life fame) programmer [Mel Conway](htt
 <a href="index.html#computing" class="tag computing">computing</a> 
 </div>
 
-## Archive
-
 ## Tags
 
 

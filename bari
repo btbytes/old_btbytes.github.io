@@ -55,7 +55,7 @@ def gen_home(allmd):
 
 def gen_archive(allmd):
     years = list(reversed(sorted(list(set([md[:4] for md in allmd])))))
-    if len(allmd) < SHOW_ON_HOME_PAGE:
+    if len(allmd) <= SHOW_ON_HOME_PAGE:
         return
     with open('index.md', 'a') as a:
         a.write('\n## Archive\n')
