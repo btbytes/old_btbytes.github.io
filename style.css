@@ -37,3 +37,7 @@ nav {
 .tagged{
 	font-weight: bold;
 }
+
+footer {
+	border-top: solid 1px Teal;
+}
