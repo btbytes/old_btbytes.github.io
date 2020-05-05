@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>index</title>
+  <meta name="dcterms.date" content="2020-05-05" />
+  <title>Building Go Programs with Source File Hash baked in</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -82,8 +83,10 @@
 </nav>
 <article>
 
-<div class="post">
-<p><date>2020-05-05</date> <a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a></p>
+<header id="title-block-header">
+<h1 class="title">Building Go Programs with Source File Hash baked in</h1>
+<p class="date">2020-05-05</p>
+</header>
 <p>Imagine a scenario where you are trying to replace a script written in Bash with Go. Lets assume for the sake of this disucssion the following:</p>
 <ol type="1">
 <li>This program is longer than what you are comfortable maintaining in Bash/Perl/Python</li>
@@ -130,64 +133,6 @@ $ go build -ldflags &quot;-X main.sourcehash=$SOURCEHASH&quot;</code></pre>
 7fffa4353f81b58c682e5b33ec7d720cc6db8e469a10d6fc5f31e11eafaa9104</code></pre>
 <p>NOTE: there is nothing stopping you from passing in any value to <code>-ldflags</code>. This meant to be in an environment where you have complete control of the source, binary and the build process, and you are adding something to the build output to help you later on (in case of a doubt).</p>
 <p>I was wondering if I could do this and <a href="https://stackoverflow.com/a/28460195">found the answer on SO</a>.</p>
-</div>
-<div class="post">
-<p><date>2020-05-02</date> <a href="2020-05-02-01-quip.html">Quip</a></p>
-<p><a href="https://quip.com/">Quip</a> from Salesforce looks like “Jupyter notebooks” for sales and service workers.</p>
-<p>I came across this site while reading <a href="https://quip.com/2gwZArKuWk7W">The Best Medium-Hard Data Analyst SQL Interview Questions</a>. Looking at this document and the “tour”, it appears to be a turbo charged “Word” / Google Docs more than full fledged data analytics platform.</p>
-<p>I have never used “Sharepoint”, so I can’t compare it to that.</p>
-<p>There is no “free tier” to try out.</p>
-<p><a href="index.html#software" class="tag software">software</a></p>
-</div>
-<div class="post">
-<p><date>2020-05-01</date> <a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a></p>
-<p>I found the paper <a href="https://twitter.com/docmilanfar/status/1254535223733186560">“A persian folk method of figuring interest”</a> via Dr Peyman Milanfar on twitter, where he described this method as the one deployed by his father to quickly calculate the monthly payments on a home loan.</p>
-<p>I thought it is a good idea to do a workout of the formula myself so that I can remember it:</p>
-<p>For this demonstration, let’s consider a loan amount (Principal) of $10,000 for a period of 4 years(48 months) at an interest rate of 7% pa.</p>
-<p>Step 1: calculate the interest amount over the loan period</p>
-<pre><code>Interest = 0.5 * Principal * Number of years * Annual Interest Rate
-Interest = 0.5 * 10000 * 4 * 0.07
-Interest = 1400.0</code></pre>
-<p>Step 2: calculate the Monthly Payment</p>
-<pre><code>Monthly Payment = (Principal + Interest) / (Number of Months)
-Monthly Payment = (10000 + 1400.0) / 48
-Monthly Payment = 237.5</code></pre>
-<p>Applying the actual mortagage formula for Monthly Payment (<code>C</code>) is:</p>
-<pre><code>C = r * (1 + r )^N * P / ((1 + r )^N - 1)</code></pre>
-<p>where,</p>
-<pre><code>r = monthly interest rate =&gt; 0.07 / 12
-N = total number of months =&gt; 48
-P = principal =&gt; 10,000</code></pre>
-<p>therefore we have,</p>
-<pre><code>C = 239.46</code></pre>
-<p>The shortcut method is a very good approximation of the true calculation, and it is made of simple arithmetic operations available on any handheld calculator / phone.</p>
-<p>This is surprisingly handy when you are at a negotiating table (eg: Car purchase). This is the kind of mentral tricks that are really useful in the “real world”. Try it out.</p>
-<hr />
-<p>Update: The original paper is a page long, so I put the image here:</p>
-<p><img src="https://i.imgur.com/wTzH0Cy.png" /></p>
-<p>Credit: <a href="https://twitter.com/docmilanfar/status/1254535223733186560">Dr Peyman Milanfar</a>.</p>
-<p><a href="index.html#mathematics" class="tag mathematics">mathematics</a></p>
-</div>
-<div class="post">
-<p><date>2020-04-29</date> <a href="2020-04-29-pipx.html">pipx is like brew for python applications</a></p>
-<p><a href="https://pypi.org/project/pipx/" class="uri">https://pypi.org/project/pipx/</a></p>
-<p>also similar to how cargo works for rust.</p>
-<p><a href="index.html#python" class="tag python">python</a></p>
-</div>
-<div class="post">
-<p><date>2020-04-29</date> <a href="2020-04-29-courier.html">Courier is a nice monospace font</a></p>
-<p>See <a href="https://sveinbjorn.org/files/manpages/platypus.man.html">this man page</a></p>
-<p><a href="index.html#fonts" class="tag fonts">fonts</a></p>
-</div>
-<h2 id="archive">Archive</h2>
-<h3 id="section">2020</h3>
-<p><date>2020-05-05</date> <a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a></p>
-<h2 id="tags">Tags</h2>
-<p><span id="computing" class="tagged">computing</span>: ◊<a href="2020-04-29-conwayslaw.html">Conway’s law</a></p>
-<p><span id="fonts" class="tagged">fonts</span>: ◊<a href="2020-04-29-courier.html">Courier is a nice monospace font</a></p>
-<p><span id="mathematics" class="tagged">mathematics</span>: ◊<a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a></p>
-<p><span id="python" class="tagged">python</span>: ◊<a href="2020-04-29-pipx.html">pipx is like brew for python applications</a></p>
-<p><span id="software" class="tagged">software</span>: ◊<a href="2020-05-02-01-quip.html">Quip</a></p>
 </article>
 <footer>
   <p>Powered by <a href="https://github.com/btbytes/bari">bari</a></p>
