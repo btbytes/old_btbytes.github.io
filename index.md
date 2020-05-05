@@ -1,4 +1,18 @@
 <div class="post"><date>2020-05-05</date>
+[Just-what-you-need blogging with bari
+](2020-05-05-02-bari.html)
+
+I write this blog using a combination of `pandoc`, `make` and a small-ish python script called [bari](https://github.com/btbytes/bari). 
+
+It is easy for me to design, write and maintain my own code than inherit someone else's assumptions and "wants" for their software.
+
+I saw another blog [https://blog.notryan.com/](https://blog.notryan.com/) that is also written in a similar spirit -- uses only C, and a bash script to generate a "text only" blog and RSS feed.
+
+So, go on, write your own little program(s) to do what you need to get writing. Some of it is yak-shaving; but some yaks are small, some of you are expert shavers. You will figure it out. 
+
+
+</div>
+<div class="post"><date>2020-05-05</date>
 [Building Go Programs with Source File Hash baked in
 ](2020-05-05-01-golang-hash-builds.html)
 
@@ -148,17 +162,12 @@ also similar to how cargo works for rust.
 <a href="index.html#python" class="tag python">python</a> 
 
 </div>
-<div class="post"><date>2020-04-29</date>
-[Courier is a nice monospace font
-](2020-04-29-courier.html)
-
-See [this man page](https://sveinbjorn.org/files/manpages/platypus.man.html)
-
-<a href="index.html#fonts" class="tag fonts">fonts</a> 
-</div>
 
 ## Archive
 ### 2020
+<date>2020-04-29</date> [Courier is a nice monospace font
+](2020-04-29-courier.html)
+
 <date>2020-04-29</date> [Conway's law
 ](2020-04-29-conwayslaw.html)
 
