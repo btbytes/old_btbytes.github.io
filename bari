@@ -59,7 +59,7 @@ def gen_archive(allmd):
         return
     with open('index.md', 'a') as a:
         a.write('\n## Archive\n')
-        for post in reversed(allmd[SHOW_ON_HOME_PAGE:]):
+        for post in reversed(allmd[:-SHOW_ON_HOME_PAGE]):
             date = post[:10]
             with open(post, 'r') as fn:
                 lines = fn.readlines()

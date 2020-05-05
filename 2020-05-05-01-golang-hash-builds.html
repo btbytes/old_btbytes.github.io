@@ -98,7 +98,7 @@
 </ol>
 <p>Writing the “scripts” that fit the above criteria in Go looks like a win. You get:</p>
 <ol type="1">
-<li>static typing</li>
+<li>static typing, and developer productivity tooling &amp; apparatus</li>
 <li>single deployable binary (that you can commit along with the source)</li>
 <li>dependencies baked in</li>
 </ol>
@@ -133,6 +133,7 @@ $ go build -ldflags &quot;-X main.sourcehash=$SOURCEHASH&quot;</code></pre>
 7fffa4353f81b58c682e5b33ec7d720cc6db8e469a10d6fc5f31e11eafaa9104</code></pre>
 <p>NOTE: there is nothing stopping you from passing in any value to <code>-ldflags</code>. This meant to be in an environment where you have complete control of the source, binary and the build process, and you are adding something to the build output to help you later on (in case of a doubt).</p>
 <p>I was wondering if I could do this and <a href="https://stackoverflow.com/a/28460195">found the answer on SO</a>.</p>
+<p><a href="index.html#golang" class="tag golang">golang</a></p>
 </article>
 <footer>
   <p>Powered by <a href="https://github.com/btbytes/bari">bari</a></p>

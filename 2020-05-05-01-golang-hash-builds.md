@@ -12,7 +12,7 @@ Imagine a scenario where you are trying to replace a script written in Bash with
 
 Writing the "scripts" that fit the above criteria in Go looks like a win. You get:
 
-1. static typing
+1. static typing, and developer productivity tooling & apparatus
 2. single deployable binary (that you can commit along with the source)
 3. dependencies baked in
 
@@ -67,3 +67,4 @@ NOTE: there is nothing stopping you from passing in any value to `-ldflags`. Thi
 
 I was wondering if I could do this and [found the answer on SO](https://stackoverflow.com/a/28460195).
 
+◊golang

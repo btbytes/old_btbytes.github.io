@@ -14,7 +14,7 @@ Imagine a scenario where you are trying to replace a script written in Bash with
 
 Writing the "scripts" that fit the above criteria in Go looks like a win. You get:
 
-1. static typing
+1. static typing, and developer productivity tooling & apparatus
 2. single deployable binary (that you can commit along with the source)
 3. dependencies baked in
 
@@ -69,6 +69,7 @@ NOTE: there is nothing stopping you from passing in any value to `-ldflags`. Thi
 
 I was wondering if I could do this and [found the answer on SO](https://stackoverflow.com/a/28460195).
 
+<a href="index.html#golang" class="tag golang">golang</a> 
 </div>
 <div class="post"><date>2020-05-02</date>
 [Quip
@@ -158,8 +159,8 @@ See [this man page](https://sveinbjorn.org/files/manpages/platypus.man.html)
 
 ## Archive
 ### 2020
-<date>2020-05-05</date> [Building Go Programs with Source File Hash baked in
-](2020-05-05-01-golang-hash-builds.html)
+<date>2020-04-29</date> [Conway's law
+](2020-04-29-conwayslaw.html)
 
 
 ## Tags
@@ -168,6 +169,8 @@ See [this man page](https://sveinbjorn.org/files/manpages/platypus.man.html)
 <span id="computing" class="tagged">computing</span>: ◊[Conway's law](2020-04-29-conwayslaw.html)
 
 <span id="fonts" class="tagged">fonts</span>: ◊[Courier is a nice monospace font](2020-04-29-courier.html)
+
+<span id="golang" class="tagged">golang</span>: ◊[Building Go Programs with Source File Hash baked in](2020-05-05-01-golang-hash-builds.html)
 
 <span id="mathematics" class="tagged">mathematics</span>: ◊[A worked exmaple of - A persian folk method of figuring interest](2020-05-01-01-interest-calculation.html)
 
