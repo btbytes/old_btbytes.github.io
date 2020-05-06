@@ -1,3 +1,17 @@
+<div class="post"><date>2020-05-06</date>
+[github codespaces
+](2020-05-06-04-codespaces.html)
+
+The announcement of github [Codespaces](https://github.com/features/codespaces) made me think of why I almost always default to programming in Python.  One is definitely familiarity. But, I think the bigger issue (for me, at least) is that the default Python I have on most machines I work on is sufficient enough to be productive right away.
+
+I use sublime text for editing python, which is quite fast to startup and the two python plugins -- anaconda and PyYAPF is sufficient for me to be very productive with Python.
+
+There are a ton of languages that I'd like to try to build my programming muscles over time by writing small programs, but this "goldilocks" environment has prevented from doing so.
+
+
+I hope things like github codespaces can allow me capture the "works great for me setup" in a config file(s), and thus allow me to jump into a project quickly and start coding away and not worry about the right language version (ruby), right interpreter (javascript), right "module" setup (go), right standard library(OCaml), easy to install libraries (haskell) etc.,
+
+</div>
 <div class="post"><date>2020-05-05</date>
 [Just-what-you-need blogging with bari
 ](2020-05-05-02-bari.html)
@@ -151,20 +165,12 @@ Credit: [Dr Peyman Milanfar](https://twitter.com/docmilanfar/status/125453522373
 
 <a href="index.html#mathematics" class="tag mathematics">mathematics</a> 
 </div>
-<div class="post"><date>2020-04-29</date>
-[pipx is like brew for python applications
-](2020-04-29-pipx.html)
-
-<https://pypi.org/project/pipx/>
-
-also similar to how cargo works for rust.
-
-<a href="index.html#python" class="tag python">python</a> 
-
-</div>
 
 ## Archive
 ### 2020
+<date>2020-04-29</date> [pipx is like brew for python applications
+](2020-04-29-pipx.html)
+
 <date>2020-04-29</date> [Courier is a nice monospace font
 ](2020-04-29-courier.html)
 

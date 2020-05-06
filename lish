@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+"""publish a draft"""
+
+import os
+import sys
+import glob
+
+
+def pubfile(src):
+    dst = src.replace('.txt', '.md')
+    print(f'publishing {src} -> {dst}')
+    os.rename(src, dst)
+
+
+def prompt(zd):
+    daft = None
+    while not daft:
+        for k, v in zd.items():
+            print(f'{k}. {v}')
+        i = input('Which draft to publish? ')
+        i = int(i)
+        if i in zd.keys():
+            return zd[i]
+
+
+drafts = glob.glob('*.txt')
+if len(drafts) == 0:
+    print('No drafts to publish.')
+
+elif len(drafts) == 1:
+    pubfile(drafts[0])
+else:
+    zd = zip(range(1, len(drafts) + 1), drafts)
+    pubfile(prompt(dict(zd)))

@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+"""edit a draft"""
+
+import glob
+import os
+import subprocess
+import sys
+
+
+def prompt(zd):
+    daft = None
+    while not daft:
+        for k, v in zd.items():
+            print(f'{k}. {v}')
+        i = input('Which draft to edit? ')
+        i = int(i)
+        if i in zd.keys():
+            return zd[i]
+
+
+drafts = glob.glob('*.txt')
+if len(drafts) == 0:
+    print('No drafts to edit.')
+
+elif len(drafts) == 1:
+    subprocess.call(['open', drafts[0]])
+else:
+    zd = zip(range(1, len(drafts) + 1), drafts)
+    subprocess.call(['open', prompt(dict(zd))])

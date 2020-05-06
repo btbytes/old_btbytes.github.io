@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 make -j4
-git add .
+git add *.md
+git add *.html
 git commit -am "A new build"
 git push origin
 
