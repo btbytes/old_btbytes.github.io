@@ -11,6 +11,7 @@ There are a ton of languages that I'd like to try to build my programming muscle
 
 I hope things like github codespaces can allow me capture the "works great for me setup" in a config file(s), and thus allow me to jump into a project quickly and start coding away and not worry about the right language version (ruby), right interpreter (javascript), right "module" setup (go), right standard library(OCaml), easy to install libraries (haskell) etc.,
 
+<a href="index.html#programming" class="tag programming">programming</a> 
 </div>
 <div class="post"><date>2020-05-05</date>
 [Just-what-you-need blogging with bari
@@ -188,6 +189,8 @@ Credit: [Dr Peyman Milanfar](https://twitter.com/docmilanfar/status/125453522373
 <span id="golang" class="tagged">golang</span>: ◊[Building Go Programs with Source File Hash baked in](2020-05-05-01-golang-hash-builds.html)
 
 <span id="mathematics" class="tagged">mathematics</span>: ◊[A worked exmaple of - A persian folk method of figuring interest](2020-05-01-01-interest-calculation.html)
+
+<span id="programming" class="tagged">programming</span>: ◊[github codespaces](2020-05-06-04-codespaces.html)
 
 <span id="python" class="tagged">python</span>: ◊[pipx is like brew for python applications](2020-04-29-pipx.html)
 
