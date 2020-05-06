@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import uuid
 
 SHOW_ON_HOME_PAGE = 5
 
@@ -26,7 +27,8 @@ def gen_tags(allmd):
     with open('index.md', 'a') as f:
         f.write('\n## Tags\n')
         for k in sorted(tags.keys()):
-            f.write('\n\n<span id="{k}" class="tagged">{k}</span>: '.format(k=k))
+            f.write(
+                '\n\n<span id="{k}" class="tagged">{k}</span>: '.format(k=k))
             tsoup = ' '.join(
                 ['◊[{title}]({link})'.format(**meta) for meta in tags[k]])
             f.write(tsoup)
@@ -72,6 +74,53 @@ def gen_archive(allmd):
                 a.write('<date>%s</date> [%s](%s)\n\n' % (date, title, link))
 
 
+def gen_atom_feed(latest):
+    feed_templ = '''<?xml version="1.0" encoding="utf-8"?>
+        <feed xmlns="http://www.w3.org/2005/Atom">
+        <title>btbytes.github.io feed</title>
+        <link href="https://btbytes.github.io/"/>
+        <updated>{feed_updated}</updated>
+        <author>
+        <name>Pradeep Gowda</name>
+        </author>
+        <id>https://btbytes.github.io/</id>
+            {entries}
+         </feed>'''
+    entry_templ = '''<entry>
+        <title>{title}</title>
+        <link href="{url}"/>
+        <id>{url}</id>
+        <updated>{updated}</updated>
+        <summary>{summary}</summary>
+        </entry>
+    '''
+    if len(allmd) > SHOW_ON_HOME_PAGE:
+        s = SHOW_ON_HOME_PAGE
+    else:
+        s = len(allmd)
+    selected = allmd[-s:]
+    with open('atom.xml', 'w') as of:
+        entries = ''
+        cnt = 0
+        for post in reversed(selected):
+            updated = post[:10]
+            if cnt == 0:
+                feed_updated = updated
+            cnt += 1
+            with open(post, 'r') as fn:
+                lines = fn.readlines()
+                title = lines[0].strip()
+                link = post.replace('.md', '.html')
+                url = f'https://btbytes.github.io/{link}'
+                uid = str(uuid.uuid4())
+            entry = entry_templ.format(
+                title=title, url=url, uid=uid, updated=updated, summary=title)
+            entries += entry
+        content = feed_templ.format(
+            feed_updated=feed_updated, entries=entries)
+        of.write(content)
+
+
 def process_file(fpath):
     print(''.join(proc_file(fpath)))
 
@@ -104,4 +153,5 @@ if __name__ == '__main__':
     else:
         gen_home(allmd)
         gen_archive(allmd)
+        gen_atom_feed(allmd)
         gen_tags(allmd)

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+        <feed xmlns="http://www.w3.org/2005/Atom">
+        <title>btbytes.github.io feed</title>
+        <link href="https://btbytes.github.io/"/>
+        <updated>2020-05-06</updated>
+        <author>
+        <name>Pradeep Gowda</name>
+        </author>
+        <id>https://btbytes.github.io/</id>
+            <entry>
+        <title>github codespaces</title>
+        <link href="https://btbytes.github.io/2020-05-06-04-codespaces.html"/>
+        <id>https://btbytes.github.io/2020-05-06-04-codespaces.html</id>
+        <updated>2020-05-06</updated>
+        <summary>github codespaces</summary>
+        </entry>
+    <entry>
+        <title>Just-what-you-need blogging with bari</title>
+        <link href="https://btbytes.github.io/2020-05-05-02-bari.html"/>
+        <id>https://btbytes.github.io/2020-05-05-02-bari.html</id>
+        <updated>2020-05-05</updated>
+        <summary>Just-what-you-need blogging with bari</summary>
+        </entry>
+    <entry>
+        <title>Building Go Programs with Source File Hash baked in</title>
+        <link href="https://btbytes.github.io/2020-05-05-01-golang-hash-builds.html"/>
+        <id>https://btbytes.github.io/2020-05-05-01-golang-hash-builds.html</id>
+        <updated>2020-05-05</updated>
+        <summary>Building Go Programs with Source File Hash baked in</summary>
+        </entry>
+    <entry>
+        <title>Quip</title>
+        <link href="https://btbytes.github.io/2020-05-02-01-quip.html"/>
+        <id>https://btbytes.github.io/2020-05-02-01-quip.html</id>
+        <updated>2020-05-02</updated>
+        <summary>Quip</summary>
+        </entry>
+    <entry>
+        <title>A worked exmaple of - A persian folk method of figuring interest</title>
+        <link href="https://btbytes.github.io/2020-05-01-01-interest-calculation.html"/>
+        <id>https://btbytes.github.io/2020-05-01-01-interest-calculation.html</id>
+        <updated>2020-05-01</updated>
+        <summary>A worked exmaple of - A persian folk method of figuring interest</summary>
+        </entry>
+    
+         </feed>
