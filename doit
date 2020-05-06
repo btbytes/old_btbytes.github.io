@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-make
+make -j4
 git add .
 git commit -am "A new build"
 git push origin
