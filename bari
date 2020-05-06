@@ -103,7 +103,7 @@ def gen_atom_feed(latest):
         entries = ''
         cnt = 0
         for post in reversed(selected):
-            updated = post[:10]
+            updated = post[:10] + 'T00:00:00.00Z'
             if cnt == 0:
                 feed_updated = updated
             cnt += 1
