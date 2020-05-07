@@ -6,6 +6,10 @@ During a "vanity search" of this blog "btbytes.github.io", I found out that some
 
 ![](images/pso-book.png)
 
+<script src="https://gist.github.com/btbytes/79877.js?file=pso.py"></script>
+
+----
+
 A link to my [PyOFC2](http://btbytes.github.io/pyofc2/) Python charting library in ["Building a Cloud Computing Service: An Introduction to the Cloud"](https://books.google.com/books?id=RHBWBQAAQBAJ&lpg=PA46&ots=K3Ax-hLlZg&dq=btbytes.github.io&pg=PA46#v=onepage&q=btbytes.github.io&f=false).
 
 ![](images/pyofc2-book.png)
