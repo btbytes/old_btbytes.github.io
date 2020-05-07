@@ -104,4 +104,4 @@ A link to my [PyOFC2](http://btbytes.github.io/pyofc2/) Python charting library 
 
 ![](images/pyofc2-book.png)
 
-
+◊programming

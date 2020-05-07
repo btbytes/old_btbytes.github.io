@@ -106,7 +106,7 @@ A link to my [PyOFC2](http://btbytes.github.io/pyofc2/) Python charting library 
 
 ![](images/pyofc2-book.png)
 
-
+<a href="index.html#programming" class="tag programming">programming</a> 
 </div>
 <div class="post"><date>2020-05-06</date>
 [My Happy Python Workflow
@@ -289,7 +289,7 @@ I was wondering if I could do this and [found the answer on SO](https://stackove
 
 <span id="mathematics" class="tagged">mathematics</span>: ◊[A worked exmaple of - A persian folk method of figuring interest](2020-05-01-01-interest-calculation.html)
 
-<span id="programming" class="tagged">programming</span>: ◊[github codespaces](2020-05-06-04-codespaces.html)
+<span id="programming" class="tagged">programming</span>: ◊[github codespaces](2020-05-06-04-codespaces.html) ◊[My code in books](2020-05-07-02-code-in-books.html)
 
 <span id="python" class="tagged">python</span>: ◊[pipx is like brew for python applications](2020-04-29-pipx.html) ◊[My Happy Python Workflow](2020-05-06-06-happy-python.html)
 
