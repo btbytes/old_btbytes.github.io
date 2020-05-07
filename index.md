@@ -1,3 +1,19 @@
+<div class="post"><date>2020-05-07</date>
+[My code in books
+](2020-05-07-02-code-in-books.html)
+
+During a "vanity search" of this blog "btbytes.github.io", I found out that some of my code have been quoted in published books:
+
+([A Particle Swarm Optimization](https://gist.github.com/btbytes/79877)) implementation in Python in ["Intelligent IoT Projects in 7 Days"](https://www.packtpub.com/hardware-and-creative/intelligent-iot-projects-7-days). I remember writing this code for Dr Eberhart's "Computation Intelligence" class at IUPUI.
+
+![](images/pso-book.png)
+
+A link to my [PyOFC2](http://btbytes.github.io/pyofc2/) Python charting library in ["Building a Cloud Computing Service: An Introduction to the Cloud"](https://books.google.com/books?id=RHBWBQAAQBAJ&lpg=PA46&ots=K3Ax-hLlZg&dq=btbytes.github.io&pg=PA46#v=onepage&q=btbytes.github.io&f=false).
+
+![](images/pyofc2-book.png)
+
+
+</div>
 <div class="post"><date>2020-05-06</date>
 [My Happy Python Workflow
 ](2020-05-06-06-happy-python.html)
@@ -149,23 +165,12 @@ I was wondering if I could do this and [found the answer on SO](https://stackove
 
 <a href="index.html#golang" class="tag golang">golang</a> 
 </div>
-<div class="post"><date>2020-05-02</date>
-[Quip
-](2020-05-02-01-quip.html)
-
-[Quip](https://quip.com/) from Salesforce looks like "Jupyter notebooks" for sales and service workers.
-
-I came across this site while reading [The Best Medium-Hard Data Analyst SQL Interview Questions  ](https://quip.com/2gwZArKuWk7W). Looking at this document and the "tour", it appears to be a turbo charged "Word" / Google Docs more than full fledged data analytics platform.
-
-I have never used "Sharepoint", so I can't compare it to that.
-
-There is no "free tier" to try out.
-
-<a href="index.html#software" class="tag software">software</a> 
-</div>
 
 ## Archive
 ### 2020
+<date>2020-05-02</date> [Quip
+](2020-05-02-01-quip.html)
+
 <date>2020-05-01</date> [A worked exmaple of - A persian folk method of figuring interest
 ](2020-05-01-01-interest-calculation.html)
 
