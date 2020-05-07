@@ -9,7 +9,7 @@ This is my current python programming workflow. I'm quite happy with it. I const
 1. I use SublimeText3(ST3) for editing.
 1. I use Two ST3 plugins -- `Anaconda` and `PyYapf`.
 1. Anaconda catches things like unused variables, syntax errors, and PEP8 violations.
-1. I PyYAPF formatting compulsively.
+1. I use PyYAPF formatting compulsively.
 1. ..and "Highlight Trailing Whitespace", I find trailing whitespace unpleasant.
 1. I take PEP8 warnings seriously and try to keep `pyflakes` happy.
 1. Vim in the shell. No plugins.
