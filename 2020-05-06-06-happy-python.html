@@ -36,13 +36,13 @@
 <li>..and “Highlight Trailing Whitespace”, I find trailing whitespace unpleasant.</li>
 <li>I take PEP8 warnings seriously and try to keep <code>pyflakes</code> happy.</li>
 <li>Vim in the shell. No plugins.</li>
-<li>Start with with a README.md in the project, even if it is a single file project.</li>
-<li>I always use virtualenv; Pipenv is a quick way spin one up in the development environments.</li>
+<li>Start with a <code>README.md</code> in the project, even if it is a single file project.</li>
+<li>I always use <code>virtualenv</code>; Pipenv is a quick way to spin one up in the development environments.</li>
 <li>Always capture the dependencies in <code>requirements.txt</code>, unless I’m writing a setup.py</li>
 <li>Writing a <code>setup.py</code> file is a great idea, and I should do it more often.</li>
 <li>I always write a <code>Makefile</code>.</li>
 <li>For Python projects, the common “targets” are – <code>deps</code> (for creating venvs and installing package dependencies), <code>package</code> (for packaging into tarballs and wheels) and <code>test</code> to run the test suite.</li>
-<li>The makefile serves as contextual memory.</li>
+<li>The <code>Makefile</code> serves as contextual memory.</li>
 <li>For “scripting” applications, I like to avoid using third party libraries as much as possible and keep to the standard library.</li>
 <li>I like providing a CLI interface to my scripts; I use <code>argparse</code> often, even if it is to provide basic <code>--help</code>.</li>
 <li><code>click</code> looks neat, and I can see using it more often for larger projects.</li>
@@ -64,7 +64,7 @@
 <li>I prefer using multiprocessing over threads. I don’t remember the last time I wrote Python threading code.</li>
 <li>I’m team single-quotes ’. I like when my string look like – <code>'hello, world!'</code> instead of <code>"hello, world!"</code>.</li>
 <li>I haven’t used the walrus operator yet.</li>
-<li>I always write “dunder main”, unless its a throw away script (or a would’ve-been-a-bash-script script).</li>
+<li>I always write “dunder main”(<code>__main__</code>), unless its a throw away script (or a would’ve-been-a-bash-script script).</li>
 <li>You won’t catch me manipulating “path” to insert dependent library locations. I know how to use packages and virtualenvs.</li>
 <li>4 spaces. No TABs characters in my programs. I do use the TAB key to tell the editor to indent appropriately.</li>
 </ol>

@@ -11,18 +11,18 @@ This is my current python programming workflow. I'm quite happy with it. I const
 1. ..and "Highlight Trailing Whitespace", I find trailing whitespace unpleasant.
 1. I take PEP8 warnings seriously and try to keep `pyflakes` happy.
 1. Vim in the shell. No plugins.
-1. Start with with a README.md in the project, even if it is a single file project.
-1. I always use virtualenv; Pipenv is a quick way spin one up in the development environments.
+1. Start with a `README.md` in the project, even if it is a single file project.
+1. I always use `virtualenv`; Pipenv is a quick way to spin one up in the development environments.
 1. Always capture the dependencies in `requirements.txt`, unless I'm writing a setup.py
 1. Writing a `setup.py` file is a great idea, and I should do it more often.
 1. I always write a `Makefile`.
 1. For Python projects, the common "targets" are -- `deps` (for creating venvs and installing package dependencies), `package` (for packaging into tarballs and wheels) and `test` to run the test suite.
-1. The makefile serves as contextual memory.
+1. The `Makefile` serves as contextual memory.
 1. For "scripting" applications, I like to avoid using third party libraries as much as possible and keep to the standard library.
 1. I like providing a CLI interface to my scripts; I use `argparse` often, even if it is to provide basic `--help`.
 1. `click` looks neat, and I can see using it more often for larger projects.
 1. `docopt` has fallen out of favour. Too fidgety for my taste.
-1. I tried `python-poetry` for one project, and I like what it does. 
+1. I tried `python-poetry` for one project, and I like what it does.
 1. I like putting package versions in my `setup.py` files. I don't know if "Semantic versioning" is still a thing, but I like the x.y.z format, so I'm sticking to it.
 1. Any program that is big enough to have a setup.py file will also have CLI entry_points.
 1. I prefer writing small, self contained functions.
@@ -39,7 +39,7 @@ This is my current python programming workflow. I'm quite happy with it. I const
 1. I prefer using multiprocessing over threads. I don't remember the last time I wrote Python threading code.
 1. I'm team single-quotes '. I like when my string look like -- `'hello, world!'` instead of `"hello, world!"`.
 1. I haven't used the walrus operator yet.
-1. I always write "dunder main", unless its a throw away script (or a would've-been-a-bash-script script).
+1. I always write "dunder main"(`__main__`), unless its a throw away script (or a would've-been-a-bash-script script).
 1. You won't catch me manipulating "path" to insert dependent library locations. I know how to use packages and virtualenvs.
 1. 4 spaces. No TABs characters in my programs. I do use the TAB key to tell the editor to indent appropriately.
 
