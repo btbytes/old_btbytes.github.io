@@ -8,6 +8,13 @@
         </author>
         <id>https://btbytes.github.io/</id>
             <entry>
+        <title>My Happy Python Workflow</title>
+        <link href="https://btbytes.github.io/2020-05-06-06-happy-python.html"/>
+        <id>https://btbytes.github.io/2020-05-06-06-happy-python.html</id>
+        <updated>2020-05-06T00:00:00.00Z</updated>
+        <summary>My Happy Python Workflow</summary>
+        </entry>
+    <entry>
         <title>github codespaces</title>
         <link href="https://btbytes.github.io/2020-05-06-04-codespaces.html"/>
         <id>https://btbytes.github.io/2020-05-06-04-codespaces.html</id>
@@ -34,13 +41,6 @@
         <id>https://btbytes.github.io/2020-05-02-01-quip.html</id>
         <updated>2020-05-02T00:00:00.00Z</updated>
         <summary>Quip</summary>
-        </entry>
-    <entry>
-        <title>A worked exmaple of - A persian folk method of figuring interest</title>
-        <link href="https://btbytes.github.io/2020-05-01-01-interest-calculation.html"/>
-        <id>https://btbytes.github.io/2020-05-01-01-interest-calculation.html</id>
-        <updated>2020-05-01T00:00:00.00Z</updated>
-        <summary>A worked exmaple of - A persian folk method of figuring interest</summary>
         </entry>
     
          </feed>

@@ -84,6 +84,51 @@
 <article>
 
 <div class="post">
+<p><date>2020-05-06</date> <a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a></p>
+<p>This is my current python programming workflow. I’m quite happy with it. I constantly try to get better.</p>
+<ol type="1">
+<li>I use Python3.x for all new projects.</li>
+<li>I use SublimeText3(ST3) for editing.</li>
+<li>I use Two ST3 plugins – <code>Anaconda</code> and <code>PyYapf</code></li>
+<li>Anaconda catches things like unused variables, syntax errors, and PEP8 violations.</li>
+<li>I PyYAPF formatting compulsively.</li>
+<li>..and “Highlight Trailing Whitespace”, I find trailing whitespace unpleasant.</li>
+<li>I take PEP8 warnings seriously and try to keep <code>pyflakes</code> happy.</li>
+<li>Vim in the shell. No plugins.</li>
+<li>Start with with a README.md in the project, even if it is a single file project.</li>
+<li>I always use virtualenv; Pipenv is a quick way spin one up in the development environments.</li>
+<li>Always capture the dependencies in <code>requirements.txt</code>, unless I’m writing a setup.py</li>
+<li>Writing a <code>setup.py</code> file is a great idea, and I should do it more often.</li>
+<li>I always write a <code>Makefile</code>.</li>
+<li>For Python projects, the common “targets” are – <code>deps</code> (for creating venvs and installing package dependencies), <code>package</code> (for packaging into tarballs and wheels) and <code>test</code> to run the test suite.</li>
+<li>The makefile is serves as contextual memory.</li>
+<li>For “scripting” applications, I like to avoid using third party libraries as much as possible and keep to the standard library.</li>
+<li>I like providing a CLI interface to my scripts; I use <code>argparse</code> often, even if it is to provide basic “–help”.</li>
+<li><code>click</code> looks neat, and I can see using it more often for larger projects.</li>
+<li><code>docopt</code> has fallen out of favour. Too fidgety for my taste.</li>
+<li>I tried <code>python-poetry</code> for one project, and I like what it does.</li>
+<li>I like putting package versions in my <code>setup.py</code> files. I don’t know if “Semantic versioning” is still a thing, but I like the x.y.z format, so I’m sticking to it.</li>
+<li>Any program that is big enough to have a setup.py file will also have CLI entry_points.</li>
+<li>I prefer writing small, self contained functions.</li>
+<li>I wouldn’t write a class unless I feel like I’m passing around too many variables between functions.</li>
+<li>I like putting unit testing in the same file as the code, if it’s a single file program.</li>
+<li>doc tests seemed like a good idea, but unit tests are a good way to grow the tests without redoing the doc tests.</li>
+<li>I have started writing type annotations, though nowhere near where I could be.</li>
+<li>I <em>love</em> <code>f-strings</code>. I never seemed to remember the right way to call format strings before I got used to <code>f-strings</code>, though <code>.format</code> came earlier.</li>
+<li>I don’t like long variable names, especially ones with <code>camelCase</code>; <code>snake_case</code> for me please.</li>
+<li>I use single character variable names when their meaning is clear from the context.</li>
+<li>I seldom read code without rewriting some parts of it. Many times the changes do become pull requests.</li>
+<li>I don’t like commented out code in middle of programs.</li>
+<li>I’m still not good with the <code>async</code> stuff.</li>
+<li>I prefer using multiprocessing over threads. I don’t remember the last time I wrote Python threading code.</li>
+<li>I’m team single-quotes ’. I like when my string look like – <code>'hello, world!'</code> instead of <code>"hello, world!"</code>.</li>
+<li>I haven’t used the walrus operator yet.</li>
+<li>I always write “dunder main”, unless its a throw away script (or a would’ve-been-a-bash-script script).</li>
+<li>You won’t catch me manipulating “path” to insert dependent library locations. I know how to use packages and virtualenvs.</li>
+<li>4 spaces. No TABs characters in my programs. I do use the TAB key to tell the editor to indent appropriately.</li>
+</ol>
+</div>
+<div class="post">
 <p><date>2020-05-06</date> <a href="2020-05-06-04-codespaces.html">github codespaces</a></p>
 <p>The announcement of github <a href="https://github.com/features/codespaces">Codespaces</a> made me think of why I almost always default to programming in Python. One is definitely familiarity. But, I think the bigger issue (for me, at least) is that the default Python I have on most machines I work on is sufficient enough to be productive right away.</p>
 <p>I use sublime text for editing python, which is quite fast to startup and the two python plugins – anaconda and PyYAPF is sufficient for me to be very productive with Python.</p>
@@ -156,37 +201,9 @@ $ go build -ldflags &quot;-X main.sourcehash=$SOURCEHASH&quot;</code></pre>
 <p>There is no “free tier” to try out.</p>
 <p><a href="index.html#software" class="tag software">software</a></p>
 </div>
-<div class="post">
-<p><date>2020-05-01</date> <a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a></p>
-<p>I found the paper <a href="https://twitter.com/docmilanfar/status/1254535223733186560">“A persian folk method of figuring interest”</a> via Dr Peyman Milanfar on twitter, where he described this method as the one deployed by his father to quickly calculate the monthly payments on a home loan.</p>
-<p>I thought it is a good idea to do a workout of the formula myself so that I can remember it:</p>
-<p>For this demonstration, let’s consider a loan amount (Principal) of $10,000 for a period of 4 years(48 months) at an interest rate of 7% pa.</p>
-<p>Step 1: calculate the interest amount over the loan period</p>
-<pre><code>Interest = 0.5 * Principal * Number of years * Annual Interest Rate
-Interest = 0.5 * 10000 * 4 * 0.07
-Interest = 1400.0</code></pre>
-<p>Step 2: calculate the Monthly Payment</p>
-<pre><code>Monthly Payment = (Principal + Interest) / (Number of Months)
-Monthly Payment = (10000 + 1400.0) / 48
-Monthly Payment = 237.5</code></pre>
-<p>Applying the actual mortagage formula for Monthly Payment (<code>C</code>) is:</p>
-<pre><code>C = r * (1 + r )^N * P / ((1 + r )^N - 1)</code></pre>
-<p>where,</p>
-<pre><code>r = monthly interest rate =&gt; 0.07 / 12
-N = total number of months =&gt; 48
-P = principal =&gt; 10,000</code></pre>
-<p>therefore we have,</p>
-<pre><code>C = 239.46</code></pre>
-<p>The shortcut method is a very good approximation of the true calculation, and it is made of simple arithmetic operations available on any handheld calculator / phone.</p>
-<p>This is surprisingly handy when you are at a negotiating table (eg: Car purchase). This is the kind of mentral tricks that are really useful in the “real world”. Try it out.</p>
-<hr />
-<p>Update: The original paper is a page long, so I put the image here:</p>
-<p><img src="https://i.imgur.com/wTzH0Cy.png" /></p>
-<p>Credit: <a href="https://twitter.com/docmilanfar/status/1254535223733186560">Dr Peyman Milanfar</a>.</p>
-<p><a href="index.html#mathematics" class="tag mathematics">mathematics</a></p>
-</div>
 <h2 id="archive">Archive</h2>
 <h3 id="section">2020</h3>
+<p><date>2020-05-01</date> <a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a></p>
 <p><date>2020-04-29</date> <a href="2020-04-29-pipx.html">pipx is like brew for python applications</a></p>
 <p><date>2020-04-29</date> <a href="2020-04-29-courier.html">Courier is a nice monospace font</a></p>
 <p><date>2020-04-29</date> <a href="2020-04-29-conwayslaw.html">Conway’s law</a></p>
