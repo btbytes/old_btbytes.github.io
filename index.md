@@ -21,7 +21,7 @@ This is my current python programming workflow. I'm quite happy with it. I const
 1. For Python projects, the common "targets" are -- `deps` (for creating venvs and installing package dependencies), `package` (for packaging into tarballs and wheels) and `test` to run the test suite.
 1. The makefile serves as contextual memory.
 1. For "scripting" applications, I like to avoid using third party libraries as much as possible and keep to the standard library.
-1. I like providing a CLI interface to my scripts; I use `argparse` often, even if it is to provide basic "--help".
+1. I like providing a CLI interface to my scripts; I use `argparse` often, even if it is to provide basic `--help`.
 1. `click` looks neat, and I can see using it more often for larger projects.
 1. `docopt` has fallen out of favour. Too fidgety for my taste.
 1. I tried `python-poetry` for one project, and I like what it does. 
