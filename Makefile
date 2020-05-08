@@ -2,7 +2,7 @@ NOTES=$(wildcard 2*.md)
 HTML=$(patsubst %.md, %.html, $(NOTES))
 SPSOURCES=$(wildcard *.md)
 SPHTML=$(patsubst %.md, %.html, $(SPSOURCES))
-PANDOC=pandoc --standalone -A inc.after -B inc.before --template=template.htm --css=style.css --quiet
+PANDOC=pandoc --standalone -A inc.after -B inc.before --template=template.htm --highlight-style=haddock --css=style.css --quiet
 all: $(HTML) index.html
 
 index.md: $(NOTES) bari
