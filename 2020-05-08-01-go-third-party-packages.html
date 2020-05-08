@@ -89,14 +89,14 @@
 <p class="date">2020-05-08</p>
 </header>
 <p>I’ve been following Go programming language since about 2009 or so (have the t-shirt).</p>
-<p>Go did package management differently than other languages. For one there was no tar.gz, egg, or gem to download. This note is just a reminder to myself how things work.</p>
+<p>Go does package management differently than other languages. For one there was no tar.gz, egg, or gem to download. This note is just a reminder to myself how things work.</p>
 <p>How to find new, interesting Go packages? <a href="https://golangweekly.com/issues/311">Golang weekly</a> is one place. <a href="https://github.com/lucperkins/rek">Rek</a> looks interesting.</p>
 <p><a href="https://github.com/lucperkins/rek">Rek</a> is like <a href="https://requests.readthedocs.io/en/master/">Python requests</a></p>
 <p>You install the package with: <code>go get github.com/lucperkins/rek</code></p>
 <p>The source is installed under: <code>$GOPATH/src/github.com/lucperkins/rek</code>. On my machines, <code>$GOPATH</code> is usually set to <code>$HOME/go</code>.</p>
 <p>I can then use this package in a program like this: <code>import "github.com/lucperkins/rek"</code></p>
 <hr />
-<p>The complete program for posterity (also, the example code from the library home page had syntax errors):</p>
+<p>The complete program for posterity (also, the example code from the library home page had syntax errors) is here:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">package</span> main</span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="kw">import</span> <span class="st">&quot;github.com/lucperkins/rek&quot;</span></span>
@@ -141,12 +141,13 @@
   &quot;json&quot;: {
     &quot;body&quot;: &quot;Test message&quot;
   },
-  &quot;origin&quot;: &quot;123.45.678.9&quot;,
+  &quot;origin&quot;: &quot;123.45.67.8&quot;,
   &quot;url&quot;: &quot;https://httpbin.org/post&quot;
 }</code></pre>
+<p><a href="index.html#golang" class="tag golang">golang</a></p>
 </article>
 <footer>
-  <p>Made with <a href="https://github.com/btbytes/bari">bari</a> with help from <a href="https://pandoc.org">pandoc</a>, <a href="https://www.gnu.org/software/make/">make</a> and <a href="https://www.python.org">python</a> </p>
+  <p>Made with <a href="https://github.com/btbytes/btbytes.github.io/blob/master/bari">bari</a> with help from <a href="https://pandoc.org">pandoc</a>, <a href="https://www.gnu.org/software/make/">make</a> and <a href="https://www.python.org">python</a> </p>
 </footer>
 <script data-goatcounter="https://btbytes-github.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

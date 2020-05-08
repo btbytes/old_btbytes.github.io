@@ -2,7 +2,7 @@ Notes to self: How to use Go Third Party Packages
 
 I've been following Go programming language since about 2009 or so (have the t-shirt).
 
-Go did package management differently than other languages. For one there was no tar.gz, egg, or gem to download.  This note is just a reminder to myself how things work.
+Go does package management differently than other languages. For one there was no tar.gz, egg, or gem to download.  This note is just a reminder to myself how things work.
 
 
 How to find new, interesting Go packages? [Golang weekly](https://golangweekly.com/issues/311) is one place. [Rek](https://github.com/lucperkins/rek) looks interesting.
@@ -18,7 +18,7 @@ I can then use this package in a program like this: `import "github.com/lucperki
 
 ----
 
-The complete program for posterity (also, the example code from the library home page had syntax errors):
+The complete program for posterity (also, the example code from the library home page had syntax errors) is here:
 
 ```go
 package main
@@ -70,7 +70,9 @@ Running this program with `go run .` will produce:
   "json": {
     "body": "Test message"
   },
-  "origin": "123.45.678.9",
+  "origin": "123.45.67.8",
   "url": "https://httpbin.org/post"
 }
 ```
+
+◊golang
