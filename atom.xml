@@ -2,12 +2,19 @@
         <feed xmlns="http://www.w3.org/2005/Atom">
         <title>btbytes.github.io feed</title>
         <link href="https://btbytes.github.io/"/>
-        <updated>2020-05-07T00:00:00.00Z</updated>
+        <updated>2020-05-08T00:00:00.00Z</updated>
         <author>
         <name>Pradeep Gowda</name>
         </author>
         <id>https://btbytes.github.io/</id>
             <entry>
+        <title>Notes to self: How to use Go Third Party Packages</title>
+        <link href="https://btbytes.github.io/2020-05-08-01-go-third-party-packages.html"/>
+        <id>https://btbytes.github.io/2020-05-08-01-go-third-party-packages.html</id>
+        <updated>2020-05-08T00:00:00.00Z</updated>
+        <summary>Notes to self: How to use Go Third Party Packages</summary>
+        </entry>
+    <entry>
         <title>My code in books</title>
         <link href="https://btbytes.github.io/2020-05-07-02-code-in-books.html"/>
         <id>https://btbytes.github.io/2020-05-07-02-code-in-books.html</id>
@@ -34,13 +41,6 @@
         <id>https://btbytes.github.io/2020-05-05-02-bari.html</id>
         <updated>2020-05-05T00:00:00.00Z</updated>
         <summary>Just-what-you-need blogging with bari</summary>
-        </entry>
-    <entry>
-        <title>Building Go Programs with Source File Hash baked in</title>
-        <link href="https://btbytes.github.io/2020-05-05-01-golang-hash-builds.html"/>
-        <id>https://btbytes.github.io/2020-05-05-01-golang-hash-builds.html</id>
-        <updated>2020-05-05T00:00:00.00Z</updated>
-        <summary>Building Go Programs with Source File Hash baked in</summary>
         </entry>
     
          </feed>

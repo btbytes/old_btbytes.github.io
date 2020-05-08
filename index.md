@@ -1,3 +1,82 @@
+<div class="post"><date>2020-05-08</date>
+[Notes to self: How to use Go Third Party Packages
+](2020-05-08-01-go-third-party-packages.html)
+
+I've been following Go programming language since about 2009 or so (have the t-shirt).
+
+Go did package management differently than other languages. For one there was no tar.gz, egg, or gem to download.  This note is just a reminder to myself how things work.
+
+
+How to find new, interesting Go packages? [Golang weekly](https://golangweekly.com/issues/311) is one place. [Rek](https://github.com/lucperkins/rek) looks interesting.
+
+[Rek](https://github.com/lucperkins/rek) is like [Python requests](https://requests.readthedocs.io/en/master/)
+
+You install the package with: `go get github.com/lucperkins/rek`
+
+The source is installed under: `$GOPATH/src/github.com/lucperkins/rek`. On my machines, `$GOPATH` is usually set to `$HOME/go`.
+
+I can then use this package in a program like this: `import "github.com/lucperkins/rek"`
+
+
+----
+
+The complete program for posterity (also, the example code from the library home page had syntax errors):
+
+```go
+package main
+
+import "github.com/lucperkins/rek"
+import "fmt"
+import "time"
+
+// Comment Struct
+type Comment struct {
+	Body string `json:"body"`
+}
+
+func main() {
+	comment := Comment{Body: "Test message"}
+	headers := map[string]string{"X-Custom-Header": "Custom Header Ino "}
+	res, _ := rek.Post("https://httpbin.org/post",
+		rek.Json(comment),
+		rek.Headers(headers),
+		rek.BasicAuth("user", "pass"),
+		rek.Timeout(5*time.Second),
+	)
+
+	fmt.Println(res.StatusCode())
+	fmt.Println(res.Text())
+}
+
+```
+
+Running this program with `go run .` will produce:
+
+```
+200
+{
+  "args": {},
+  "data": "{\"body\":\"Test message\"}",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Accept-Encoding": "gzip",
+    "Authorization": "Basic dXNlcjpwYXNz",
+    "Content-Length": "23",
+    "Content-Type": "application/json; charset=utf-8",
+    "Host": "httpbin.org",
+    "User-Agent": "Go-http-client/2.0",
+    "X-Amzn-Trace-Id": "Root=1-5eb56f0a-33437e749f972658c175508a",
+    "X-Custom-Header": "Custom Header Ino"
+  },
+  "json": {
+    "body": "Test message"
+  },
+  "origin": "123.45.678.9",
+  "url": "https://httpbin.org/post"
+}
+```
+</div>
 <div class="post"><date>2020-05-07</date>
 [My code in books
 ](2020-05-07-02-code-in-books.html)
@@ -186,82 +265,12 @@ So, go on, write your own little program(s) to do what you need to get writing. 
 
 
 </div>
-<div class="post"><date>2020-05-05</date>
-[Building Go Programs with Source File Hash baked in
-](2020-05-05-01-golang-hash-builds.html)
-
-
-Imagine a scenario where you are trying to replace a script written in Bash with Go. Lets assume for the sake of this disucssion the following:
-
-1. This program is longer than what you are comfortable maintaining in Bash/Perl/Python
-2. This program has library dependencies
-3. The target deployment system does not have a "devops" setup to install required dependencies (or has an older version of the OS)
-4. The script does not change often
-5. The "deployment" consists of copying/syncing/`git pull` script into the target machine.
-6. The target system does not have a golang compiler
-
-Writing the "scripts" that fit the above criteria in Go looks like a win. You get:
-
-1. static typing, and developer productivity tooling & apparatus
-2. single deployable binary (that you can commit along with the source)
-3. dependencies baked in
-
-The one issue with checking in the binary with source code is, you can't be sure if the binary is built with the latest source that is adjacent to it.
-
-
-Essentially, this is what we want to have:
-
-	$ sha256sum hello.go
-	0246c2bce7473e5c02e8ef510ff89e7ef5aedf74ffb7df66cdb19acb433d24aa  hello.go
-
-The `sha256sum` of the source file is - `0246c2bce7473e5c02e8ef510ff89e7ef5aedf74ffb7df66cdb19acb433d24aa`.
-
-Let's say we have a binary `hello`, that is adjacent to this source file, that we assume to be compiled from this source file.
-
-What if we could verify that?
-
-	$ ./hello -v
-	0246c2bce7473e5c02e8ef510ff89e7ef5aedf74ffb7df66cdb19acb433d24aa
-
-If the program prints the same hash, we can assume that they match.
-
-What if there was a way to "bake-in" the hash of the source file into the binary? We can.
-
-```go
-// hello.go
-package main
-
-import (
-        "fmt"
-)
-
-var sourcehash string
-
-func main() {
-        fmt.Println(sourcehash)
-}
-```
-
-Build step:
-
-	$ export SOURCEHASH=`sha256sum hello.go | cut -d' ' -f1`
-	$ go build -ldflags "-X main.sourcehash=$SOURCEHASH"
-
-Verify:
-
-	$ ./hello
-	7fffa4353f81b58c682e5b33ec7d720cc6db8e469a10d6fc5f31e11eafaa9104
-
-NOTE: there is nothing stopping you from passing in any value to `-ldflags`. This meant to be in an environment where you have complete control of the source, binary and the build process, and you are adding something to the build output to help you later on (in case of a doubt).
-
-
-I was wondering if I could do this and [found the answer on SO](https://stackoverflow.com/a/28460195).
-
-<a href="index.html#golang" class="tag golang">golang</a> 
-</div>
 
 ## Archive
 ### 2020
+<date>2020-05-05</date> [Building Go Programs with Source File Hash baked in
+](2020-05-05-01-golang-hash-builds.html)
+
 <date>2020-05-02</date> [Quip
 ](2020-05-02-01-quip.html)
 
