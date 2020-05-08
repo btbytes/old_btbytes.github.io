@@ -31,7 +31,7 @@ def gen_tags(allmd):
             f.write('<dt><span id="{k}" class="tagged">{k}</span></dt>'.format(
                 k=k))
             tsoup = ''.join([
-                '<dd>[{title}]({link})<date style="float:right;">{date}</date></dd> '.
+                '<dd><p><a href="{link}">{title}</a><date style="float:right;">{date}</date></p></dd> '.
                 format(**meta) for meta in tags[k]
             ])
             f.write(tsoup)
@@ -77,7 +77,7 @@ def gen_archive(allmd):
                     a.write(f'<dt>{year}</dt>\n')
                     years.remove(year)
                 a.write(
-                    f'<dd><a href="{link}">{title}</a> <date style="float:right;">{date}</date></dd>'
+                    f'<dd><p><a href="{link}">{title}</a> <date style="float:right;">{date}</date></p></dd>'
                 )
         a.write('</dl>')
 
