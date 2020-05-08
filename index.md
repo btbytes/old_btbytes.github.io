@@ -269,39 +269,14 @@ So, go on, write your own little program(s) to do what you need to get writing. 
 </div>
 
 ## Archive
-### 2020
-<date>2020-05-05</date> [Building Go Programs with Source File Hash baked in
-](2020-05-05-01-golang-hash-builds.html)
-
-<date>2020-05-02</date> [Quip
-](2020-05-02-01-quip.html)
-
-<date>2020-05-01</date> [A worked exmaple of - A persian folk method of figuring interest
-](2020-05-01-01-interest-calculation.html)
-
-<date>2020-04-29</date> [pipx is like brew for python applications
-](2020-04-29-pipx.html)
-
-<date>2020-04-29</date> [Courier is a nice monospace font
-](2020-04-29-courier.html)
-
-<date>2020-04-29</date> [Conway's law
-](2020-04-29-conwayslaw.html)
-
-
+<dl><dt>2020</dt>
+<dd><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in
+</a> <date style="float:right;">2020-05-05</date></dd><dd><a href="2020-05-02-01-quip.html">Quip
+</a> <date style="float:right;">2020-05-02</date></dd><dd><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest
+</a> <date style="float:right;">2020-05-01</date></dd><dd><a href="2020-04-29-pipx.html">pipx is like brew for python applications
+</a> <date style="float:right;">2020-04-29</date></dd><dd><a href="2020-04-29-courier.html">Courier is a nice monospace font
+</a> <date style="float:right;">2020-04-29</date></dd><dd><a href="2020-04-29-conwayslaw.html">Conway's law
+</a> <date style="float:right;">2020-04-29</date></dd></dl>
 ## Tags
+<dl><dt><span id="computing" class="tagged">computing</span></dt><dd>[Conway's law](2020-04-29-conwayslaw.html)</dd> <date style="float:right;">2020-04-29</date><dt><span id="fonts" class="tagged">fonts</span></dt><dd>[Courier is a nice monospace font](2020-04-29-courier.html)</dd> <date style="float:right;">2020-04-29</date><dt><span id="golang" class="tagged">golang</span></dt><dd>[Building Go Programs with Source File Hash baked in](2020-05-05-01-golang-hash-builds.html)</dd> <date style="float:right;">2020-05-05</date><dd>[Notes to self: How to use Go Third Party Packages](2020-05-08-01-go-third-party-packages.html)</dd> <date style="float:right;">2020-05-08</date><dt><span id="mathematics" class="tagged">mathematics</span></dt><dd>[A worked exmaple of - A persian folk method of figuring interest](2020-05-01-01-interest-calculation.html)</dd> <date style="float:right;">2020-05-01</date><dt><span id="programming" class="tagged">programming</span></dt><dd>[github codespaces](2020-05-06-04-codespaces.html)</dd> <date style="float:right;">2020-05-06</date><dd>[My code in books](2020-05-07-02-code-in-books.html)</dd> <date style="float:right;">2020-05-07</date><dt><span id="python" class="tagged">python</span></dt><dd>[pipx is like brew for python applications](2020-04-29-pipx.html)</dd> <date style="float:right;">2020-04-29</date><dd>[My Happy Python Workflow](2020-05-06-06-happy-python.html)</dd> <date style="float:right;">2020-05-06</date><dt><span id="software" class="tagged">software</span></dt><dd>[Quip](2020-05-02-01-quip.html)</dd> <date style="float:right;">2020-05-02</date></dl>
 
-
-<span id="computing" class="tagged">computing</span>: ◊[Conway's law](2020-04-29-conwayslaw.html)
-
-<span id="fonts" class="tagged">fonts</span>: ◊[Courier is a nice monospace font](2020-04-29-courier.html)
-
-<span id="golang" class="tagged">golang</span>: ◊[Building Go Programs with Source File Hash baked in](2020-05-05-01-golang-hash-builds.html) ◊[Notes to self: How to use Go Third Party Packages](2020-05-08-01-go-third-party-packages.html)
-
-<span id="mathematics" class="tagged">mathematics</span>: ◊[A worked exmaple of - A persian folk method of figuring interest](2020-05-01-01-interest-calculation.html)
-
-<span id="programming" class="tagged">programming</span>: ◊[github codespaces](2020-05-06-04-codespaces.html) ◊[My code in books](2020-05-07-02-code-in-books.html)
-
-<span id="python" class="tagged">python</span>: ◊[pipx is like brew for python applications](2020-04-29-pipx.html) ◊[My Happy Python Workflow](2020-05-06-06-happy-python.html)
-
-<span id="software" class="tagged">software</span>: ◊[Quip](2020-05-02-01-quip.html)

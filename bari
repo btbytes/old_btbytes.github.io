@@ -26,12 +26,16 @@ def gen_tags(allmd):
 
     with open('index.md', 'a') as f:
         f.write('\n## Tags\n')
+        f.write('<dl>')
         for k in sorted(tags.keys()):
-            f.write(
-                '\n\n<span id="{k}" class="tagged">{k}</span>: '.format(k=k))
-            tsoup = ' '.join(
-                ['◊[{title}]({link})'.format(**meta) for meta in tags[k]])
+            f.write('<dt><span id="{k}" class="tagged">{k}</span></dt>'.format(
+                k=k))
+            tsoup = ''.join([
+                '<dd>[{title}]({link})</dd> <date style="float:right;">{date}</date>'.
+                format(**meta) for meta in tags[k]
+            ])
             f.write(tsoup)
+        f.write('</dl>\n\n')
 
 
 def gen_home(allmd):
@@ -61,6 +65,7 @@ def gen_archive(allmd):
         return
     with open('index.md', 'a') as a:
         a.write('\n## Archive\n')
+        a.write('<dl>')
         for post in reversed(allmd[:-SHOW_ON_HOME_PAGE]):
             date = post[:10]
             with open(post, 'r') as fn:
@@ -69,9 +74,12 @@ def gen_archive(allmd):
                 link = post.replace('.md', '.html')
                 year = post[:4]
                 if year in years:
-                    a.write('### {year}\n'.format(year=year))
+                    a.write(f'<dt>{year}</dt>\n')
                     years.remove(year)
-                a.write('<date>%s</date> [%s](%s)\n\n' % (date, title, link))
+                a.write(
+                    f'<dd><a href="{link}">{title}</a> <date style="float:right;">{date}</date></dd>'
+                )
+        a.write('</dl>')
 
 
 def gen_atom_feed(latest):
@@ -116,8 +124,7 @@ def gen_atom_feed(latest):
             entry = entry_templ.format(
                 title=title, url=url, uid=uid, updated=updated, summary=title)
             entries += entry
-        content = feed_templ.format(
-            feed_updated=feed_updated, entries=entries)
+        content = feed_templ.format(feed_updated=feed_updated, entries=entries)
         of.write(content)
 
 
