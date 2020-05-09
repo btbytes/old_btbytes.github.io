@@ -77,6 +77,9 @@ Running this program with `go run .` will produce:
 }
 ```
 
+Update: Running `go get -u package` (note the `-u` flag) will *update* the local copy of the package.
+
+
 <a href="index.html#golang" class="tag golang">golang</a> 
 </div>
 <div class="post"><date>2020-05-07</date>

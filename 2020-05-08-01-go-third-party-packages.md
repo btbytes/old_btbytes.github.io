@@ -75,4 +75,7 @@ Running this program with `go run .` will produce:
 }
 ```
 
+Update: Running `go get -u package` (note the `-u` flag) will *update* the local copy of the package.
+
+
 ◊golang
