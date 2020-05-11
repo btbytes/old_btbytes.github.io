@@ -77,7 +77,11 @@ Running this program with `go run .` will produce:
 }
 ```
 
-Update: Running `go get -u package` (note the `-u` flag) will *update* the local copy of the package.
+Update:
+
+1. Running `go get -u package` (note the `-u` flag) will *update* the local copy of the package.
+2. Running `go get -u -d foo/...` will download all the subpackages of `foo`.
+
 
 
 <a href="index.html#golang" class="tag golang">golang</a> 

@@ -4,10 +4,22 @@
 import os
 import sys
 import glob
+import time
+
+
+def dst_name(src, dt=time.strftime('%Y-%m-%d')):
+    """return the new filename with today's date"""
+    today = time.strftime('%Y-%m-%d')
+    dst = src.replace('.txt', '.md')
+    dst = today + dst[10:]
+    return dst
 
 
 def pubfile(src):
-    dst = src.replace('.txt', '.md')
+    dst = dst_name(src)
+    if os.path.exists(dst):
+        print(f'{dst} already exists.')
+        sys.exist(0)
     print(f'publishing {src} -> {dst}')
     os.rename(src, dst)
 
@@ -23,12 +35,18 @@ def prompt(zd):
             return zd[i]
 
 
-drafts = glob.glob('*.txt')
-if len(drafts) == 0:
-    print('No drafts to publish.')
+def main():
+    drafts = glob.glob('*.txt')
+    if len(drafts) == 0:
+        print('No drafts to publish.')
 
-elif len(drafts) == 1:
-    pubfile(drafts[0])
-else:
-    zd = zip(range(1, len(drafts) + 1), drafts)
-    pubfile(prompt(dict(zd)))
+    elif len(drafts) == 1:
+        pubfile(drafts[0])
+    else:
+        zd = zip(range(1, len(drafts) + 1), drafts)
+        pubfile(prompt(dict(zd)))
+
+
+if __name__ == '__main__':
+    # print(dst_name(src='2019-01-01-01-hello.txt', dt='2020-04-01'))
+    #main()

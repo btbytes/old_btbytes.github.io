@@ -136,7 +136,11 @@
   &quot;origin&quot;: &quot;123.45.67.8&quot;,
   &quot;url&quot;: &quot;https://httpbin.org/post&quot;
 }</code></pre>
-<p>Update: Running <code>go get -u package</code> (note the <code>-u</code> flag) will <em>update</em> the local copy of the package.</p>
+<p>Update:</p>
+<ol type="1">
+<li>Running <code>go get -u package</code> (note the <code>-u</code> flag) will <em>update</em> the local copy of the package.</li>
+<li>Running <code>go get -u -d foo/...</code> will download all the subpackages of <code>foo</code>.</li>
+</ol>
 <p><a href="index.html#golang" class="tag golang">golang</a></p>
 </div>
 <div class="post">
