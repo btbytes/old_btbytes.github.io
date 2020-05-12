@@ -84,15 +84,11 @@
 <p>I posted a <a href="https://cons.io">gerbil scheme</a> to <a href="https://lobste.rs/s/c29wn2/gerbil_scheme">lobst.rs</a> where the creator of <a href="https://fennel-lang.org/">Fennel Lang</a> posted a link which lead to this <a href="https://git.sr.ht/~technomancy/fennel-lang.org/tree/master/makefile">rich makefile</a> which is worthy of studying.</p>
 <p>For instance, this line: <code>reference.html: fennel/reference.md ; $(PANDOC) --toc -o $@ $^</code>. I believe this means I can write one line “actions” followed by semi-colon.</p>
 <p>The other thing that Makefile reminded me of is the <code>--lua-filter</code>. Pandoc ships with a lua interpreter, which makes it easy to write post processing filters without needing an additional software installed (eg: for python, you still need some kind Pandoc library).</p>
-<blockquote>
-<p>Each Lua filter must contain element-transforming functions indexed by the name of the AST element on which the filter function should be applied.</p>
-</blockquote>
-<blockquote>
-<p>The pandoc Lua module provides helper functions for element creation. It is always loaded into the script’s Lua environment.</p>
-</blockquote>
-<blockquote>
-<p>The following is an example Lua script for macro-expansion:</p>
-</blockquote>
+<ul>
+<li><em>Each Lua filter must contain element-transforming functions indexed by the name of the AST element on which the filter function should be applied.</em></li>
+</ul>
+<p><em>The pandoc Lua module provides helper functions for element creation. It is always loaded into the script’s Lua environment.</em></p>
+<p><em>The following is an example Lua script for macro-expansion:</em></p>
 <pre><code>function expand_hello_world(inline)
   if inline.c == &#39;{{helloworld}}&#39; then
     return pandoc.Emph{ pandoc.Str &quot;Hello, World&quot; }
