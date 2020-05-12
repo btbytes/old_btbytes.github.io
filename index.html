@@ -79,6 +79,38 @@
 <article>
 
 <div class="post">
+<p><date>2020-05-12</date> <a href="2020-05-12-01-notes.html">A few interesting things</a></p>
+<p><a href="http://eradman.com/entrproject/">entr</a> is nice tool to add to the repertoire of scripting and make files. One of the examples given on that page is to use this program to watch over HTML+CSS file when you are editing one. I am thinking of using this to create a kind of “markdown live editor”, which uses pandoc to render markdown to html.</p>
+<p>I posted a <a href="https://cons.io">gerbil scheme</a> to <a href="https://lobste.rs/s/c29wn2/gerbil_scheme">lobst.rs</a> where the creator of <a href="https://fennel-lang.org/">Fennel Lang</a> posted a link which lead to this <a href="https://git.sr.ht/~technomancy/fennel-lang.org/tree/master/makefile">rich makefile</a> which is worthy of studying.</p>
+<p>For instance, this line: <code>reference.html: fennel/reference.md ; $(PANDOC) --toc -o $@ $^</code>. I believe this means I can write one line “actions” followed by semi-colon.</p>
+<p>The other thing that Makefile reminded me of is the <code>--lua-filter</code>. Pandoc ships with a lua interpreter, which makes it easy to write post processing filters without needing an additional software installed (eg: for python, you still need some kind Pandoc library).</p>
+<blockquote>
+<p>Each Lua filter must contain element-transforming functions indexed by the name of the AST element on which the filter function should be applied.</p>
+</blockquote>
+<blockquote>
+<p>The pandoc Lua module provides helper functions for element creation. It is always loaded into the script’s Lua environment.</p>
+</blockquote>
+<blockquote>
+<p>The following is an example Lua script for macro-expansion:</p>
+</blockquote>
+<pre><code>function expand_hello_world(inline)
+  if inline.c == &#39;{{helloworld}}&#39; then
+    return pandoc.Emph{ pandoc.Str &quot;Hello, World&quot; }
+  else
+    return inline
+  end
+end
+
+return {{Str = expand_hello_world}}</code></pre>
+<p>Important thing to remember from above snippet:</p>
+<p>Make sure you are “indexing” the functions by the AST element (above, the function <code>expand_hello_world</code> is indexed to <code>Str</code> AST element type.)</p>
+<hr />
+<p>Data science courses of Dr Michael Guerzhoy at Princeton <a href="http://guerzhoy.princeton.edu/201s20/">SML201</a> has good intro material based on R.</p>
+<hr />
+<p>Started using <a href="https://www.barebones.com/products/bbedit/index.html">bbedit</a> more.I even configured the scripts that help me in editing this blog to use bbedit directly. I really like (much like Textwrangler’s) ability to “Untitled” buffers as a quick way to start writing without worrying about losing them if I close the editor without saving them to a file.</p>
+<p><a href="index.html#interesting" class="tag interesting">interesting</a></p>
+</div>
+<div class="post">
 <p><date>2020-05-08</date> <a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a></p>
 <p>I’ve been following Go programming language since about 2009 or so (have the t-shirt).</p>
 <p>Go does package management differently than other languages. For one there was no tar.gz, egg, or gem to download. This note is just a reminder to myself how things work.</p>
@@ -89,30 +121,30 @@
 <p>I can then use this package in a program like this: <code>import "github.com/lucperkins/rek"</code></p>
 <hr />
 <p>The complete program for posterity (also, the example code from the library home page had syntax errors) is here:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">package</span> main</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">import</span> <span class="st">&quot;github.com/lucperkins/rek&quot;</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">import</span> <span class="st">&quot;fmt&quot;</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">import</span> <span class="st">&quot;time&quot;</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">// Comment Struct</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="kw">type</span> Comment <span class="kw">struct</span> {</span>
-<span id="cb1-9"><a href="#cb1-9"></a>    Body <span class="dt">string</span> <span class="st">`json:&quot;body&quot;`</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>}</span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="kw">func</span> main() {</span>
-<span id="cb1-13"><a href="#cb1-13"></a>    comment := Comment{Body: <span class="st">&quot;Test message&quot;</span>}</span>
-<span id="cb1-14"><a href="#cb1-14"></a>    headers := <span class="kw">map</span>[<span class="dt">string</span>]<span class="dt">string</span>{<span class="st">&quot;X-Custom-Header&quot;</span>: <span class="st">&quot;Custom Header Ino &quot;</span>}</span>
-<span id="cb1-15"><a href="#cb1-15"></a>    res, _ := rek.Post(<span class="st">&quot;https://httpbin.org/post&quot;</span>,</span>
-<span id="cb1-16"><a href="#cb1-16"></a>        rek.Json(comment),</span>
-<span id="cb1-17"><a href="#cb1-17"></a>        rek.Headers(headers),</span>
-<span id="cb1-18"><a href="#cb1-18"></a>        rek.BasicAuth(<span class="st">&quot;user&quot;</span>, <span class="st">&quot;pass&quot;</span>),</span>
-<span id="cb1-19"><a href="#cb1-19"></a>        rek.Timeout(<span class="dv">5</span>*time.Second),</span>
-<span id="cb1-20"><a href="#cb1-20"></a>    )</span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a>    fmt.Println(res.StatusCode())</span>
-<span id="cb1-23"><a href="#cb1-23"></a>    fmt.Println(res.Text())</span>
-<span id="cb1-24"><a href="#cb1-24"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">package</span> main</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">import</span> <span class="st">&quot;github.com/lucperkins/rek&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">import</span> <span class="st">&quot;fmt&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">import</span> <span class="st">&quot;time&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">// Comment Struct</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="kw">type</span> Comment <span class="kw">struct</span> {</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    Body <span class="dt">string</span> <span class="st">`json:&quot;body&quot;`</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>}</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="kw">func</span> main() {</span>
+<span id="cb2-13"><a href="#cb2-13"></a>    comment := Comment{Body: <span class="st">&quot;Test message&quot;</span>}</span>
+<span id="cb2-14"><a href="#cb2-14"></a>    headers := <span class="kw">map</span>[<span class="dt">string</span>]<span class="dt">string</span>{<span class="st">&quot;X-Custom-Header&quot;</span>: <span class="st">&quot;Custom Header Ino &quot;</span>}</span>
+<span id="cb2-15"><a href="#cb2-15"></a>    res, _ := rek.Post(<span class="st">&quot;https://httpbin.org/post&quot;</span>,</span>
+<span id="cb2-16"><a href="#cb2-16"></a>        rek.Json(comment),</span>
+<span id="cb2-17"><a href="#cb2-17"></a>        rek.Headers(headers),</span>
+<span id="cb2-18"><a href="#cb2-18"></a>        rek.BasicAuth(<span class="st">&quot;user&quot;</span>, <span class="st">&quot;pass&quot;</span>),</span>
+<span id="cb2-19"><a href="#cb2-19"></a>        rek.Timeout(<span class="dv">5</span>*time.Second),</span>
+<span id="cb2-20"><a href="#cb2-20"></a>    )</span>
+<span id="cb2-21"><a href="#cb2-21"></a></span>
+<span id="cb2-22"><a href="#cb2-22"></a>    fmt.Println(res.StatusCode())</span>
+<span id="cb2-23"><a href="#cb2-23"></a>    fmt.Println(res.Text())</span>
+<span id="cb2-24"><a href="#cb2-24"></a>}</span></code></pre></div>
 <p>Running this program with <code>go run .</code> will produce:</p>
 <pre><code>200
 {
@@ -149,91 +181,91 @@
 <p>(<a href="https://gist.github.com/btbytes/79877">A Particle Swarm Optimization</a>) implementation in Python in <a href="https://www.packtpub.com/hardware-and-creative/intelligent-iot-projects-7-days">“Intelligent IoT Projects in 7 Days”</a>. I remember writing this code for Dr Eberhart’s “Computation Intelligence” class at IUPUI.</p>
 <p><img src="images/pso-book.png" /></p>
 <p>The code in question:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#!/usr/bin/env python</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">&#39;&#39;&#39;</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">pso.py</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">A simple implementation of the Particle Swarm Optimisation Algorithm.</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co">Uses Numpy for matrix operations.</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">Pradeep Gowda 2009-03-16</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">&#39;&#39;&#39;</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="im">from</span> numpy <span class="im">import</span> array</span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="im">from</span> random <span class="im">import</span> random</span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="im">from</span> math <span class="im">import</span> sin, sqrt</span>
-<span id="cb3-14"><a href="#cb3-14"></a></span>
-<span id="cb3-15"><a href="#cb3-15"></a>iter_max <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a>pop_size <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a>dimensions <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a>c1 <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a>c2 <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a>err_crit <span class="op">=</span> <span class="fl">0.00001</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a></span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="kw">class</span> Particle:</span>
-<span id="cb3-23"><a href="#cb3-23"></a>    <span class="cf">pass</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a></span>
-<span id="cb3-25"><a href="#cb3-25"></a><span class="kw">def</span> f6(param):</span>
-<span id="cb3-26"><a href="#cb3-26"></a>    <span class="co">&#39;&#39;&#39;Schaffer&#39;s F6 function&#39;&#39;&#39;</span></span>
-<span id="cb3-27"><a href="#cb3-27"></a>    para <span class="op">=</span> param<span class="op">*</span><span class="dv">10</span></span>
-<span id="cb3-28"><a href="#cb3-28"></a>    para <span class="op">=</span> param[<span class="dv">0</span>:<span class="dv">2</span>]</span>
-<span id="cb3-29"><a href="#cb3-29"></a>    num <span class="op">=</span> (sin(sqrt((para[<span class="dv">0</span>] <span class="op">*</span> para[<span class="dv">0</span>]) <span class="op">+</span> (para[<span class="dv">1</span>] <span class="op">*</span> para[<span class="dv">1</span>])))) <span class="op">*</span> <span class="op">\</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a>        (sin(sqrt((para[<span class="dv">0</span>] <span class="op">*</span> para[<span class="dv">0</span>]) <span class="op">+</span> (para[<span class="dv">1</span>] <span class="op">*</span> para[<span class="dv">1</span>])))) <span class="op">-</span> <span class="fl">0.5</span></span>
-<span id="cb3-31"><a href="#cb3-31"></a>    denom <span class="op">=</span> (<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">0.001</span> <span class="op">*</span> ((para[<span class="dv">0</span>] <span class="op">*</span> para[<span class="dv">0</span>]) <span class="op">+</span> (para[<span class="dv">1</span>] <span class="op">*</span> para[<span class="dv">1</span>]))) <span class="op">*</span> <span class="op">\</span></span>
-<span id="cb3-32"><a href="#cb3-32"></a>            (<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">0.001</span> <span class="op">*</span> ((para[<span class="dv">0</span>] <span class="op">*</span> para[<span class="dv">0</span>]) <span class="op">+</span> (para[<span class="dv">1</span>] <span class="op">*</span> para[<span class="dv">1</span>])))</span>
-<span id="cb3-33"><a href="#cb3-33"></a>    f6 <span class="op">=</span>  <span class="fl">0.5</span> <span class="op">-</span> (num<span class="op">/</span>denom)</span>
-<span id="cb3-34"><a href="#cb3-34"></a>    errorf6 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> f6</span>
-<span id="cb3-35"><a href="#cb3-35"></a>    <span class="cf">return</span> f6, errorf6<span class="op">;</span></span>
-<span id="cb3-36"><a href="#cb3-36"></a></span>
-<span id="cb3-37"><a href="#cb3-37"></a></span>
-<span id="cb3-38"><a href="#cb3-38"></a><span class="co">#initialize the particles</span></span>
-<span id="cb3-39"><a href="#cb3-39"></a>particles <span class="op">=</span> []</span>
-<span id="cb3-40"><a href="#cb3-40"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(pop_size):</span>
-<span id="cb3-41"><a href="#cb3-41"></a>    p <span class="op">=</span> Particle()</span>
-<span id="cb3-42"><a href="#cb3-42"></a>    p.params <span class="op">=</span> array([random() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(dimensions)])</span>
-<span id="cb3-43"><a href="#cb3-43"></a>    p.fitness <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb3-44"><a href="#cb3-44"></a>    p.v <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb3-45"><a href="#cb3-45"></a>    particles.append(p)</span>
-<span id="cb3-46"><a href="#cb3-46"></a></span>
-<span id="cb3-47"><a href="#cb3-47"></a><span class="co"># let the first particle be the global best</span></span>
-<span id="cb3-48"><a href="#cb3-48"></a>gbest <span class="op">=</span> particles[<span class="dv">0</span>]</span>
-<span id="cb3-49"><a href="#cb3-49"></a>err <span class="op">=</span> <span class="dv">999999999</span></span>
-<span id="cb3-50"><a href="#cb3-50"></a><span class="cf">while</span> i <span class="op">&lt;</span> iter_max :</span>
-<span id="cb3-51"><a href="#cb3-51"></a>    <span class="cf">for</span> p <span class="kw">in</span> particles:</span>
-<span id="cb3-52"><a href="#cb3-52"></a>        fitness,err <span class="op">=</span> f6(p.params)</span>
-<span id="cb3-53"><a href="#cb3-53"></a>        <span class="cf">if</span> fitness <span class="op">&gt;</span> p.fitness:</span>
-<span id="cb3-54"><a href="#cb3-54"></a>            p.fitness <span class="op">=</span> fitness</span>
-<span id="cb3-55"><a href="#cb3-55"></a>            p.best <span class="op">=</span> p.params</span>
-<span id="cb3-56"><a href="#cb3-56"></a></span>
-<span id="cb3-57"><a href="#cb3-57"></a>        <span class="cf">if</span> fitness <span class="op">&gt;</span> gbest.fitness:</span>
-<span id="cb3-58"><a href="#cb3-58"></a>            gbest <span class="op">=</span> p</span>
-<span id="cb3-59"><a href="#cb3-59"></a>        v <span class="op">=</span> p.v <span class="op">+</span> c1 <span class="op">*</span> random() <span class="op">*</span> (p.best <span class="op">-</span> p.params) <span class="op">\</span></span>
-<span id="cb3-60"><a href="#cb3-60"></a>                <span class="op">+</span> c2 <span class="op">*</span> random() <span class="op">*</span> (gbest.params <span class="op">-</span> p.params)</span>
-<span id="cb3-61"><a href="#cb3-61"></a>        p.params <span class="op">=</span> p.params <span class="op">+</span> v</span>
-<span id="cb3-62"><a href="#cb3-62"></a></span>
-<span id="cb3-63"><a href="#cb3-63"></a>    i  <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb3-64"><a href="#cb3-64"></a>    <span class="cf">if</span> err <span class="op">&lt;</span> err_crit:</span>
-<span id="cb3-65"><a href="#cb3-65"></a>        <span class="cf">break</span></span>
-<span id="cb3-66"><a href="#cb3-66"></a>    <span class="co">#progress bar. &#39;.&#39; = 10%</span></span>
-<span id="cb3-67"><a href="#cb3-67"></a>    <span class="cf">if</span> i <span class="op">%</span> (iter_max<span class="op">/</span><span class="dv">10</span>) <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb3-68"><a href="#cb3-68"></a>        <span class="bu">print</span> <span class="st">&#39;.&#39;</span></span>
-<span id="cb3-69"><a href="#cb3-69"></a></span>
-<span id="cb3-70"><a href="#cb3-70"></a><span class="bu">print</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">Particle Swarm Optimisation</span><span class="ch">\n</span><span class="st">&#39;</span></span>
-<span id="cb3-71"><a href="#cb3-71"></a><span class="bu">print</span> <span class="st">&#39;PARAMETERS</span><span class="ch">\n</span><span class="st">&#39;</span>,<span class="st">&#39;-&#39;</span><span class="op">*</span><span class="dv">9</span></span>
-<span id="cb3-72"><a href="#cb3-72"></a><span class="bu">print</span> <span class="st">&#39;Population size : &#39;</span>, pop_size</span>
-<span id="cb3-73"><a href="#cb3-73"></a><span class="bu">print</span> <span class="st">&#39;Dimensions      : &#39;</span>, dimensions</span>
-<span id="cb3-74"><a href="#cb3-74"></a><span class="bu">print</span> <span class="st">&#39;Error Criterion : &#39;</span>, err_crit</span>
-<span id="cb3-75"><a href="#cb3-75"></a><span class="bu">print</span> <span class="st">&#39;c1              : &#39;</span>, c1</span>
-<span id="cb3-76"><a href="#cb3-76"></a><span class="bu">print</span> <span class="st">&#39;c2              : &#39;</span>, c2</span>
-<span id="cb3-77"><a href="#cb3-77"></a><span class="bu">print</span> <span class="st">&#39;function        :  f6&#39;</span></span>
-<span id="cb3-78"><a href="#cb3-78"></a></span>
-<span id="cb3-79"><a href="#cb3-79"></a><span class="bu">print</span> <span class="st">&#39;RESULTS</span><span class="ch">\n</span><span class="st">&#39;</span>, <span class="st">&#39;-&#39;</span><span class="op">*</span><span class="dv">7</span></span>
-<span id="cb3-80"><a href="#cb3-80"></a><span class="bu">print</span> <span class="st">&#39;gbest fitness   : &#39;</span>, gbest.fitness</span>
-<span id="cb3-81"><a href="#cb3-81"></a><span class="bu">print</span> <span class="st">&#39;gbest params    : &#39;</span>, gbest.params</span>
-<span id="cb3-82"><a href="#cb3-82"></a><span class="bu">print</span> <span class="st">&#39;iterations      : &#39;</span>, i<span class="op">+</span><span class="dv">1</span></span>
-<span id="cb3-83"><a href="#cb3-83"></a><span class="co">## Uncomment to print particles</span></span>
-<span id="cb3-84"><a href="#cb3-84"></a><span class="co">#for p in particles:</span></span>
-<span id="cb3-85"><a href="#cb3-85"></a><span class="co">#    print &#39;params: %s, fitness: %s, best: %s&#39; % (p.params, p.fitness, p.best)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">&#39;&#39;&#39;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">pso.py</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">A simple implementation of the Particle Swarm Optimisation Algorithm.</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">Uses Numpy for matrix operations.</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">Pradeep Gowda 2009-03-16</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">&#39;&#39;&#39;</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="im">from</span> numpy <span class="im">import</span> array</span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="im">from</span> random <span class="im">import</span> random</span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="im">from</span> math <span class="im">import</span> sin, sqrt</span>
+<span id="cb4-14"><a href="#cb4-14"></a></span>
+<span id="cb4-15"><a href="#cb4-15"></a>iter_max <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>pop_size <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>dimensions <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>c1 <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>c2 <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>err_crit <span class="op">=</span> <span class="fl">0.00001</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a></span>
+<span id="cb4-22"><a href="#cb4-22"></a><span class="kw">class</span> Particle:</span>
+<span id="cb4-23"><a href="#cb4-23"></a>    <span class="cf">pass</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a></span>
+<span id="cb4-25"><a href="#cb4-25"></a><span class="kw">def</span> f6(param):</span>
+<span id="cb4-26"><a href="#cb4-26"></a>    <span class="co">&#39;&#39;&#39;Schaffer&#39;s F6 function&#39;&#39;&#39;</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a>    para <span class="op">=</span> param<span class="op">*</span><span class="dv">10</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a>    para <span class="op">=</span> param[<span class="dv">0</span>:<span class="dv">2</span>]</span>
+<span id="cb4-29"><a href="#cb4-29"></a>    num <span class="op">=</span> (sin(sqrt((para[<span class="dv">0</span>] <span class="op">*</span> para[<span class="dv">0</span>]) <span class="op">+</span> (para[<span class="dv">1</span>] <span class="op">*</span> para[<span class="dv">1</span>])))) <span class="op">*</span> <span class="op">\</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a>        (sin(sqrt((para[<span class="dv">0</span>] <span class="op">*</span> para[<span class="dv">0</span>]) <span class="op">+</span> (para[<span class="dv">1</span>] <span class="op">*</span> para[<span class="dv">1</span>])))) <span class="op">-</span> <span class="fl">0.5</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a>    denom <span class="op">=</span> (<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">0.001</span> <span class="op">*</span> ((para[<span class="dv">0</span>] <span class="op">*</span> para[<span class="dv">0</span>]) <span class="op">+</span> (para[<span class="dv">1</span>] <span class="op">*</span> para[<span class="dv">1</span>]))) <span class="op">*</span> <span class="op">\</span></span>
+<span id="cb4-32"><a href="#cb4-32"></a>            (<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">0.001</span> <span class="op">*</span> ((para[<span class="dv">0</span>] <span class="op">*</span> para[<span class="dv">0</span>]) <span class="op">+</span> (para[<span class="dv">1</span>] <span class="op">*</span> para[<span class="dv">1</span>])))</span>
+<span id="cb4-33"><a href="#cb4-33"></a>    f6 <span class="op">=</span>  <span class="fl">0.5</span> <span class="op">-</span> (num<span class="op">/</span>denom)</span>
+<span id="cb4-34"><a href="#cb4-34"></a>    errorf6 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> f6</span>
+<span id="cb4-35"><a href="#cb4-35"></a>    <span class="cf">return</span> f6, errorf6<span class="op">;</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a></span>
+<span id="cb4-37"><a href="#cb4-37"></a></span>
+<span id="cb4-38"><a href="#cb4-38"></a><span class="co">#initialize the particles</span></span>
+<span id="cb4-39"><a href="#cb4-39"></a>particles <span class="op">=</span> []</span>
+<span id="cb4-40"><a href="#cb4-40"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(pop_size):</span>
+<span id="cb4-41"><a href="#cb4-41"></a>    p <span class="op">=</span> Particle()</span>
+<span id="cb4-42"><a href="#cb4-42"></a>    p.params <span class="op">=</span> array([random() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(dimensions)])</span>
+<span id="cb4-43"><a href="#cb4-43"></a>    p.fitness <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb4-44"><a href="#cb4-44"></a>    p.v <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb4-45"><a href="#cb4-45"></a>    particles.append(p)</span>
+<span id="cb4-46"><a href="#cb4-46"></a></span>
+<span id="cb4-47"><a href="#cb4-47"></a><span class="co"># let the first particle be the global best</span></span>
+<span id="cb4-48"><a href="#cb4-48"></a>gbest <span class="op">=</span> particles[<span class="dv">0</span>]</span>
+<span id="cb4-49"><a href="#cb4-49"></a>err <span class="op">=</span> <span class="dv">999999999</span></span>
+<span id="cb4-50"><a href="#cb4-50"></a><span class="cf">while</span> i <span class="op">&lt;</span> iter_max :</span>
+<span id="cb4-51"><a href="#cb4-51"></a>    <span class="cf">for</span> p <span class="kw">in</span> particles:</span>
+<span id="cb4-52"><a href="#cb4-52"></a>        fitness,err <span class="op">=</span> f6(p.params)</span>
+<span id="cb4-53"><a href="#cb4-53"></a>        <span class="cf">if</span> fitness <span class="op">&gt;</span> p.fitness:</span>
+<span id="cb4-54"><a href="#cb4-54"></a>            p.fitness <span class="op">=</span> fitness</span>
+<span id="cb4-55"><a href="#cb4-55"></a>            p.best <span class="op">=</span> p.params</span>
+<span id="cb4-56"><a href="#cb4-56"></a></span>
+<span id="cb4-57"><a href="#cb4-57"></a>        <span class="cf">if</span> fitness <span class="op">&gt;</span> gbest.fitness:</span>
+<span id="cb4-58"><a href="#cb4-58"></a>            gbest <span class="op">=</span> p</span>
+<span id="cb4-59"><a href="#cb4-59"></a>        v <span class="op">=</span> p.v <span class="op">+</span> c1 <span class="op">*</span> random() <span class="op">*</span> (p.best <span class="op">-</span> p.params) <span class="op">\</span></span>
+<span id="cb4-60"><a href="#cb4-60"></a>                <span class="op">+</span> c2 <span class="op">*</span> random() <span class="op">*</span> (gbest.params <span class="op">-</span> p.params)</span>
+<span id="cb4-61"><a href="#cb4-61"></a>        p.params <span class="op">=</span> p.params <span class="op">+</span> v</span>
+<span id="cb4-62"><a href="#cb4-62"></a></span>
+<span id="cb4-63"><a href="#cb4-63"></a>    i  <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb4-64"><a href="#cb4-64"></a>    <span class="cf">if</span> err <span class="op">&lt;</span> err_crit:</span>
+<span id="cb4-65"><a href="#cb4-65"></a>        <span class="cf">break</span></span>
+<span id="cb4-66"><a href="#cb4-66"></a>    <span class="co">#progress bar. &#39;.&#39; = 10%</span></span>
+<span id="cb4-67"><a href="#cb4-67"></a>    <span class="cf">if</span> i <span class="op">%</span> (iter_max<span class="op">/</span><span class="dv">10</span>) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-68"><a href="#cb4-68"></a>        <span class="bu">print</span> <span class="st">&#39;.&#39;</span></span>
+<span id="cb4-69"><a href="#cb4-69"></a></span>
+<span id="cb4-70"><a href="#cb4-70"></a><span class="bu">print</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">Particle Swarm Optimisation</span><span class="ch">\n</span><span class="st">&#39;</span></span>
+<span id="cb4-71"><a href="#cb4-71"></a><span class="bu">print</span> <span class="st">&#39;PARAMETERS</span><span class="ch">\n</span><span class="st">&#39;</span>,<span class="st">&#39;-&#39;</span><span class="op">*</span><span class="dv">9</span></span>
+<span id="cb4-72"><a href="#cb4-72"></a><span class="bu">print</span> <span class="st">&#39;Population size : &#39;</span>, pop_size</span>
+<span id="cb4-73"><a href="#cb4-73"></a><span class="bu">print</span> <span class="st">&#39;Dimensions      : &#39;</span>, dimensions</span>
+<span id="cb4-74"><a href="#cb4-74"></a><span class="bu">print</span> <span class="st">&#39;Error Criterion : &#39;</span>, err_crit</span>
+<span id="cb4-75"><a href="#cb4-75"></a><span class="bu">print</span> <span class="st">&#39;c1              : &#39;</span>, c1</span>
+<span id="cb4-76"><a href="#cb4-76"></a><span class="bu">print</span> <span class="st">&#39;c2              : &#39;</span>, c2</span>
+<span id="cb4-77"><a href="#cb4-77"></a><span class="bu">print</span> <span class="st">&#39;function        :  f6&#39;</span></span>
+<span id="cb4-78"><a href="#cb4-78"></a></span>
+<span id="cb4-79"><a href="#cb4-79"></a><span class="bu">print</span> <span class="st">&#39;RESULTS</span><span class="ch">\n</span><span class="st">&#39;</span>, <span class="st">&#39;-&#39;</span><span class="op">*</span><span class="dv">7</span></span>
+<span id="cb4-80"><a href="#cb4-80"></a><span class="bu">print</span> <span class="st">&#39;gbest fitness   : &#39;</span>, gbest.fitness</span>
+<span id="cb4-81"><a href="#cb4-81"></a><span class="bu">print</span> <span class="st">&#39;gbest params    : &#39;</span>, gbest.params</span>
+<span id="cb4-82"><a href="#cb4-82"></a><span class="bu">print</span> <span class="st">&#39;iterations      : &#39;</span>, i<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb4-83"><a href="#cb4-83"></a><span class="co">## Uncomment to print particles</span></span>
+<span id="cb4-84"><a href="#cb4-84"></a><span class="co">#for p in particles:</span></span>
+<span id="cb4-85"><a href="#cb4-85"></a><span class="co">#    print &#39;params: %s, fitness: %s, best: %s&#39; % (p.params, p.fitness, p.best)</span></span></code></pre></div>
 <p>That’s in Python2.x. Should probably rewrite it in Python3 one of these days.</p>
 <hr />
 <p>A link to my <a href="http://btbytes.github.io/pyofc2/">PyOFC2</a> Python charting library in <a href="https://books.google.com/books?id=RHBWBQAAQBAJ&amp;lpg=PA46&amp;ots=K3Ax-hLlZg&amp;dq=btbytes.github.io&amp;pg=PA46#v=onepage&amp;q=btbytes.github.io&amp;f=false">“Building a Cloud Computing Service: An Introduction to the Cloud”</a>.</p>
@@ -294,18 +326,16 @@
 <p>I hope things like github codespaces can allow me capture the “works great for me setup” in a config file(s), and thus allow me to jump into a project quickly and start coding away and not worry about the right language version (ruby), right interpreter (javascript), right “module” setup (go), right standard library(OCaml), easy to install libraries (haskell) etc.,</p>
 <p><a href="index.html#programming" class="tag programming">programming</a></p>
 </div>
-<div class="post">
-<p><date>2020-05-05</date> <a href="2020-05-05-02-bari.html">Just-what-you-need blogging with bari</a></p>
-<p>I write this blog using a combination of <code>pandoc</code>, <code>make</code> and a small-ish python script called <a href="https://github.com/btbytes/bari">bari</a>.</p>
-<p>It is easy for me to design, write and maintain my own code than inherit someone else’s assumptions and “wants” for their software.</p>
-<p>I saw another blog <a href="https://blog.notryan.com/">https://blog.notryan.com/</a> that is also written in a similar spirit – uses only C, and a bash script to generate a “text only” blog and RSS feed.</p>
-<p>So, go on, write your own little program(s) to do what you need to get writing. Some of it is yak-shaving; but some yaks are small, some of you are expert shavers. You will figure it out.</p>
-</div>
 <h2 id="archive">Archive</h2>
 <dl>
 <dt>
 2020
 </dt>
+<dd>
+<p>
+<a href="2020-05-05-02-bari.html">Just-what-you-need blogging with bari </a> <date style="float:right;">2020-05-05</date>
+</p>
+</dd>
 <dd>
 <p>
 <a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in </a> <date style="float:right;">2020-05-05</date>
@@ -366,6 +396,14 @@
 <dd>
 <p>
 <a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a><date style="float:right;">2020-05-08</date>
+</p>
+</dd>
+<dt>
+<span id="interesting" class="tagged">interesting</span>
+</dt>
+<dd>
+<p>
+<a href="2020-05-12-01-notes.html">A few interesting things</a><date style="float:right;">2020-05-12</date>
 </p>
 </dd>
 <dt>

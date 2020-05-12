@@ -49,4 +49,4 @@ def main():
 
 if __name__ == '__main__':
     # print(dst_name(src='2019-01-01-01-hello.txt', dt='2020-04-01'))
-    #main()
+    main()

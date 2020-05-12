@@ -1,3 +1,50 @@
+<div class="post"><date>2020-05-12</date>
+[A few interesting things
+](2020-05-12-01-notes.html)
+
+[entr](http://eradman.com/entrproject/) is nice tool to add to the repertoire of 
+scripting and make files. One of the examples given on that page is to use this
+program to watch over HTML+CSS file when you are editing one. I am thinking of using this to create a kind of "markdown live editor", which uses pandoc to render markdown to html.
+
+I posted a [gerbil scheme](https://cons.io) to [lobst.rs](https://lobste.rs/s/c29wn2/gerbil_scheme) where the creator of [Fennel Lang](https://fennel-lang.org/) posted a link which lead to this [rich makefile](https://git.sr.ht/~technomancy/fennel-lang.org/tree/master/makefile) which is worthy of studying. 
+
+For instance, this line: `reference.html: fennel/reference.md ; $(PANDOC) --toc -o $@ $^`. I believe this means I can write one line "actions" followed by semi-colon.
+
+
+The other thing that Makefile reminded me of is the `--lua-filter`. Pandoc ships with a lua interpreter, which makes it easy to write post processing filters without needing an additional software installed (eg: for python, you still need some kind Pandoc library).
+
+> Each Lua filter must contain element-transforming functions indexed by the name of the AST element on which the filter function should be applied.
+
+> The pandoc Lua module provides helper functions for element creation. It is always loaded into the script’s Lua environment.
+
+> The following is an example Lua script for macro-expansion:
+
+```
+function expand_hello_world(inline)
+  if inline.c == '{{helloworld}}' then
+    return pandoc.Emph{ pandoc.Str "Hello, World" }
+  else
+    return inline
+  end
+end
+
+return {{Str = expand_hello_world}}
+```
+
+Important thing to remember from above snippet:
+
+Make sure you are "indexing" the functions by the AST element (above, the function `expand_hello_world` is indexed to `Str` AST element type.)
+
+---- 
+
+Data science courses of Dr Michael Guerzhoy at Princeton [SML201](http://guerzhoy.princeton.edu/201s20/) has good intro material based on R. 
+
+----
+
+Started using [bbedit](https://www.barebones.com/products/bbedit/index.html) more.I even configured the scripts that help me in editing this blog to use bbedit directly.  I really like (much like Textwrangler's) ability to "Untitled" buffers as a quick way to start writing without worrying about losing them if I close the editor without saving them to a file. 
+
+<a href="index.html#interesting" class="tag interesting">interesting</a> 
+</div>
 <div class="post"><date>2020-05-08</date>
 [Notes to self: How to use Go Third Party Packages
 ](2020-05-08-01-go-third-party-packages.html)
@@ -260,24 +307,11 @@ I hope things like github codespaces can allow me capture the "works great for m
 
 <a href="index.html#programming" class="tag programming">programming</a> 
 </div>
-<div class="post"><date>2020-05-05</date>
-[Just-what-you-need blogging with bari
-](2020-05-05-02-bari.html)
-
-I write this blog using a combination of `pandoc`, `make` and a small-ish python script called [bari](https://github.com/btbytes/bari). 
-
-It is easy for me to design, write and maintain my own code than inherit someone else's assumptions and "wants" for their software.
-
-I saw another blog [https://blog.notryan.com/](https://blog.notryan.com/) that is also written in a similar spirit -- uses only C, and a bash script to generate a "text only" blog and RSS feed.
-
-So, go on, write your own little program(s) to do what you need to get writing. Some of it is yak-shaving; but some yaks are small, some of you are expert shavers. You will figure it out. 
-
-
-</div>
 
 ## Archive
 <dl><dt>2020</dt>
-<dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in
+<dd><p><a href="2020-05-05-02-bari.html">Just-what-you-need blogging with bari
+</a> <date style="float:right;">2020-05-05</date></p></dd><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in
 </a> <date style="float:right;">2020-05-05</date></p></dd><dd><p><a href="2020-05-02-01-quip.html">Quip
 </a> <date style="float:right;">2020-05-02</date></p></dd><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest
 </a> <date style="float:right;">2020-05-01</date></p></dd><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications
@@ -285,5 +319,5 @@ So, go on, write your own little program(s) to do what you need to get writing. 
 </a> <date style="float:right;">2020-04-29</date></p></dd><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law
 </a> <date style="float:right;">2020-04-29</date></p></dd></dl>
 ## Tags
-<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a><date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a><date style="float:right;">2020-05-08</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a><date style="float:right;">2020-05-01</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a><date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a><date style="float:right;">2020-05-07</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a><date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a><date style="float:right;">2020-05-06</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a><date style="float:right;">2020-05-02</date></p></dd> </dl>
+<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a><date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a><date style="float:right;">2020-05-08</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a><date style="float:right;">2020-05-12</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a><date style="float:right;">2020-05-01</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a><date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a><date style="float:right;">2020-05-07</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a><date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a><date style="float:right;">2020-05-06</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a><date style="float:right;">2020-05-02</date></p></dd> </dl>
 

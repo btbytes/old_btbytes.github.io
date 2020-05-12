@@ -19,4 +19,4 @@ else:
 print(f'New draft file: {fname}')
 p = Path(fname)
 p.touch()
-subprocess.call(['open', fname])
+subprocess.call(['bbedit', fname])
