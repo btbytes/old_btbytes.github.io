@@ -23,7 +23,7 @@ if len(drafts) == 0:
     print('No drafts to edit.')
 
 elif len(drafts) == 1:
-    subprocess.call(['open', drafts[0]])
+    subprocess.call(['bbedit', drafts[0]])
 else:
     zd = zip(range(1, len(drafts) + 1), drafts)
-    subprocess.call(['open', prompt(dict(zd))])
+    subprocess.call(['bbedit', prompt(dict(zd))])
