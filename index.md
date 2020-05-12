@@ -5,6 +5,7 @@
 [entr](http://eradman.com/entrproject/) is nice tool to add to the repertoire of 
 scripting and make files. One of the examples given on that page is to use this
 program to watch over HTML+CSS file when you are editing one. I am thinking of using this to create a kind of "markdown live editor", which uses pandoc to render markdown to html.
+--
 
 I posted a [gerbil scheme](https://cons.io) to [lobst.rs](https://lobste.rs/s/c29wn2/gerbil_scheme) where the creator of [Fennel Lang](https://fennel-lang.org/) posted a link which lead to this [rich makefile](https://git.sr.ht/~technomancy/fennel-lang.org/tree/master/makefile) which is worthy of studying. 
 
@@ -35,11 +36,11 @@ Important thing to remember from above snippet:
 
 Make sure you are "indexing" the functions by the AST element (above, the function `expand_hello_world` is indexed to `Str` AST element type.)
 
----- 
+--
 
 Data science courses of Dr Michael Guerzhoy at Princeton [SML201](http://guerzhoy.princeton.edu/201s20/) has good intro material based on R. 
 
-----
+--
 
 Started using [bbedit](https://www.barebones.com/products/bbedit/index.html) more.I even configured the scripts that help me in editing this blog to use bbedit directly.  I really like (much like Textwrangler's) ability to "Untitled" buffers as a quick way to start writing without worrying about losing them if I close the editor without saving them to a file. 
 
