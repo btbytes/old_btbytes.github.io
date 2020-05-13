@@ -7,10 +7,6 @@ div.post {
 	padding: 0 0.5em 0em 0.5em;
 }
 
-div.post:first-of-type {
-	background-color: #ffe;
-	transition: background-color 3s linear;
-}
 div.post:first-of-type p:first-of-type{
 	font-weight: bold;
 }
@@ -31,7 +27,7 @@ div.post p:first-of-type {
 	border-bottom: 1px dotted #eee; 
 }
 .part {
-	margin-bottom: 1.5em;
+	margin-bottom: 2em;
 }
 date, p.date{
 	margin-right: 0.5em;
