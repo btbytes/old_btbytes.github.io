@@ -21,6 +21,18 @@ div.post p:first-of-type {
 	margin-top: 2em;
 }
 
+.pilcrow a {
+	color: #eee;
+	text-decoration: none;
+	border: none;
+}
+.pilcrow a:hover {
+	color: #999;
+	border-bottom: 1px dotted #eee; 
+}
+.part {
+	margin-bottom: 1.5em;
+}
 date, p.date{
 	margin-right: 0.5em;
 	font-family: Courier, monospace;
