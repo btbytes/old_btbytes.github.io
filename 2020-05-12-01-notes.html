@@ -13,6 +13,63 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; } /* Alert */
+    code span.an { color: #008000; } /* Annotation */
+    code span.at { } /* Attribute */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #0000ff; } /* ControlFlow */
+    code span.ch { color: #008080; } /* Char */
+    code span.cn { } /* Constant */
+    code span.co { color: #008000; } /* Comment */
+    code span.cv { color: #008000; } /* CommentVar */
+    code span.do { color: #008000; } /* Documentation */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.im { } /* Import */
+    code span.in { color: #008000; } /* Information */
+    code span.kw { color: #0000ff; } /* Keyword */
+    code span.op { } /* Operator */
+    code span.ot { color: #ff4000; } /* Other */
+    code span.pp { color: #ff4000; } /* Preprocessor */
+    code span.sc { color: #008080; } /* SpecialChar */
+    code span.ss { color: #008080; } /* SpecialString */
+    code span.st { color: #008080; } /* String */
+    code span.va { } /* Variable */
+    code span.vs { color: #008080; } /* VerbatimString */
+    code span.wa { color: #008000; font-weight: bold; } /* Warning */
   </style>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -34,15 +91,15 @@
 <p><em>Each Lua filter must contain element-transforming functions indexed by the name of the AST element on which the filter function should be applied.</em></p>
 <p><em>The pandoc Lua module provides helper functions for element creation. It is always loaded into the script’s Lua environment.</em></p>
 <p><em>The following is an example Lua script for macro-expansion:</em></p>
-<pre><code>function expand_hello_world(inline)
-  if inline.c == &#39;{{helloworld}}&#39; then
-    return pandoc.Emph{ pandoc.Str &quot;Hello, World&quot; }
-  else
-    return inline
-  end
-end
-
-return {{Str = expand_hello_world}}</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lua"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">function</span> expand_hello_world<span class="op">(</span>inline<span class="op">)</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="cf">if</span> inline<span class="op">.</span>c <span class="op">==</span> <span class="st">&#39;{{helloworld}}&#39;</span> <span class="cf">then</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="cf">return</span> pandoc<span class="op">.</span>Emph<span class="op">{</span> pandoc<span class="op">.</span>Str <span class="st">&quot;Hello, World&quot;</span> <span class="op">}</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="cf">else</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="cf">return</span> inline</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="cf">end</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="cf">end</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="cf">return</span> <span class="op">{{</span>Str <span class="op">=</span> expand_hello_world<span class="op">}}</span></span></code></pre></div>
 <p>Important thing to remember from above snippet:</p>
 <p>Make sure you are “indexing” the functions by the AST element (above, the function <code>expand_hello_world</code> is indexed to <code>Str</code> AST element type). ¶</p>
 <p>Data science courses of Dr Michael Guerzhoy at Princeton <a href="http://guerzhoy.princeton.edu/201s20/">SML201</a> has good intro material based on R. ¶</p>

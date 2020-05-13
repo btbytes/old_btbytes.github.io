@@ -88,15 +88,15 @@
 <p><em>Each Lua filter must contain element-transforming functions indexed by the name of the AST element on which the filter function should be applied.</em></p>
 <p><em>The pandoc Lua module provides helper functions for element creation. It is always loaded into the script’s Lua environment.</em></p>
 <p><em>The following is an example Lua script for macro-expansion:</em></p>
-<pre><code>function expand_hello_world(inline)
-  if inline.c == &#39;{{helloworld}}&#39; then
-    return pandoc.Emph{ pandoc.Str &quot;Hello, World&quot; }
-  else
-    return inline
-  end
-end
-
-return {{Str = expand_hello_world}}</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lua"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">function</span> expand_hello_world<span class="op">(</span>inline<span class="op">)</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="cf">if</span> inline<span class="op">.</span>c <span class="op">==</span> <span class="st">&#39;{{helloworld}}&#39;</span> <span class="cf">then</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="cf">return</span> pandoc<span class="op">.</span>Emph<span class="op">{</span> pandoc<span class="op">.</span>Str <span class="st">&quot;Hello, World&quot;</span> <span class="op">}</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="cf">else</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="cf">return</span> inline</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="cf">end</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="cf">end</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="cf">return</span> <span class="op">{{</span>Str <span class="op">=</span> expand_hello_world<span class="op">}}</span></span></code></pre></div>
 <p>Important thing to remember from above snippet:</p>
 <p>Make sure you are “indexing” the functions by the AST element (above, the function <code>expand_hello_world</code> is indexed to <code>Str</code> AST element type). ¶</p>
 <p>Data science courses of Dr Michael Guerzhoy at Princeton <a href="http://guerzhoy.princeton.edu/201s20/">SML201</a> has good intro material based on R. ¶</p>

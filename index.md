@@ -21,7 +21,7 @@ The other thing that Makefile reminded me of is the `--lua-filter`. Pandoc ships
 
 *The following is an example Lua script for macro-expansion:*
 
-```
+```lua
 function expand_hello_world(inline)
   if inline.c == '{{helloworld}}' then
     return pandoc.Emph{ pandoc.Str "Hello, World" }
