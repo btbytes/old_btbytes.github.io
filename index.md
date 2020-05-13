@@ -45,7 +45,7 @@ Data science courses of Dr Michael Guerzhoy at Princeton [SML201](http://guerzho
 
 ---
 
-Started using [bbedit](https://www.barebones.com/products/bbedit/index.html) more.I even configured the scripts that help me in editing this blog to use bbedit directly.  I really like (much like Textwrangler's) ability to "Untitled" buffers as a quick way to start writing without worrying about losing them if I close the editor without saving them to a file. 
+Started using [bbedit](https://www.barebones.com/products/bbedit/index.html) more. I even configured the scripts that help me in editing this blog to use `bbedit` directly.  I really like (much like Textwrangler's) ability to "Untitled" buffers as a quick way to start writing without worrying about losing them if I close the editor without saving them to a file. 
 
 <a href="index.html#interesting" class="tag interesting">interesting</a> 
 </div>
