@@ -11,19 +11,28 @@ def prompt(zd):
     daft = None
     while not daft:
         for k, v in zd.items():
-            print(f'{k}. {v}')
+            title = v[14:-4].replace('-', ' ').title()
+            print(f'{k}. {title}')
+        print()
         i = input('Which draft to edit? ')
         i = int(i)
         if i in zd.keys():
             return zd[i]
+        elif i == 0:
+            sys.exit(0)
 
 
-drafts = glob.glob('*.txt')
-if len(drafts) == 0:
-    print('No drafts to edit.')
+def main():
+    drafts = sorted(glob.glob('*.txt'))
+    if len(drafts) == 0:
+        print('No drafts to edit.')
 
-elif len(drafts) == 1:
-    subprocess.call(['bbedit', drafts[0]])
-else:
-    zd = zip(range(1, len(drafts) + 1), drafts)
-    subprocess.call(['bbedit', prompt(dict(zd))])
+    elif len(drafts) == 1:
+        subprocess.call(['bbedit', drafts[0]])
+    else:
+        zd = zip(range(1, len(drafts) + 1), drafts)
+        subprocess.call(['bbedit', prompt(dict(zd))])
+
+
+if __name__ == '__main__':
+    main()
