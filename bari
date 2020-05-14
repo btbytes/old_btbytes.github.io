@@ -1,170 +1,239 @@
 #!/usr/bin/env python3
+from pathlib import Path
+import glob
+import os
+import subprocess
+import sys
+import time
 import uuid
 
-SHOW_ON_HOME_PAGE = 5
 
+class Bari(object):
+    def __init__(self):
+        self.SHOW_ON_HOME_PAGE = 5
+        self.allmd = sorted(glob.glob('2*.md'))
+        if len(self.allmd) > self.SHOW_ON_HOME_PAGE:
+            self.top = self.SHOW_ON_HOME_PAGE
+        else:
+            self.top = len(self.allmd)
 
-def gen_tags(allmd):
-    tags = {}
-    for md in allmd:
-        with open(md, 'r') as f:
+    def gen_tags(self):
+        tags = {}
+        for md in self.allmd:
+            with open(md, 'r') as f:
+                lines = f.readlines()
+                title = lines[0].strip()
+                date = md[:10]
+                for line in lines:
+                    if line.startswith('◊'):
+                        doctags = [
+                            tag.lstrip('◊').strip() for tag in line.split(' ')
+                        ]
+                        for dt in doctags:
+                            link = md.replace('.md', '.html')
+                            meta = {'title': title, 'date': date, 'link': link}
+                            if dt in tags.keys():
+                                tags[dt].append(meta)
+                            else:
+                                tags[dt] = [meta]
+
+        with open('index.md', 'a') as f:
+            f.write('\n## Tags\n')
+            f.write('<dl>')
+            for k in sorted(tags.keys()):
+                f.write(
+                    '<dt><span id="{k}" class="tagged">{k}</span></dt>'.format(
+                        k=k))
+                tsoup = ''.join([
+                    '<dd><p><a href="{link}">{title}</a><date style="float:right;">{date}</date></p></dd> '.
+                    format(**meta) for meta in tags[k]
+                ])
+                f.write(tsoup)
+            f.write('</dl>\n\n')
+
+    def gen_home(self):
+        selected = self.allmd[-self.top:]
+        with open('index.md', 'w') as f:
+            for post in reversed(selected):
+                with open(post, 'r') as fn:
+                    date = post[:10]
+                    link = post.replace('.md', '.html')
+                    lines = fn.readlines()
+                    title = lines[0]
+                    f.write('<div class="post">')
+                    f.write(f'<date>{date}</date>\n')
+                    f.write(f'[{title}]({link})\n')
+                    for line in self.proc_file(post):
+                        f.write(line)
+                    f.write('</div>\n')
+
+    def gen_archive(self):
+        years = list(reversed(sorted(list(set([md[:4] for md in self.allmd])))))
+        if len(self.allmd) <= self.SHOW_ON_HOME_PAGE:
+            return
+        with open('index.md', 'a') as a:
+            a.write('\n## Archive\n')
+            a.write('<dl>')
+            for post in reversed(self.allmd[:-self.SHOW_ON_HOME_PAGE]):
+                date = post[:10]
+                with open(post, 'r') as fn:
+                    lines = fn.readlines()
+                    title = lines[0]
+                    link = post.replace('.md', '.html')
+                    year = post[:4]
+                    if year in years:
+                        a.write(f'<dt>{year}</dt>\n')
+                        years.remove(year)
+                    a.write(
+                        f'<dd><p><a href="{link}">{title}</a> <date style="float:right;">{date}</date></p></dd>'
+                    )
+            a.write('</dl>')
+
+    def gen_atom_feed(self):
+        feed_templ = '''<?xml version="1.0" encoding="utf-8"?>
+            <feed xmlns="http://www.w3.org/2005/Atom">
+            <title>btbytes.github.io feed</title>
+            <link href="https://btbytes.github.io/"/>
+            <updated>{feed_updated}</updated>
+            <author>
+            <name>Pradeep Gowda</name>
+            </author>
+            <id>https://btbytes.github.io/</id>
+                {entries}
+             </feed>'''
+        entry_templ = '''<entry>
+            <title>{title}</title>
+            <link href="{url}"/>
+            <id>{url}</id>
+            <updated>{updated}</updated>
+            <summary>{summary}</summary>
+            </entry>
+        '''
+        if len(self.allmd) > self.SHOW_ON_HOME_PAGE:
+            selected = self.allmd[-self.top:]
+        with open('atom.xml', 'w') as of:
+            entries = ''
+            cnt = 0
+            for post in reversed(selected):
+                updated = post[:10] + 'T00:00:00.00Z'
+                if cnt == 0:
+                    feed_updated = updated
+                cnt += 1
+                with open(post, 'r') as fn:
+                    lines = fn.readlines()
+                    title = lines[0].strip()
+                    link = post.replace('.md', '.html')
+                    url = f'https://btbytes.github.io/{link}'
+                    uid = str(uuid.uuid4())
+                entry = entry_templ.format(
+                    title=title,
+                    url=url,
+                    uid=uid,
+                    updated=updated,
+                    summary=title)
+                entries += entry
+            content = feed_templ.format(
+                feed_updated=feed_updated, entries=entries)
+            of.write(content)
+
+    def process_file(self, args):
+        print(''.join(self.proc_file(args.fpath)))
+
+    def proc_file(self, fpath):
+        compiled = []
+        pcount = 0
+        # 2020-05-01-01-interest-calculation.md -> 20050101
+        docid = fpath.split('/')[-1][0:13].replace('-', '')[2:]
+        with open(fpath) as f:
             lines = f.readlines()
-            title = lines[0].strip()
-            date = md[:10]
-            for line in lines:
-                if line.startswith('◊'):
+            for line in lines[1:]:
+                if line.startswith('◊'):  # tags
                     doctags = [
                         tag.lstrip('◊').strip() for tag in line.split(' ')
                     ]
-                    for dt in doctags:
-                        link = md.replace('.md', '.html')
-                        meta = {'title': title, 'date': date, 'link': link}
-                        if dt in tags.keys():
-                            tags[dt].append(meta)
-                        else:
-                            tags[dt] = [meta]
+                    compiled.append(' '.join([
+                        '<a href="index.html#{tag}" class="tag {tag}">{tag}</a> '.
+                        format(tag=tag) for tag in doctags
+                    ]))
+                    compiled.append('\n')
+                elif line.startswith('¶'):  # new part
+                    line = line.replace('¶', '')
+                    compiled.append(
+                        f'<a id="{docid}{pcount}"></a>{line} <a href="#{docid}{pcount}">¶</a><div class="part"></div>'
+                    )
+                    pcount += 1
+                else:
+                    compiled.append(line)
+        return compiled
 
-    with open('index.md', 'a') as f:
-        f.write('\n## Tags\n')
-        f.write('<dl>')
-        for k in sorted(tags.keys()):
-            f.write('<dt><span id="{k}" class="tagged">{k}</span></dt>'.format(
-                k=k))
-            tsoup = ''.join([
-                '<dd><p><a href="{link}">{title}</a><date style="float:right;">{date}</date></p></dd> '.
-                format(**meta) for meta in tags[k]
-            ])
-            f.write(tsoup)
-        f.write('</dl>\n\n')
+    def newdraft(self, args):
+        """XXX: Fix"""
+        print('Create a draft')
+        suf = None
+        if len(sys.argv) > 1:
+            suf = sys.argv[1]
+        today = time.strftime('%Y-%m-%d')
+        cnt = len(glob.glob('%s*' % (today, ))) + 1
+        if suf:
+            fname = '%s-%s-%s.txt' % (today, cnt, suf)
+        else:
+            fname = '%s-%s.txt' % (today, cnt)
+        print(f'New draft file: {fname}')
+        p = Path(fname)
+        p.touch()
+        subprocess.call(['bbedit', fname])
 
+    def edit(self, args):
+        print('Edit a draft')
 
-def gen_home(allmd):
-    if len(allmd) > SHOW_ON_HOME_PAGE:
-        s = SHOW_ON_HOME_PAGE
-    else:
-        s = len(allmd)
-    selected = allmd[-s:]
-    with open('index.md', 'w') as f:
-        for post in reversed(selected):
-            with open(post, 'r') as fn:
-                date = post[:10]
-                link = post.replace('.md', '.html')
-                lines = fn.readlines()
-                title = lines[0]
-                f.write('<div class="post">')
-                f.write(f'<date>{date}</date>\n')
-                f.write(f'[{title}]({link})\n')
-                for line in proc_file(post):
-                    f.write(line)
-                f.write('</div>\n')
+        def prompt(zd):
+            daft = None
+            while not daft:
+                for k, v in zd.items():
+                    title = v[13:-4].replace('-', ' ').title()
+                    print(f'{k}. {title}')
+                print()
+                i = input('Which draft to edit? ')
+                i = int(i)
+                if i in zd.keys():
+                    return zd[i]
+                elif i == 0:
+                    sys.exit(0)
 
+        drafts = sorted(glob.glob('*.txt'))
+        if len(drafts) == 0:
+            print('No drafts to edit.')
 
-def gen_archive(allmd):
-    years = list(reversed(sorted(list(set([md[:4] for md in allmd])))))
-    if len(allmd) <= SHOW_ON_HOME_PAGE:
-        return
-    with open('index.md', 'a') as a:
-        a.write('\n## Archive\n')
-        a.write('<dl>')
-        for post in reversed(allmd[:-SHOW_ON_HOME_PAGE]):
-            date = post[:10]
-            with open(post, 'r') as fn:
-                lines = fn.readlines()
-                title = lines[0]
-                link = post.replace('.md', '.html')
-                year = post[:4]
-                if year in years:
-                    a.write(f'<dt>{year}</dt>\n')
-                    years.remove(year)
-                a.write(
-                    f'<dd><p><a href="{link}">{title}</a> <date style="float:right;">{date}</date></p></dd>'
-                )
-        a.write('</dl>')
+        elif len(drafts) == 1:
+            subprocess.call(['bbedit', drafts[0]])
+        else:
+            zd = zip(range(1, len(drafts) + 1), drafts)
+            subprocess.call(['bbedit', prompt(dict(zd))])
+
+    def publish(self, args):
+        print('Publish a draft')
 
 
-def gen_atom_feed(latest):
-    feed_templ = '''<?xml version="1.0" encoding="utf-8"?>
-        <feed xmlns="http://www.w3.org/2005/Atom">
-        <title>btbytes.github.io feed</title>
-        <link href="https://btbytes.github.io/"/>
-        <updated>{feed_updated}</updated>
-        <author>
-        <name>Pradeep Gowda</name>
-        </author>
-        <id>https://btbytes.github.io/</id>
-            {entries}
-         </feed>'''
-    entry_templ = '''<entry>
-        <title>{title}</title>
-        <link href="{url}"/>
-        <id>{url}</id>
-        <updated>{updated}</updated>
-        <summary>{summary}</summary>
-        </entry>
-    '''
-    if len(allmd) > SHOW_ON_HOME_PAGE:
-        s = SHOW_ON_HOME_PAGE
-    else:
-        s = len(allmd)
-    selected = allmd[-s:]
-    with open('atom.xml', 'w') as of:
-        entries = ''
-        cnt = 0
-        for post in reversed(selected):
-            updated = post[:10] + 'T00:00:00.00Z'
-            if cnt == 0:
-                feed_updated = updated
-            cnt += 1
-            with open(post, 'r') as fn:
-                lines = fn.readlines()
-                title = lines[0].strip()
-                link = post.replace('.md', '.html')
-                url = f'https://btbytes.github.io/{link}'
-                uid = str(uuid.uuid4())
-            entry = entry_templ.format(
-                title=title, url=url, uid=uid, updated=updated, summary=title)
-            entries += entry
-        content = feed_templ.format(feed_updated=feed_updated, entries=entries)
-        of.write(content)
-
-
-def process_file(fpath):
-    print(''.join(proc_file(fpath)))
-
-
-def proc_file(fpath):
-    compiled = []
-    pcount = 0
-    docid = fpath.split('/')[-1][0:13].replace('-', '')[2:]
-    with open(fpath) as f:
-        lines = f.readlines()
-        for line in lines[1:]:
-            if line.startswith('◊'):  # tags
-                doctags = [tag.lstrip('◊').strip() for tag in line.split(' ')]
-                compiled.append(' '.join([
-                    '<a href="index.html#{tag}" class="tag {tag}">{tag}</a> '.
-                    format(tag=tag) for tag in doctags
-                ]))
-                compiled.append('\n')
-            elif line.startswith('¶'):  # new part
-                line = line.replace('¶', '')
-                compiled.append(f'<a id="{docid}{pcount}"></a>{line} <a href="#{docid}{pcount}">¶</a><div class="part"></div>')
-                pcount += 1
-            else:
-                compiled.append(line)
-    return compiled
+    def build(self, args):
+        self.gen_home()
+        self.gen_archive()
+        self.gen_atom_feed()
+        self.gen_tags()
 
 
 if __name__ == '__main__':
-    import glob
-    import sys
-    allmd = glob.glob('2*.md')
-    allmd.sort()
-    if len(sys.argv) > 2:
-        if sys.argv[1] == 'process':
-            process_file(sys.argv[2])
-    else:
-        gen_home(allmd)
-        gen_archive(allmd)
-        gen_atom_feed(allmd)
-        gen_tags(allmd)
+    import argparse
+    bari = Bari()
+    parser = argparse.ArgumentParser(prog='bari')
+    subparsers = parser.add_subparsers(help='sub-command help')
+    parser_build = subparsers.add_parser('new', help='new draft')
+    parser_build.set_defaults(func=bari.newdraft)
+    parser_build = subparsers.add_parser('edit', help='edit a draft')
+    parser_build.set_defaults(func=bari.edit)
+    parser_build = subparsers.add_parser('build', help='build the site')
+    parser_build.set_defaults(func=bari.build)
+    parser_process = subparsers.add_parser('process', help='process a file')
+    parser_process.add_argument('fpath')
+    parser_process.set_defaults(func=bari.process_file)
+    args = parser.parse_args()
+    args.func(args)

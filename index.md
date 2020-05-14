@@ -1,3 +1,22 @@
+<div class="post"><date>2020-05-13</date>
+[Some interesting things
+](2020-05-13-2-notes.html)
+
+[Your Makefiles are wrong](https://tech.davis-hansson.com/p/make/) taught me some good tricks about writing make files.
+
+----
+
+"Move slow and make things." -- \@stevelosh (on his twitter profile). I often think about that.
+
+Steve's [A Road to Common Lisp](https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/) is an excellent article that captures some of his thought process behind that "motto". I particularly like the "*Escaping the Hamster Wheel of Backwards Incompatibility*" section.
+
+If you desire to make things that are solving *unusual* and *novel* things, and you see the things you build last for years, if not decades, you *have* consider what technologies you put your time into. Steve chose Common Lisp, and I think its a solid choice.
+
+----
+
+[Deno](https://deno.land) 1.0 [was announced today](https://deno.land/v1). I've long ignored node.js, and the ecosystem around it primarily because I think the situation around `node_modules` is ridiculous. My hope for deno is that it can become a replacement for Python (and Go) for many tasks.
+
+</div>
 <div class="post"><date>2020-05-12</date>
 [A few interesting things
 ](2020-05-12-01-notes.html)
@@ -35,11 +54,20 @@ Important thing to remember from above snippet -- Make sure you are "indexing" t
 
 ---
 
-Data science courses of Dr Michael Guerzhoy at Princeton [SML201](http://guerzhoy.princeton.edu/201s20/) has good intro material based on R. 
+Data science courses of Dr Michael Guerzhoy at Princeton [SML201](http://guerzhoy.princeton.edu/201s20/) has good intro material based on R.
 
 ---
 
 Started using [bbedit](https://www.barebones.com/products/bbedit/index.html) more. I even configured the scripts that help me in editing this blog to use `bbedit` directly.  I really like (much like Textwrangler's) ability to "Untitled" buffers as a quick way to start writing without worrying about losing them if I close the editor without saving them to a file. 
+
+---
+
+Humour: [Why we at $FAMOUS_COMPANY Switched to $HYPED_TECHNOLOGY](https://saagarjha.com/blog/2020/05/10/why-we-at-famous-company-switched-to-hyped-technology/) via [Ramakrishnan](https://rkrishnan.org/).
+
+---
+
+I rediscovered Gerbil Scheme two days ago, and many things clicked for me this time around, perhaps reading all the Clojure and Janet code helped. But, since this evening Racket is blowing my mind. I totally see myself reading more about Racket in the days to come. 
+
 
 <a href="index.html#interesting" class="tag interesting">interesting</a> 
 </div>
@@ -290,25 +318,11 @@ This is my current python programming workflow. I'm quite happy with it. I const
 
 <a href="index.html#python" class="tag python">python</a> 
 </div>
-<div class="post"><date>2020-05-06</date>
-[github codespaces
-](2020-05-06-04-codespaces.html)
-
-The announcement of github [Codespaces](https://github.com/features/codespaces) made me think of why I almost always default to programming in Python.  One is definitely familiarity. But, I think the bigger issue (for me, at least) is that the default Python I have on most machines I work on is sufficient enough to be productive right away.
-
-I use sublime text for editing python, which is quite fast to startup and the two python plugins -- anaconda and PyYAPF is sufficient for me to be very productive with Python.
-
-There are a ton of languages that I'd like to try to build my programming muscles over time by writing small programs, but this "goldilocks" environment has prevented from doing so.
-
-
-I hope things like github codespaces can allow me capture the "works great for me setup" in a config file(s), and thus allow me to jump into a project quickly and start coding away and not worry about the right language version (ruby), right interpreter (javascript), right "module" setup (go), right standard library(OCaml), easy to install libraries (haskell) etc.,
-
-<a href="index.html#programming" class="tag programming">programming</a> 
-</div>
 
 ## Archive
 <dl><dt>2020</dt>
-<dd><p><a href="2020-05-05-02-bari.html">Just-what-you-need blogging with bari
+<dd><p><a href="2020-05-06-04-codespaces.html">github codespaces
+</a> <date style="float:right;">2020-05-06</date></p></dd><dd><p><a href="2020-05-05-02-bari.html">Just-what-you-need blogging with bari
 </a> <date style="float:right;">2020-05-05</date></p></dd><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in
 </a> <date style="float:right;">2020-05-05</date></p></dd><dd><p><a href="2020-05-02-01-quip.html">Quip
 </a> <date style="float:right;">2020-05-02</date></p></dd><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest

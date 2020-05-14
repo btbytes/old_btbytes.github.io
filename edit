@@ -11,7 +11,7 @@ def prompt(zd):
     daft = None
     while not daft:
         for k, v in zd.items():
-            title = v[14:-4].replace('-', ' ').title()
+            title = v[13:-4].replace('-', ' ').title()
             print(f'{k}. {title}')
         print()
         i = input('Which draft to edit? ')

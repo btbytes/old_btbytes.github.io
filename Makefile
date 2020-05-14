@@ -6,7 +6,7 @@ PANDOC=pandoc --standalone -A inc.after -B inc.before --template=template.htm --
 all: $(HTML) index.html
 
 index.md: $(NOTES) bari
-	python3 bari
+	python3 bari build
 
 index.html: index.md Makefile template.htm inc.after inc.before $(NOTES)
 	$(PANDOC) $< -o $@
