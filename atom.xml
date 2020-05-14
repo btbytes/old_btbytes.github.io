@@ -2,12 +2,19 @@
             <feed xmlns="http://www.w3.org/2005/Atom">
             <title>btbytes.github.io feed</title>
             <link href="https://btbytes.github.io/"/>
-            <updated>2020-05-13T00:00:00.00Z</updated>
+            <updated>2020-05-14T00:00:00.00Z</updated>
             <author>
             <name>Pradeep Gowda</name>
             </author>
             <id>https://btbytes.github.io/</id>
                 <entry>
+            <title>Getting Out of the Programming Goldilocks Zone</title>
+            <link href="https://btbytes.github.io/2020-05-14-1-getting-out-of-goldilocks-zone.html"/>
+            <id>https://btbytes.github.io/2020-05-14-1-getting-out-of-goldilocks-zone.html</id>
+            <updated>2020-05-14T00:00:00.00Z</updated>
+            <summary>Getting Out of the Programming Goldilocks Zone</summary>
+            </entry>
+        <entry>
             <title>Some interesting things</title>
             <link href="https://btbytes.github.io/2020-05-13-2-notes.html"/>
             <id>https://btbytes.github.io/2020-05-13-2-notes.html</id>
@@ -34,13 +41,6 @@
             <id>https://btbytes.github.io/2020-05-07-02-code-in-books.html</id>
             <updated>2020-05-07T00:00:00.00Z</updated>
             <summary>My code in books</summary>
-            </entry>
-        <entry>
-            <title>My Happy Python Workflow</title>
-            <link href="https://btbytes.github.io/2020-05-06-06-happy-python.html"/>
-            <id>https://btbytes.github.io/2020-05-06-06-happy-python.html</id>
-            <updated>2020-05-06T00:00:00.00Z</updated>
-            <summary>My Happy Python Workflow</summary>
             </entry>
         
              </feed>

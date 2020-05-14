@@ -1,3 +1,38 @@
+<div class="post"><date>2020-05-14</date>
+[Getting Out of the Programming Goldilocks Zone
+](2020-05-14-1-getting-out-of-goldilocks-zone.html)
+
+As a programmer, I have my [goldilocks zone](2020-05-06-06-happy-python.html) (Python).
+
+In order to reach for a different language, I'll expect to get comfortable doing the following things in a new language:
+
+* string manipulation - split, join etc
+* string formatting and printing
+* string templating
+* reading and writing to files
+* iterating over the contents of a file
+* json parsing and generation
+* reading and writing csv files
+* regular expressions
+* command line arguments and parsing them
+* http client operations - GET, POST
+* reading configurations from a file - toml, yaml, ini
+* processing xml files
+* generating HTML files
+* dealing with unicode encoding
+* unit testing
+* connecting to and querying sql databases
+* shelling out and calling external processes
+* threads
+* multiprocessing
+* asynchronous programming
+* using third party code and library
+* packaging code for reuse
+* packaging binaries for deployment
+* cross-platform compilation
+
+<a href="index.html#programming" class="tag programming">programming</a> 
+</div>
 <div class="post"><date>2020-05-13</date>
 [Some interesting things
 ](2020-05-13-2-notes.html)
@@ -16,6 +51,21 @@ If you desire to make things that are solving *unusual* and *novel* things, and 
 
 [Deno](https://deno.land) 1.0 [was announced today](https://deno.land/v1). I've long ignored node.js, and the ecosystem around it primarily because I think the situation around `node_modules` is ridiculous. My hope for deno is that it can become a replacement for Python (and Go) for many tasks.
 
+----
+
+Common Lisp things:
+
+Using a portacle instance instead of trying to configure my emacs installation to avoid [*the Omnibus configuration pattern*](https://twitter.com/btbytes/status/1259890526242983939).
+
+Trying to familiarize myself with [str](https://github.com/vindarel/cl-str/) library. 
+
+Common characters:
+
+	#\Space #\Newline #\Backspace #\Tab #\Linefeed #\Page #\Return
+
+Spelled out: "Hash-Backslash-NAME" - `#\Space`.
+
+<a href="index.html#interesting" class="tag interesting">interesting</a> 
 </div>
 <div class="post"><date>2020-05-12</date>
 [A few interesting things
@@ -66,7 +116,7 @@ Humour: [Why we at $FAMOUS_COMPANY Switched to $HYPED_TECHNOLOGY](https://saagar
 
 ---
 
-I rediscovered Gerbil Scheme two days ago, and many things clicked for me this time around, perhaps reading all the Clojure and Janet code helped. But, since this evening Racket is blowing my mind. I totally see myself reading more about Racket in the days to come. 
+I rediscovered [Gerbil Scheme](https://cons.io/) two days ago, and many things clicked for me this time around, perhaps reading all the Clojure and Janet code helped. But, since this evening Racket is blowing my mind. I totally see myself reading more about Racket in the days to come.
 
 
 <a href="index.html#interesting" class="tag interesting">interesting</a> 
@@ -269,59 +319,11 @@ A link to my [PyOFC2](http://btbytes.github.io/pyofc2/) Python charting library 
 
 <a href="index.html#programming" class="tag programming">programming</a> 
 </div>
-<div class="post"><date>2020-05-06</date>
-[My Happy Python Workflow
-](2020-05-06-06-happy-python.html)
-
-This is my current python programming workflow. I'm quite happy with it. I constantly try to get better.
-
-
-1. I use Python3.x for all new projects.
-1. I use SublimeText3(ST3) for editing.
-1. I use Two ST3 plugins -- `Anaconda` and `PyYapf`.
-1. Anaconda catches things like unused variables, syntax errors, and PEP8 violations.
-1. I use PyYAPF formatting compulsively.
-1. ..and "Highlight Trailing Whitespace", I find trailing whitespace unpleasant.
-1. I take PEP8 warnings seriously and try to keep `pyflakes` happy.
-1. Vim in the shell. No plugins.
-1. Start with a `README.md` in the project, even if it is a single file project.
-1. I always use `virtualenv`; Pipenv is a quick way to spin one up in the development environments.
-1. Always capture the dependencies in `requirements.txt`, unless I'm writing a setup.py
-1. Writing a `setup.py` file is a great idea, and I should do it more often.
-1. I always write a `Makefile`.
-1. For Python projects, the common "targets" are -- `deps` (for creating venvs and installing package dependencies), `package` (for packaging into tarballs and wheels) and `test` to run the test suite.
-1. The `Makefile` serves as contextual memory.
-1. For "scripting" applications, I like to avoid using third party libraries as much as possible and keep to the standard library.
-1. I like providing a CLI interface to my scripts; I use `argparse` often, even if it is to provide basic `--help`.
-1. `click` looks neat, and I can see using it more often for larger projects.
-1. `docopt` has fallen out of favour. Too fidgety for my taste.
-1. I tried `python-poetry` for one project, and I like what it does.
-1. I like putting package versions in my `setup.py` files. I don't know if "Semantic versioning" is still a thing, but I like the x.y.z format, so I'm sticking to it.
-1. Any program that is big enough to have a setup.py file will also have CLI entry_points.
-1. I prefer writing small, self contained functions.
-1. I wouldn't write a class unless I feel like I'm passing around too many variables between functions.
-1. I like putting unit testing in the same file as the code, if it's a single file program.
-1. doc tests seemed like a good idea, but unit tests are a good way to grow the tests without redoing the doc tests.
-1. I have started writing type annotations, though nowhere near where I could be.
-1. I *love*  `f-strings`. I never seemed to remember the right way to call format strings before I got used to `f-strings`, though `.format` came earlier. 
-1. I don't like long variable names, especially ones with `camelCase`; `snake_case` for me please.
-1. I use single character variable names when their meaning is clear from the context.
-1. I seldom read code without rewriting some parts of it. Many times the changes do become pull requests.
-1. I don't like commented out code in middle of programs.
-1. I'm still not good with the `async` stuff.
-1. I prefer using multiprocessing over threads. I don't remember the last time I wrote Python threading code.
-1. I'm team single-quotes '. I like when my string look like -- `'hello, world!'` instead of `"hello, world!"`.
-1. I haven't used the walrus operator yet.
-1. I always write "dunder main"(`__main__`), unless its a throw away script (or a would've-been-a-bash-script script).
-1. You won't catch me manipulating "path" to insert dependent library locations. I know how to use packages and virtualenvs.
-1. 4 spaces. No TABs characters in my programs. I do use the TAB key to tell the editor to indent appropriately.
-
-<a href="index.html#python" class="tag python">python</a> 
-</div>
 
 ## Archive
 <dl><dt>2020</dt>
-<dd><p><a href="2020-05-06-04-codespaces.html">github codespaces
+<dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow
+</a> <date style="float:right;">2020-05-06</date></p></dd><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces
 </a> <date style="float:right;">2020-05-06</date></p></dd><dd><p><a href="2020-05-05-02-bari.html">Just-what-you-need blogging with bari
 </a> <date style="float:right;">2020-05-05</date></p></dd><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in
 </a> <date style="float:right;">2020-05-05</date></p></dd><dd><p><a href="2020-05-02-01-quip.html">Quip
@@ -331,5 +333,5 @@ This is my current python programming workflow. I'm quite happy with it. I const
 </a> <date style="float:right;">2020-04-29</date></p></dd><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law
 </a> <date style="float:right;">2020-04-29</date></p></dd></dl>
 ## Tags
-<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a><date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a><date style="float:right;">2020-05-08</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a><date style="float:right;">2020-05-12</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a><date style="float:right;">2020-05-01</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a><date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a><date style="float:right;">2020-05-07</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a><date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a><date style="float:right;">2020-05-06</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a><date style="float:right;">2020-05-02</date></p></dd> </dl>
+<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a><date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a><date style="float:right;">2020-05-08</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a><date style="float:right;">2020-05-12</date></p></dd> <dd><p><a href="2020-05-13-2-notes.html">Some interesting things</a><date style="float:right;">2020-05-13</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a><date style="float:right;">2020-05-01</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a><date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a><date style="float:right;">2020-05-07</date></p></dd> <dd><p><a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a><date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a><date style="float:right;">2020-05-06</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a><date style="float:right;">2020-05-02</date></p></dd> </dl>
 
