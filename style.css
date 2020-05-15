@@ -7,22 +7,15 @@ blockquote,q{border-left:2px solid var(--focus);margin:.5em 0;padding:.1em 1em;f
 
 
 /* custom */
+html {
+  scroll-behavior: smooth;
+}
 div.post {
 	margin-bottom: 1.5em;
 	padding: 0 0.5em 1em 0.5em;
 	border-bottom: solid 2px silver;
 }
 
-/*div.post:first-of-type p:first-of-type{
-	font-weight: bold;
-}
-*/
-/*div.post p:first-of-type {
-	color: black;
-	font-size:1.1em;
-	color: Teal;
-	margin-top: 2em;
-}*/
 
 .pilcrow a {
 	color: #eee;
@@ -42,12 +35,46 @@ date, p.date{
 }
 
 nav {
+	margin-bottom: 1.5em;
+}
+
+nav, div.post-title, .archive-item p{
 	display: flex;
 	justify-content: space-between;
 }
 nav .sitetitle {
 	font-weight: bolder;
 }
+div.post-title {
+	margin-top: 1em;
+	font-size: 1.2.em;
+	color: IndianRed;
+}
+.post-date {
+	margin-left: 2em;
+}
+
+.archive-item {
+	margin-left: 0em;
+}
+
+.arhive-year {
+	font-weight: bold;
+}
+
+hr.part {
+
+}
+article h1.title {
+	font-size: 1.5em;
+}
+
+.anchor-link {
+	margin-left: 1em;
+	font-size: 0.9em;
+	color: silver;
+}
+
 .tag {
 	/* https://github.com/danklammer/bytesize-icons */
 	background-image: url("data:image/svg+xml,%3Csvg id='i-bookmark' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16' fill='yellow' stroke='currentcolor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1'%3E%3Cpath d='M3 1 L13 1 13 15 8 10 3 15 Z' /%3E%3C/svg%3E");
@@ -55,6 +82,4 @@ nav .sitetitle {
 	background-repeat: no-repeat;
 }
 
-footer {
-	border-top: solid 1px Teal;
-}
+footer {}

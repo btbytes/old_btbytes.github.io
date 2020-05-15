@@ -17,7 +17,7 @@ class Bari(object):
         else:
             self.top = len(self.allmd)
 
-    def gen_tags(self):
+    def get_tags(self):
         tags = {}
         for md in self.allmd:
             with open(md, 'r') as f:
@@ -36,6 +36,7 @@ class Bari(object):
                                 tags[dt].append(meta)
                             else:
                                 tags[dt] = [meta]
+        return tags
 
         with open('index.md', 'a') as f:
             f.write('\n## Tags\n')
@@ -45,35 +46,38 @@ class Bari(object):
                     '<dt><span id="{k}" class="tagged">{k}</span></dt>'.format(
                         k=k))
                 tsoup = ''.join([
-                    '<dd><p><a href="{link}">{title}</a><date style="float:right;">{date}</date></p></dd> '.
-                    format(**meta) for meta in tags[k]
+                    '<dd><p><a href="{link}">{title}</a>\
+                    <date style="float:right;">{date}</date></p></dd> '
+                    .format(**meta) for meta in tags[k]
                 ])
                 f.write(tsoup)
             f.write('</dl>\n\n')
 
     def gen_home(self):
+        noteno = len(self.allmd)
         selected = self.allmd[-self.top:]
         with open('index.md', 'w') as f:
+            # write the top n posts
             for post in reversed(selected):
                 with open(post, 'r') as fn:
                     date = post[:10]
                     link = post.replace('.md', '.html')
                     lines = fn.readlines()
                     title = lines[0]
-                    f.write('<div class="post">')
-                    f.write(f'<date>{date}</date>\n')
-                    f.write(f'[{title}]({link})\n')
+                    f.write(f'<div class="post"><div class="post-title"><span id="{noteno}">°{noteno} // <a href="{link}">{title}</a></span> ')
+                    f.write(f'<span class="post-date"><date>{date}</date></span></div>\n')
+                    # f.write(f'')
                     for line in self.proc_file(post):
                         f.write(line)
                     f.write('</div>\n')
-
-    def gen_archive(self):
-        years = list(reversed(sorted(list(set([md[:4] for md in self.allmd])))))
-        if len(self.allmd) <= self.SHOW_ON_HOME_PAGE:
-            return
-        with open('index.md', 'a') as a:
-            a.write('\n## Archive\n')
-            a.write('<dl>')
+                    noteno -= 1
+            # write the archive part
+            years = list(
+                reversed(sorted(list(set([md[:4] for md in self.allmd])))))
+            if len(self.allmd) <= self.SHOW_ON_HOME_PAGE:
+                return
+            f.write('\n## Archive\n(Reverse chronologic)')
+            f.write('<dl id="archive-links">')
             for post in reversed(self.allmd[:-self.SHOW_ON_HOME_PAGE]):
                 date = post[:10]
                 with open(post, 'r') as fn:
@@ -82,12 +86,27 @@ class Bari(object):
                     link = post.replace('.md', '.html')
                     year = post[:4]
                     if year in years:
-                        a.write(f'<dt>{year}</dt>\n')
+                        f.write(f'<dt class="archive-year" id="y{year}">{year}</dt>\n')
                         years.remove(year)
-                    a.write(
-                        f'<dd><p><a href="{link}">{title}</a> <date style="float:right;">{date}</date></p></dd>'
-                    )
-            a.write('</dl>')
+                    f.write(f'<dd class="archive-item"><p><span id="{noteno}">°{noteno}. <a href="{link}">{title}</a></span>\
+                        <date>{date}</date></p></dd>')
+                    noteno -= 1
+            f.write('</dl>')
+            # write the tags
+            tags = self.get_tags()
+            f.write('\n## Tags\n(Chronologic)\n')
+            f.write('<dl>')
+            for k in sorted(tags.keys()):
+                f.write(
+                    '<dt><span id="{k}" class="tagged">{k}</span></dt>'.format(
+                        k=k))
+                tsoup = ''.join([
+                    '<dd><p><a href="{link}">{title}</a>\
+                    <date style="float:right;">{date}</date></p></dd> '
+                    .format(**meta) for meta in tags[k]
+                ])
+                f.write(tsoup)
+            f.write('</dl>\n\n')
 
     def gen_atom_feed(self):
         feed_templ = '''<?xml version="1.0" encoding="utf-8"?>
@@ -152,15 +171,15 @@ class Bari(object):
                         tag.lstrip('◊').strip() for tag in line.split(' ')
                     ]
                     compiled.append(' '.join([
-                        '<a href="index.html#{tag}" class="tag {tag}">{tag}</a> '.
-                        format(tag=tag) for tag in doctags
+                        '<a href="index.html#{tag}" class="tag {tag}">{tag}\
+                        </a> '.format(tag=tag) for tag in doctags
                     ]))
                     compiled.append('\n')
                 elif line.startswith('¶'):  # new part
                     line = line.replace('¶', '')
-                    compiled.append(
-                        f'<a id="{docid}{pcount}"></a>{line} <a href="#{docid}{pcount}">¶</a><div class="part"></div>'
-                    )
+                    compiled.append(f'<a id="{docid}{pcount}"></a>{line} \
+                        <a href="#{docid}{pcount}">¶</a>\
+                        <div class="part"></div>')
                     pcount += 1
                 else:
                     compiled.append(line)
@@ -173,7 +192,8 @@ class Bari(object):
         if len(sys.argv) > 1:
             suf = sys.argv[1]
         today = time.strftime('%Y-%m-%d')
-        cnt = len(glob.glob('%s*' % (today, ))) + 1
+        cnt = len(glob.glob('%s*.md' % (today, ))) + len(
+            glob.glob('%s*.txt' % (today, ))) + 1
         if suf:
             fname = '%s-%s-%s.txt' % (today, cnt, suf)
         else:
@@ -213,12 +233,9 @@ class Bari(object):
     def publish(self, args):
         print('Publish a draft')
 
-
     def build(self, args):
         self.gen_home()
-        self.gen_archive()
         self.gen_atom_feed()
-        self.gen_tags()
 
 
 if __name__ == '__main__':

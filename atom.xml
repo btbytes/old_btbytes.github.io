@@ -8,6 +8,13 @@
             </author>
             <id>https://btbytes.github.io/</id>
                 <entry>
+            <title>Some Interesting Links</title>
+            <link href="https://btbytes.github.io/2020-05-15-2.html"/>
+            <id>https://btbytes.github.io/2020-05-15-2.html</id>
+            <updated>2020-05-15T00:00:00.00Z</updated>
+            <summary>Some Interesting Links</summary>
+            </entry>
+        <entry>
             <title>About Grammarians and Philosophers</title>
             <link href="https://btbytes.github.io/2020-05-15-1.html"/>
             <id>https://btbytes.github.io/2020-05-15-1.html</id>
@@ -34,13 +41,6 @@
             <id>https://btbytes.github.io/2020-05-13-2-notes.html</id>
             <updated>2020-05-13T00:00:00.00Z</updated>
             <summary>Some interesting things</summary>
-            </entry>
-        <entry>
-            <title>A few interesting things</title>
-            <link href="https://btbytes.github.io/2020-05-12-01-notes.html"/>
-            <id>https://btbytes.github.io/2020-05-12-01-notes.html</id>
-            <updated>2020-05-12T00:00:00.00Z</updated>
-            <summary>A few interesting things</summary>
             </entry>
         
              </feed>

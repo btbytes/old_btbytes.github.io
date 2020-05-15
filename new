@@ -11,7 +11,10 @@ suf = None
 if len(sys.argv) > 1:
     suf = sys.argv[1]
 today = time.strftime('%Y-%m-%d')
-cnt = len(glob.glob('%s*' % (today, ))) + 1
+mdl = len(glob.glob('%s*.md' % (today, )))
+txtl = len(glob.glob('%s*.txt' % (today, )))
+# print(f'{mdl},  {txtl}')
+cnt = len(glob.glob('%s*.md' % (today, ))) + len(glob.glob('%s*.txt' % (today, ))) + 1
 if suf:
     fname = '%s-%s-%s.txt' % (today, cnt, suf)
 else:

@@ -1,6 +1,28 @@
-<div class="post"><date>2020-05-15</date>
-[About Grammarians and Philosophers
-](2020-05-15-1.html)
+<div class="post"><div class="post-title"><span id="17">°17 // <a href="2020-05-15-2.html">Some Interesting Links
+</a></span> <span class="post-date"><date>2020-05-15</date></span></div>
+
+
+[Evolving Frameworks: A Pattern Language for Developing Object-Oriented Frameworks](http://www.dsc.ufcg.edu.br/~jacques/cursos/map/html/frame/evolve.html) in response to this [thread](https://twitter.com/deech/status/1261315310608625664?s=20)
+
+![](https://i.imgur.com/azMYanY.jpg)
+
+-- Bill Joy, from [The Anatomy of Accidental Success](http://www.softpanorama.org/People/Torvalds/Finland_period/anatomy_of_accidental_success.shtml)
+
+> "the building of a large supplier base around the technology in order to compensate for an inability to produce all required components and devices" -- from [The Triumph of Ethernet](https://www.sup.org/books/title/?id=1310)
+
+<hr class="part"id="beaker"/>
+
+[Beaker Browser](https://beakerbrowser.com/) -- "A peer-to-peer browser for Web hackers.". Looks interesting. 
+
+<hr class="part" id="pointer" />
+
+[Pointer](http://www.pointer.io/archives/) -- ".. is a reading club for developers."
+
+
+<a href="index.html#interesting" class="tag interesting">interesting                        </a>  <a href="index.html#patterns" class="tag patterns">patterns                        </a> 
+</div>
+<div class="post"><div class="post-title"><span id="16">°16 // <a href="2020-05-15-1.html">About Grammarians and Philosophers
+</a></span> <span class="post-date"><date>2020-05-15</date></span></div>
 
 Found this paper - [On the Architecture of Pāṇini's Grammar](https://web.stanford.edu/~kiparsky/Papers/hyderabad.pdf) (2002) by [Paul Kiparsky](https://web.stanford.edu/~kiparsky/) via [kaeshour](https://twitter.com/kaeshour/status/1261266973343784960)
 
@@ -41,7 +63,7 @@ an interesting approach to induction, especially in language acquisition, where 
 learning mechanism that avoids overgeneralization on the one hand, and undergeneralization by overfitting
 the description to the data on the other.
 
----
+<hr class="part" id="denizcemonduygu"/>
 
 Found this "Zettelkasten like" [notes on western philosophy](https://www.denizcemonduygu.com/philo/browse/) by [Deniz Cem Önduygu](https://twitter.com/denizcemonduygu) via [dhrumilwbc](https://twitter.com/dhrumilwbc/status/1261080204908171265). *creating a history of yourself using your daily note dates as the axis... the bidirectional links on each date and u can see the links between them like in this site*
 
@@ -53,17 +75,16 @@ This format allows the reader to visualize the chronology, who said what, were t
 
 I'm going to order McGee's book. It's published by DK. It's one of their "picture books".
 
----
+<hr class="part" id="statselect"/>
 
 Continuing on the theme of "Connectedness" of Zettelkasten, <https://www.statlect.com/> is a digital textbook for probability and statistics. One thing I liked about this book is links to key phrases are provided where they are used. For example, the page on  [Bernoulli Distribution](https://www.statlect.com/probability-distributions/Bernoulli-distribution) links to [support](https://www.statlect.com/glossary/support-of-a-random-variable), the definition of which I was shaky on. 
 
 Linking to definitions and concepts much like a Wiki is a great concept. The next step in that interaction is "immediate lookup/linking" model [shown here](https://notes.andymatuschak.org/About_these_notes) in *Evergreen Notes*.
 
-<a href="index.html#grammar" class="tag grammar">grammar</a>  <a href="index.html#zettelkasten" class="tag zettelkasten">zettelkasten</a>  <a href="index.html#philosophy" class="tag philosophy">philosophy</a> 
+<a href="index.html#grammar" class="tag grammar">grammar                        </a>  <a href="index.html#zettelkasten" class="tag zettelkasten">zettelkasten                        </a>  <a href="index.html#philosophy" class="tag philosophy">philosophy                        </a> 
 </div>
-<div class="post"><date>2020-05-14</date>
-[gistash, RFCs
-](2020-05-14-4-notes.html)
+<div class="post"><div class="post-title"><span id="15">°15 // <a href="2020-05-14-4-notes.html">gistash, RFCs
+</a></span> <span class="post-date"><date>2020-05-14</date></span></div>
 
 <a name="gistash">**Project Idea: gistash**</a>
 
@@ -94,11 +115,10 @@ Only thing remaining is to actually write the code ;). The little "write up", is
 
 When you consider that some of the most robust software things were built using the RFC process, involving people working in different organizations, often with conflicting interests, using "written down" things to make engineering decisions is a great practice.
 
-<a href="index.html#interesting" class="tag interesting">interesting</a>  <a href="index.html#ideas" class="tag ideas">ideas</a> 
+<a href="index.html#interesting" class="tag interesting">interesting                        </a>  <a href="index.html#ideas" class="tag ideas">ideas                        </a> 
 </div>
-<div class="post"><date>2020-05-14</date>
-[Getting Out of the Programming Goldilocks Zone
-](2020-05-14-1-getting-out-of-goldilocks-zone.html)
+<div class="post"><div class="post-title"><span id="14">°14 // <a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone
+</a></span> <span class="post-date"><date>2020-05-14</date></span></div>
 
 As a programmer, I have my [goldilocks zone](2020-05-06-06-happy-python.html) (Python).
 
@@ -129,11 +149,10 @@ In order to reach for a different language, I'll expect to get comfortable doing
 * packaging binaries for deployment
 * cross-platform compilation
 
-<a href="index.html#programming" class="tag programming">programming</a> 
+<a href="index.html#programming" class="tag programming">programming                        </a> 
 </div>
-<div class="post"><date>2020-05-13</date>
-[Some interesting things
-](2020-05-13-2-notes.html)
+<div class="post"><div class="post-title"><span id="13">°13 // <a href="2020-05-13-2-notes.html">Some interesting things
+</a></span> <span class="post-date"><date>2020-05-13</date></span></div>
 
 [Your Makefiles are wrong](https://tech.davis-hansson.com/p/make/) taught me some good tricks about writing make files.
 
@@ -163,77 +182,25 @@ Common characters:
 
 Spelled out: "Hash-Backslash-NAME" - `#\Space`.
 
-<a href="index.html#interesting" class="tag interesting">interesting</a> 
-</div>
-<div class="post"><date>2020-05-12</date>
-[A few interesting things
-](2020-05-12-01-notes.html)
-
-[entr](http://eradman.com/entrproject/) is nice tool to add to the repertoire of scripting and make files. One of the examples given on that page is to use this program to watch over HTML+CSS file when you are editing one. I am thinking of using this to create a kind of "markdown live editor", which uses pandoc to render markdown to html.
-
----
-
-I posted a [gerbil scheme](https://cons.io) to [lobste.rs](https://lobste.rs/s/c29wn2/gerbil_scheme) where the creator of [Fennel Lang](https://fennel-lang.org/) posted a link which lead to this [rich makefile](https://git.sr.ht/~technomancy/fennel-lang.org/tree/master/makefile) which is worthy of studying.
-
-For instance, this line: `reference.html: fennel/reference.md ; $(PANDOC) --toc -o $@ $^`. I believe this means I can write one line "actions" followed by semi-colon.
-
-The other thing that Makefile reminded me of is the `--lua-filter`. Pandoc ships with a lua interpreter, which makes it easy to write post processing filters without needing an additional software installed (eg: for python, you still need some kind Pandoc library).
-
-*Each Lua filter must contain element-transforming functions indexed by the name of the AST element on which the filter function should be applied.*
-
-*The pandoc Lua module provides helper functions for element creation. It is always loaded into the script’s Lua environment.*
-
-*The following is an example Lua script for macro-expansion:*
-
-```lua
-function expand_hello_world(inline)
-  if inline.c == '{{helloworld}}' then
-    return pandoc.Emph{ pandoc.Str "Hello, World" }
-  else
-    return inline
-  end
-end
-
-return {{Str = expand_hello_world}}
-```
-
-
-Important thing to remember from above snippet -- Make sure you are "indexing" the functions by the AST element (above, the function `expand_hello_world` is indexed to `Str` AST element type).
-
----
-
-Data science courses of Dr Michael Guerzhoy at Princeton [SML201](http://guerzhoy.princeton.edu/201s20/) has good intro material based on R.
-
----
-
-Started using [bbedit](https://www.barebones.com/products/bbedit/index.html) more. I even configured the scripts that help me in editing this blog to use `bbedit` directly.  I really like (much like Textwrangler's) ability to "Untitled" buffers as a quick way to start writing without worrying about losing them if I close the editor without saving them to a file. 
-
----
-
-Humour: [Why we at $FAMOUS_COMPANY Switched to $HYPED_TECHNOLOGY](https://saagarjha.com/blog/2020/05/10/why-we-at-famous-company-switched-to-hyped-technology/) via [Ramakrishnan](https://rkrishnan.org/).
-
----
-
-I rediscovered [Gerbil Scheme](https://cons.io/) two days ago, and many things clicked for me this time around, perhaps reading all the Clojure and Janet code helped. But, since this evening Racket is blowing my mind. I totally see myself reading more about Racket in the days to come.
-
-
-<a href="index.html#interesting" class="tag interesting">interesting</a> 
+<a href="index.html#interesting" class="tag interesting">interesting                        </a> 
 </div>
 
 ## Archive
-<dl><dt>2020</dt>
-<dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages
-</a> <date style="float:right;">2020-05-08</date></p></dd><dd><p><a href="2020-05-07-02-code-in-books.html">My code in books
-</a> <date style="float:right;">2020-05-07</date></p></dd><dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow
-</a> <date style="float:right;">2020-05-06</date></p></dd><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces
-</a> <date style="float:right;">2020-05-06</date></p></dd><dd><p><a href="2020-05-05-02-bari.html">Just-what-you-need blogging with bari
-</a> <date style="float:right;">2020-05-05</date></p></dd><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in
-</a> <date style="float:right;">2020-05-05</date></p></dd><dd><p><a href="2020-05-02-01-quip.html">Quip
-</a> <date style="float:right;">2020-05-02</date></p></dd><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest
-</a> <date style="float:right;">2020-05-01</date></p></dd><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications
-</a> <date style="float:right;">2020-04-29</date></p></dd><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font
-</a> <date style="float:right;">2020-04-29</date></p></dd><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law
-</a> <date style="float:right;">2020-04-29</date></p></dd></dl>
+(Reverse chronologic)<dl id="archive-links"><dt class="archive-year" id="y2020">2020</dt>
+<dd class="archive-item"><p><span id="12">°12. <a href="2020-05-12-01-notes.html">A few interesting things
+</a></span>                        <date>2020-05-12</date></p></dd><dd class="archive-item"><p><span id="11">°11. <a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages
+</a></span>                        <date>2020-05-08</date></p></dd><dd class="archive-item"><p><span id="10">°10. <a href="2020-05-07-02-code-in-books.html">My code in books
+</a></span>                        <date>2020-05-07</date></p></dd><dd class="archive-item"><p><span id="9">°9. <a href="2020-05-06-06-happy-python.html">My Happy Python Workflow
+</a></span>                        <date>2020-05-06</date></p></dd><dd class="archive-item"><p><span id="8">°8. <a href="2020-05-06-04-codespaces.html">github codespaces
+</a></span>                        <date>2020-05-06</date></p></dd><dd class="archive-item"><p><span id="7">°7. <a href="2020-05-05-02-bari.html">Just-what-you-need blogging with bari
+</a></span>                        <date>2020-05-05</date></p></dd><dd class="archive-item"><p><span id="6">°6. <a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in
+</a></span>                        <date>2020-05-05</date></p></dd><dd class="archive-item"><p><span id="5">°5. <a href="2020-05-02-01-quip.html">Quip
+</a></span>                        <date>2020-05-02</date></p></dd><dd class="archive-item"><p><span id="4">°4. <a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest
+</a></span>                        <date>2020-05-01</date></p></dd><dd class="archive-item"><p><span id="3">°3. <a href="2020-04-29-pipx.html">pipx is like brew for python applications
+</a></span>                        <date>2020-04-29</date></p></dd><dd class="archive-item"><p><span id="2">°2. <a href="2020-04-29-courier.html">Courier is a nice monospace font
+</a></span>                        <date>2020-04-29</date></p></dd><dd class="archive-item"><p><span id="1">°1. <a href="2020-04-29-conwayslaw.html">Conway's law
+</a></span>                        <date>2020-04-29</date></p></dd></dl>
 ## Tags
-<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a><date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a><date style="float:right;">2020-05-08</date></p></dd> <dt><span id="grammar" class="tagged">grammar</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a><date style="float:right;">2020-05-15</date></p></dd> <dt><span id="ideas" class="tagged">ideas</span></dt><dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a><date style="float:right;">2020-05-12</date></p></dd> <dd><p><a href="2020-05-13-2-notes.html">Some interesting things</a><date style="float:right;">2020-05-13</date></p></dd> <dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a><date style="float:right;">2020-05-01</date></p></dd> <dt><span id="philosophy" class="tagged">philosophy</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a><date style="float:right;">2020-05-15</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a><date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a><date style="float:right;">2020-05-07</date></p></dd> <dd><p><a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a><date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a><date style="float:right;">2020-05-06</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a><date style="float:right;">2020-05-02</date></p></dd> <dt><span id="zettelkasten" class="tagged">zettelkasten</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a><date style="float:right;">2020-05-15</date></p></dd> </dl>
+(Chronologic)
+<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a>                    <date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a>                    <date style="float:right;">2020-05-08</date></p></dd> <dt><span id="grammar" class="tagged">grammar</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="ideas" class="tagged">ideas</span></dt><dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a>                    <date style="float:right;">2020-05-12</date></p></dd> <dd><p><a href="2020-05-13-2-notes.html">Some interesting things</a>                    <date style="float:right;">2020-05-13</date></p></dd> <dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dd><p><a href="2020-05-15-2.html">Some Interesting Links</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a>                    <date style="float:right;">2020-05-01</date></p></dd> <dt><span id="patterns" class="tagged">patterns</span></dt><dd><p><a href="2020-05-15-2.html">Some Interesting Links</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="philosophy" class="tagged">philosophy</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a>                    <date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a>                    <date style="float:right;">2020-05-07</date></p></dd> <dd><p><a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a>                    <date style="float:right;">2020-05-06</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a>                    <date style="float:right;">2020-05-02</date></p></dd> <dt><span id="zettelkasten" class="tagged">zettelkasten</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> </dl>
 
