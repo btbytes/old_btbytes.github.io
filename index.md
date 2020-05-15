@@ -6,9 +6,9 @@ Found this paper - [On the Architecture of Pāṇini's Grammar](https://web.stan
 
 Kaeshour made this observation --  **Greece : Geometry :: India : Grammar**.
 
-Browsing around on Prof Kiparsky's website, I found another paper - [Pāṇini](https://web.stanford.edu/~kiparsky/Papers/panini_hist_of_phon_handbook.pdf) in Handbook of the History of Phonology. A very interesting point about Pāṇini's contribution:
-
 <a name="paninirazor"></a>
+
+Browsing around on Prof Kiparsky's website, I found another paper - [Pāṇini](https://web.stanford.edu/~kiparsky/Papers/panini_hist_of_phon_handbook.pdf) in Handbook of the History of Phonology. A very interesting point about Pāṇini's contribution:
 
 > Pāṇini's achievement was to extend and formalize these initiatives in a vastly more ambitious undertaking: a grammar of the entire language that relates sound and meaning through rules for building words
 and sentences from their minimal parts. It is not intended to be a practical reference grammar, still less a textbook; simplified and condensed works suitable for these purposes were produced later. It seeks solely
