@@ -26,22 +26,24 @@
 <h1 class="title">Things of note -- gistash, RFCs</h1>
 <p class="date">2020-05-14</p>
 </header>
-<p><a name="gistash"><strong>Project Idea: gistash</strong></a> a script to store given files in a <a href="https://gist.github.com/">github gist</a>, update them in place if they already exist. I initially thought of this as a way to “backup” drafts I’m working on here.</p>
+<p><a name="gistash"><strong>Project Idea: gistash</strong></a></p>
+<p>What if we can use Github’s gist as we use <code>git stash</code>? I initially thought of this as a way to “backup” drafts I’m working on here. I start writing posts with a <code>.txt</code> extension that I <code>.gitignore</code>, so that I don’t commit half finished posts to git plus also my <a href="https://github.com/btbytes/btbytes.github.io/blob/master/bari">blog generation script</a> won’t pick up the <code>.txt</code> files for processing. It will be nice to stash them away to a private gist.</p>
+<p>The solution is a script to store given files in a <a href="https://gist.github.com/">github gist</a>, update them in place if they already exist.</p>
 <p>When creating a new gist:</p>
 <pre><code>$ gistash *.txt
     uploading a.txt
     uploading b.txt
     done.</code></pre>
-<p>When updating an existing gist(say <code>28fe346dc83fd26a43c351c507c6599d</code>) that you have permissions to update:</p>
+<p>When updating an existing, gist(say <code>28fe346dc83fd26a43c351c507c6599d</code>) that you have permissions to update:</p>
 <pre><code>$ gistash *.txt 28fe346dc83fd26a43c351c507c6599d
     updating a.txt
     updating b.txt
     uploading c.txt
     done.</code></pre>
 <p>Gist has an API to <a href="https://developer.github.com/v3/gists/#update-a-gist">update a gist</a> which can be used to implment this.</p>
-<hr />
+<p>Only thing remaining is to actually write the code ;). The little “write up”, is a nice segue to this article I read today:</p>
 <p><a href="https://blog.pragmaticengineer.com/scaling-engineering-teams-via-writing-things-down-rfcs/">Scaling Engineering Teams via Writing Things Down and Sharing - aka RFCs</a>.</p>
-<p>When you consider that some of the most robust software things were built using the RFC process, involving people working in different organizations, often with conflicting interests, using “written down” things to make decisions is a great idea.</p>
+<p>When you consider that some of the most robust software things were built using the RFC process, involving people working in different organizations, often with conflicting interests, using “written down” things to make engineering decisions is a great practice.</p>
 <p><a href="index.html#interesting" class="tag interesting">interesting</a> <a href="index.html#ideas" class="tag ideas">ideas</a></p>
 </article>
 <footer>

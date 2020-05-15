@@ -2,7 +2,11 @@
 [Things of note -- gistash, RFCs
 ](2020-05-14-4-notes.html)
 
-<a name="gistash">**Project Idea: gistash**</a> a script to store given files in a [github gist](https://gist.github.com/), update them in place if they already exist. I initially thought of this as a way to "backup" drafts I'm working on here.
+<a name="gistash">**Project Idea: gistash**</a>
+
+What if we can use Github's gist as we use `git stash`? I initially thought of this as a way to "backup" drafts I'm working on here. I start writing posts with a `.txt` extension that I `.gitignore`, so that I don't commit half finished posts to git plus also my [blog generation script](https://github.com/btbytes/btbytes.github.io/blob/master/bari) won't pick up the `.txt` files for processing. It will be nice to stash them away to a private gist.
+
+The solution is a script to store given files in a [github gist](https://gist.github.com/), update them in place if they already exist.
 
 When creating a new gist:
 
@@ -11,7 +15,7 @@ When creating a new gist:
 	    uploading b.txt
 	    done.
 
-When updating an existing gist(say `28fe346dc83fd26a43c351c507c6599d`) that you have permissions to update:
+When updating an existing, gist(say `28fe346dc83fd26a43c351c507c6599d`) that you have permissions to update:
 
 	$ gistash *.txt 28fe346dc83fd26a43c351c507c6599d
 	    updating a.txt
@@ -21,11 +25,11 @@ When updating an existing gist(say `28fe346dc83fd26a43c351c507c6599d`) that you 
 
 Gist has an API to [update a gist](https://developer.github.com/v3/gists/#update-a-gist) which can be used to implment this.
 
-----
+Only thing remaining is to actually write the code ;). The little "write up", is a nice segue to this article I read today:
 
 [Scaling Engineering Teams via Writing Things Down and Sharing - aka RFCs](https://blog.pragmaticengineer.com/scaling-engineering-teams-via-writing-things-down-rfcs/).
 
-When you consider that some of the most robust software things were built using the RFC process,  involving people working in different organizations, often with conflicting interests, using "written down" things to make decisions is a great idea.
+When you consider that some of the most robust software things were built using the RFC process, involving people working in different organizations, often with conflicting interests, using "written down" things to make engineering decisions is a great practice.
 
 <a href="index.html#interesting" class="tag interesting">interesting</a>  <a href="index.html#ideas" class="tag ideas">ideas</a> 
 </div>
