@@ -2,12 +2,19 @@
             <feed xmlns="http://www.w3.org/2005/Atom">
             <title>btbytes.github.io feed</title>
             <link href="https://btbytes.github.io/"/>
-            <updated>2020-05-14T00:00:00.00Z</updated>
+            <updated>2020-05-15T00:00:00.00Z</updated>
             <author>
             <name>Pradeep Gowda</name>
             </author>
             <id>https://btbytes.github.io/</id>
                 <entry>
+            <title>About Grammarians and Philosophers</title>
+            <link href="https://btbytes.github.io/2020-05-15-1.html"/>
+            <id>https://btbytes.github.io/2020-05-15-1.html</id>
+            <updated>2020-05-15T00:00:00.00Z</updated>
+            <summary>About Grammarians and Philosophers</summary>
+            </entry>
+        <entry>
             <title>gistash, RFCs</title>
             <link href="https://btbytes.github.io/2020-05-14-4-notes.html"/>
             <id>https://btbytes.github.io/2020-05-14-4-notes.html</id>
@@ -34,13 +41,6 @@
             <id>https://btbytes.github.io/2020-05-12-01-notes.html</id>
             <updated>2020-05-12T00:00:00.00Z</updated>
             <summary>A few interesting things</summary>
-            </entry>
-        <entry>
-            <title>Notes to self: How to use Go Third Party Packages</title>
-            <link href="https://btbytes.github.io/2020-05-08-01-go-third-party-packages.html"/>
-            <id>https://btbytes.github.io/2020-05-08-01-go-third-party-packages.html</id>
-            <updated>2020-05-08T00:00:00.00Z</updated>
-            <summary>Notes to self: How to use Go Third Party Packages</summary>
             </entry>
         
              </feed>

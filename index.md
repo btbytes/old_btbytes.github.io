@@ -1,3 +1,66 @@
+<div class="post"><date>2020-05-15</date>
+[About Grammarians and Philosophers
+](2020-05-15-1.html)
+
+Found this paper - [On the Architecture of Pāṇini's Grammar](https://web.stanford.edu/~kiparsky/Papers/hyderabad.pdf) (2002) by [Paul Kiparsky](https://web.stanford.edu/~kiparsky/) via [kaeshour](https://twitter.com/kaeshour/status/1261266973343784960)
+
+Kaeshour made this observation --  **Greece : Geometry :: India : Grammar**.
+
+Browsing around on Prof Kiparsky's website, I found another paper - [Pāṇini](https://web.stanford.edu/~kiparsky/Papers/panini_hist_of_phon_handbook.pdf) in Handbook of the History of Phonology. A very interesting point about Pāṇini's contribution:
+
+<a name="paninirazor"></a>
+
+> Pāṇini's achievement was to extend and formalize these initiatives in a vastly more ambitious undertaking: a grammar of the entire language that relates sound and meaning through rules for building words
+and sentences from their minimal parts. It is not intended to be a practical reference grammar, still less a textbook; simplified and condensed works suitable for these purposes were produced later. It seeks solely
+to extract all grammatical regularities, rigorously guided by the twin imperatives of complete coverage and
+the principle of Minimum Description Length. The latter requires the grammar to be the shortest overall
+representation of the data, crucially including the principles and abbreviatory conventions by which it the
+data is encoded.
+
+> The simplicity principle adopted by Pāṇini – call it Pāṇini's Razor – is conceptually related both to Occam’s
+Razor and to the simplicity criterion of Chomsky and Halle (1968). Occam’s Razor, as understood in modern science, requires making the fewest assumptions and postulating the fewest entities. Pāṇini's Minimum
+Description Length principle relativizes Occam’s Razor by pitting the cost of assumptions and postulates
+against the work they do. They are welcome as long as the complexity that their formulation incurs earns its
+keep by simplifying the overall grammar. This means that complexity is calculated on the entire grammar,
+not only the operative rules but also the conventions that govern their application and interpret their abbreviatory conventions, as well as the list of roots and the Sivas ´ utras. The idea is essentially what is known as Minimum Description Length (Rissanen 1998) or Kolmogorov Complexity (Li and Vitányi 2008), see
+Nannen 2010 for a concise review.
+
+> Pāṇini's Razor is not limited to the Minimum Description Length principle. It also subsumes a form
+of Occam’s Razor, which requires selecting among equally simple descriptions the one that minimizes new
+theoretical terms. For example, the grammar uses the minimum necessary number of pratyah¯ aras ¯ , even
+though they are all generated free of charge.
+
+> Another aspect of Pāṇini's Razor is the preference for SPECIFICITY. Among equally simple formulations
+compatible with the data, Pāṇini systematically chooses the most restricted one — if possible, one which
+covers only the actually occurring cases. Thus specificity is a conservative curb on overgeneralization.
+
+> Pāṇini's Razor.  **Minimum Description Length ≫ Occam’s Razor ≫ Specificity**
+
+> From a modern perspective (which would have been totally alien to Pāṇini of course) Pāṇini's Razor offers
+an interesting approach to induction, especially in language acquisition, where the problem is to find a
+learning mechanism that avoids overgeneralization on the one hand, and undergeneralization by overfitting
+the description to the data on the other.
+
+---
+
+Found this "Zettelkasten like" [notes on western philosophy](https://www.denizcemonduygu.com/philo/browse/) by [Deniz Cem Önduygu](https://twitter.com/denizcemonduygu) via [dhrumilwbc](https://twitter.com/dhrumilwbc/status/1261080204908171265). *creating a history of yourself using your daily note dates as the axis... the bidirectional links on each date and u can see the links between them like in this site*
+
+Most of the paragraphs I clicked and read were referencing "The Story of Philosophy" by Bryan McGee.
+
+It will be a great project to do something similar for Indian philosophy. 
+
+This format allows the reader to visualize the chronology, who said what, were they agreeing with someone before them or refuting them? etc.,
+
+I'm going to order McGee's book. It's published by DK. It's one of their "picture books".
+
+---
+
+Continuing on the theme of "Connectedness" of Zettelkasten, <https://www.statlect.com/> is a digital textbook for probability and statistics. One thing I liked about this book is links to key phrases are provided where they are used. For example, the page on  [Bernoulli Distribution](https://www.statlect.com/probability-distributions/Bernoulli-distribution) links to [support](https://www.statlect.com/glossary/support-of-a-random-variable), the definition of which I was shaky on. 
+
+Linking to definitions and concepts much like a Wiki is a great concept. The next step in that interaction is "immediate lookup/linking" model [shown here](https://notes.andymatuschak.org/About_these_notes) in *Evergreen Notes*.
+
+<a href="index.html#grammar" class="tag grammar">grammar</a>  <a href="index.html#zettelkasten" class="tag zettelkasten">zettelkasten</a>  <a href="index.html#philosophy" class="tag philosophy">philosophy</a> 
+</div>
 <div class="post"><date>2020-05-14</date>
 [gistash, RFCs
 ](2020-05-14-4-notes.html)
@@ -156,98 +219,11 @@ I rediscovered [Gerbil Scheme](https://cons.io/) two days ago, and many things c
 
 <a href="index.html#interesting" class="tag interesting">interesting</a> 
 </div>
-<div class="post"><date>2020-05-08</date>
-[Notes to self: How to use Go Third Party Packages
-](2020-05-08-01-go-third-party-packages.html)
-
-I've been following Go programming language since about 2009 or so (have the t-shirt).
-
-Go does package management differently than other languages. For one there was no tar.gz, egg, or gem to download.  This note is just a reminder to myself how things work.
-
-
-How to find new, interesting Go packages? [Golang weekly](https://golangweekly.com/issues/311) is one place. [Rek](https://github.com/lucperkins/rek) looks interesting.
-
-[Rek](https://github.com/lucperkins/rek) is like [Python requests](https://requests.readthedocs.io/en/master/)
-
-You install the package with: `go get github.com/lucperkins/rek`
-
-The source is installed under: `$GOPATH/src/github.com/lucperkins/rek`. On my machines, `$GOPATH` is usually set to `$HOME/go`.
-
-I can then use this package in a program like this: `import "github.com/lucperkins/rek"`
-
-
-----
-
-The complete program for posterity (also, the example code from the library home page had syntax errors) is here:
-
-```go
-package main
-
-import "github.com/lucperkins/rek"
-import "fmt"
-import "time"
-
-// Comment Struct
-type Comment struct {
-	Body string `json:"body"`
-}
-
-func main() {
-	comment := Comment{Body: "Test message"}
-	headers := map[string]string{"X-Custom-Header": "Custom Header Ino "}
-	res, _ := rek.Post("https://httpbin.org/post",
-		rek.Json(comment),
-		rek.Headers(headers),
-		rek.BasicAuth("user", "pass"),
-		rek.Timeout(5*time.Second),
-	)
-
-	fmt.Println(res.StatusCode())
-	fmt.Println(res.Text())
-}
-
-```
-
-Running this program with `go run .` will produce:
-
-```
-200
-{
-  "args": {},
-  "data": "{\"body\":\"Test message\"}",
-  "files": {},
-  "form": {},
-  "headers": {
-    "Accept-Encoding": "gzip",
-    "Authorization": "Basic dXNlcjpwYXNz",
-    "Content-Length": "23",
-    "Content-Type": "application/json; charset=utf-8",
-    "Host": "httpbin.org",
-    "User-Agent": "Go-http-client/2.0",
-    "X-Amzn-Trace-Id": "Root=1-5eb56f0a-33437e749f972658c175508a",
-    "X-Custom-Header": "Custom Header Ino"
-  },
-  "json": {
-    "body": "Test message"
-  },
-  "origin": "123.45.67.8",
-  "url": "https://httpbin.org/post"
-}
-```
-
-Update:
-
-1. Running `go get -u package` (note the `-u` flag) will *update* the local copy of the package.
-2. Running `go get -u -d foo/...` will download all the subpackages of `foo`.
-
-
-
-<a href="index.html#golang" class="tag golang">golang</a> 
-</div>
 
 ## Archive
 <dl><dt>2020</dt>
-<dd><p><a href="2020-05-07-02-code-in-books.html">My code in books
+<dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages
+</a> <date style="float:right;">2020-05-08</date></p></dd><dd><p><a href="2020-05-07-02-code-in-books.html">My code in books
 </a> <date style="float:right;">2020-05-07</date></p></dd><dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow
 </a> <date style="float:right;">2020-05-06</date></p></dd><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces
 </a> <date style="float:right;">2020-05-06</date></p></dd><dd><p><a href="2020-05-05-02-bari.html">Just-what-you-need blogging with bari
@@ -259,5 +235,5 @@ Update:
 </a> <date style="float:right;">2020-04-29</date></p></dd><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law
 </a> <date style="float:right;">2020-04-29</date></p></dd></dl>
 ## Tags
-<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a><date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a><date style="float:right;">2020-05-08</date></p></dd> <dt><span id="ideas" class="tagged">ideas</span></dt><dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a><date style="float:right;">2020-05-12</date></p></dd> <dd><p><a href="2020-05-13-2-notes.html">Some interesting things</a><date style="float:right;">2020-05-13</date></p></dd> <dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a><date style="float:right;">2020-05-01</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a><date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a><date style="float:right;">2020-05-07</date></p></dd> <dd><p><a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a><date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a><date style="float:right;">2020-05-06</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a><date style="float:right;">2020-05-02</date></p></dd> </dl>
+<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a><date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a><date style="float:right;">2020-05-08</date></p></dd> <dt><span id="grammar" class="tagged">grammar</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a><date style="float:right;">2020-05-15</date></p></dd> <dt><span id="ideas" class="tagged">ideas</span></dt><dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a><date style="float:right;">2020-05-12</date></p></dd> <dd><p><a href="2020-05-13-2-notes.html">Some interesting things</a><date style="float:right;">2020-05-13</date></p></dd> <dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a><date style="float:right;">2020-05-01</date></p></dd> <dt><span id="philosophy" class="tagged">philosophy</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a><date style="float:right;">2020-05-15</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a><date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a><date style="float:right;">2020-05-07</date></p></dd> <dd><p><a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a><date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a><date style="float:right;">2020-05-06</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a><date style="float:right;">2020-05-02</date></p></dd> <dt><span id="zettelkasten" class="tagged">zettelkasten</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a><date style="float:right;">2020-05-15</date></p></dd> </dl>
 
