@@ -1,4 +1,35 @@
 <div class="post"><date>2020-05-14</date>
+[Things of note -- RFCs, gistash
+](2020-05-14-4-notes.html)
+
+[Scaling Engineering Teams via Writing Things Down and Sharing - aka RFCs](https://blog.pragmaticengineer.com/scaling-engineering-teams-via-writing-things-down-rfcs/).
+
+When you consider that some of the most robust software things were built using the RFC process,  involving people working in different organizations, often with conflicting interests, using "written down" things to make decisions is a great idea.
+
+----
+
+<a name="gistash">**Project Idea: gistash**</a> a script to store given files in a [github gist](https://gist.github.com/), update them in place if they already exist. I initially thought of this as a way to "backup" drafts I'm working on here.
+
+When creating a new gist:
+
+	$ gistash *.txt
+	    uploading a.txt
+	    uploading b.txt
+	    done.
+
+When updating an existing gist(say `28fe346dc83fd26a43c351c507c6599d`) that you have permissions to update:
+
+	$ gistash *.txt 28fe346dc83fd26a43c351c507c6599d
+	    updating a.txt
+	    updating b.txt
+	    uploading c.txt
+        done.
+
+Gist has an API to [update a gist](https://developer.github.com/v3/gists/#update-a-gist) which can be used to implment this.
+
+<a href="index.html#interesting" class="tag interesting">interesting</a>  <a href="index.html#ideas" class="tag ideas">ideas</a> 
+</div>
+<div class="post"><date>2020-05-14</date>
 [Getting Out of the Programming Goldilocks Zone
 ](2020-05-14-1-getting-out-of-goldilocks-zone.html)
 
@@ -209,120 +240,11 @@ Update:
 
 <a href="index.html#golang" class="tag golang">golang</a> 
 </div>
-<div class="post"><date>2020-05-07</date>
-[My code in books
-](2020-05-07-02-code-in-books.html)
-
-During a "vanity search" of this blog "btbytes.github.io", I found out that some of my code have been quoted in published books:
-
-([A Particle Swarm Optimization](https://gist.github.com/btbytes/79877)) implementation in Python in ["Intelligent IoT Projects in 7 Days"](https://www.packtpub.com/hardware-and-creative/intelligent-iot-projects-7-days). I remember writing this code for Dr Eberhart's "Computation Intelligence" class at IUPUI.
-
-![](images/pso-book.png)
-
-The code in question:
-```python
-#!/usr/bin/env python
-
-'''
-pso.py
-
-A simple implementation of the Particle Swarm Optimisation Algorithm.
-Uses Numpy for matrix operations.
-Pradeep Gowda 2009-03-16
-'''
-
-from numpy import array
-from random import random
-from math import sin, sqrt
-
-iter_max = 10000
-pop_size = 100
-dimensions = 2
-c1 = 2
-c2 = 2
-err_crit = 0.00001
-
-class Particle:
-    pass
-
-def f6(param):
-    '''Schaffer's F6 function'''
-    para = param*10
-    para = param[0:2]
-    num = (sin(sqrt((para[0] * para[0]) + (para[1] * para[1])))) * \
-        (sin(sqrt((para[0] * para[0]) + (para[1] * para[1])))) - 0.5
-    denom = (1.0 + 0.001 * ((para[0] * para[0]) + (para[1] * para[1]))) * \
-            (1.0 + 0.001 * ((para[0] * para[0]) + (para[1] * para[1])))
-    f6 =  0.5 - (num/denom)
-    errorf6 = 1 - f6
-    return f6, errorf6;
-
-
-#initialize the particles
-particles = []
-for i in range(pop_size):
-    p = Particle()
-    p.params = array([random() for i in range(dimensions)])
-    p.fitness = 0.0
-    p.v = 0.0
-    particles.append(p)
-
-# let the first particle be the global best
-gbest = particles[0]
-err = 999999999
-while i < iter_max :
-    for p in particles:
-        fitness,err = f6(p.params)
-        if fitness > p.fitness:
-            p.fitness = fitness
-            p.best = p.params
-
-        if fitness > gbest.fitness:
-            gbest = p
-        v = p.v + c1 * random() * (p.best - p.params) \
-                + c2 * random() * (gbest.params - p.params)
-        p.params = p.params + v
-
-    i  += 1
-    if err < err_crit:
-        break
-    #progress bar. '.' = 10%
-    if i % (iter_max/10) == 0:
-        print '.'
-
-print '\nParticle Swarm Optimisation\n'
-print 'PARAMETERS\n','-'*9
-print 'Population size : ', pop_size
-print 'Dimensions      : ', dimensions
-print 'Error Criterion : ', err_crit
-print 'c1              : ', c1
-print 'c2              : ', c2
-print 'function        :  f6'
-
-print 'RESULTS\n', '-'*7
-print 'gbest fitness   : ', gbest.fitness
-print 'gbest params    : ', gbest.params
-print 'iterations      : ', i+1
-## Uncomment to print particles
-#for p in particles:
-#    print 'params: %s, fitness: %s, best: %s' % (p.params, p.fitness, p.best)
-```
-
-That's in Python2.x. Should probably rewrite it in Python3 one of these days.
-
-
-----
-
-A link to my [PyOFC2](http://btbytes.github.io/pyofc2/) Python charting library in ["Building a Cloud Computing Service: An Introduction to the Cloud"](https://books.google.com/books?id=RHBWBQAAQBAJ&lpg=PA46&ots=K3Ax-hLlZg&dq=btbytes.github.io&pg=PA46#v=onepage&q=btbytes.github.io&f=false).
-
-![](images/pyofc2-book.png)
-
-<a href="index.html#programming" class="tag programming">programming</a> 
-</div>
 
 ## Archive
 <dl><dt>2020</dt>
-<dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow
+<dd><p><a href="2020-05-07-02-code-in-books.html">My code in books
+</a> <date style="float:right;">2020-05-07</date></p></dd><dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow
 </a> <date style="float:right;">2020-05-06</date></p></dd><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces
 </a> <date style="float:right;">2020-05-06</date></p></dd><dd><p><a href="2020-05-05-02-bari.html">Just-what-you-need blogging with bari
 </a> <date style="float:right;">2020-05-05</date></p></dd><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in
@@ -333,5 +255,5 @@ A link to my [PyOFC2](http://btbytes.github.io/pyofc2/) Python charting library 
 </a> <date style="float:right;">2020-04-29</date></p></dd><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law
 </a> <date style="float:right;">2020-04-29</date></p></dd></dl>
 ## Tags
-<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a><date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a><date style="float:right;">2020-05-08</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a><date style="float:right;">2020-05-12</date></p></dd> <dd><p><a href="2020-05-13-2-notes.html">Some interesting things</a><date style="float:right;">2020-05-13</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a><date style="float:right;">2020-05-01</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a><date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a><date style="float:right;">2020-05-07</date></p></dd> <dd><p><a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a><date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a><date style="float:right;">2020-05-06</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a><date style="float:right;">2020-05-02</date></p></dd> </dl>
+<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a><date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a><date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a><date style="float:right;">2020-05-08</date></p></dd> <dt><span id="ideas" class="tagged">ideas</span></dt><dd><p><a href="2020-05-14-4-notes.html">Things of note -- RFCs, gistash</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a><date style="float:right;">2020-05-12</date></p></dd> <dd><p><a href="2020-05-13-2-notes.html">Some interesting things</a><date style="float:right;">2020-05-13</date></p></dd> <dd><p><a href="2020-05-14-4-notes.html">Things of note -- RFCs, gistash</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a><date style="float:right;">2020-05-01</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a><date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a><date style="float:right;">2020-05-07</date></p></dd> <dd><p><a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone</a><date style="float:right;">2020-05-14</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a><date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a><date style="float:right;">2020-05-06</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a><date style="float:right;">2020-05-02</date></p></dd> </dl>
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="alternate" type="application/atom+xml" title="Atom Feed"  href="https://btbytes.github.io/atom.xml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-05-14" />
+  <title>Things of note -- RFCs, gistash</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav>
+  <span><a href="index.html" title="Home">Home</a></span> ◊ <span><a href="index.html#tags">Tags</a></span> ◊ <span><a href="index.html#archive">Archive</a></span> ◊ <span><a href="/atom.xml">Feed</a></span>
+</nav>
+<article>
+
+<header id="title-block-header">
+<h1 class="title">Things of note -- RFCs, gistash</h1>
+<p class="date">2020-05-14</p>
+</header>
+<p><a href="https://blog.pragmaticengineer.com/scaling-engineering-teams-via-writing-things-down-rfcs/">Scaling Engineering Teams via Writing Things Down and Sharing - aka RFCs</a>.</p>
+<p>When you consider that some of the most robust software things were built using the RFC process, involving people working in different organizations, often with conflicting interests, using “written down” things to make decisions is a great idea.</p>
+<hr />
+<p><a name="gistash"><strong>Project Idea: gistash</strong></a> a script to store given files in a <a href="https://gist.github.com/">github gist</a>, update them in place if they already exist. I initially thought of this as a way to “backup” drafts I’m working on here.</p>
+<p>When creating a new gist:</p>
+<pre><code>$ gistash *.txt
+    uploading a.txt
+    uploading b.txt
+    done.</code></pre>
+<p>When updating an existing gist(say <code>28fe346dc83fd26a43c351c507c6599d</code>) that you have permissions to update:</p>
+<pre><code>$ gistash *.txt 28fe346dc83fd26a43c351c507c6599d
+    updating a.txt
+    updating b.txt
+    uploading c.txt
+    done.</code></pre>
+<p>Gist has an API to <a href="https://developer.github.com/v3/gists/#update-a-gist">update a gist</a> which can be used to implment this.</p>
+<p><a href="index.html#interesting" class="tag interesting">interesting</a> <a href="index.html#ideas" class="tag ideas">ideas</a></p>
+</article>
+<footer>
+  <p>Made with <a href="https://github.com/btbytes/btbytes.github.io/blob/master/bari">bari</a> with help from <a href="https://pandoc.org">pandoc</a>, <a href="https://www.gnu.org/software/make/">make</a> and <a href="https://www.python.org">python</a> </p>
+</footer>
+<script data-goatcounter="https://btbytes-github.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
