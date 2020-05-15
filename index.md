@@ -6,7 +6,7 @@ Found this paper - [On the Architecture of Pāṇini's Grammar](https://web.stan
 
 Kaeshour made this observation --  **Greece : Geometry :: India : Grammar**.
 
-<a name="paninirazor"></a>
+## Pāṇini's Razor
 
 Browsing around on Prof Kiparsky's website, I found another paper - [Pāṇini](https://web.stanford.edu/~kiparsky/Papers/panini_hist_of_phon_handbook.pdf) in Handbook of the History of Phonology. A very interesting point about Pāṇini's contribution:
 
