@@ -1,3 +1,26 @@
+<div class="post"><div class="post-title"><span id="19">°19 // <a href="2020-05-17-2-the-rabbits.html">Sustainable tech by The Rabbits
+</a></span> <span class="post-date"><date>2020-05-17</date></span></div>
+
+Came across [The Rabbits](https://100r.co/site/about_us.html) via [HN](https://news.ycombinator.com/item?id=23211273). Two tech folks who are building stuff  in the way of "resilience and self-reliance using low-tech solutions.". They appear to building most of their stuff in [C99, ASM and JS](https://100r.co/site/philosophy.html#accessibility).
+
+Their [Ronin](https://100r.co/site/ronin.html) project implements a browser based lisp interpreter, which can be used for making generative art. You can play with a program in [the playground](https://hundredrabbits.github.io/Ronin/). 
+
+[Dotgrid](https://100r.co/site/dotgrid.html) is  a grid-based vector drawing software designed to create logos, icons and type. Like their applications, being able to drive the program with keystrokes seems like a feature I'd like to explore. I'm a total dummy when it comes to vector graphics. The simplicity of this tool might help exploration and learning.
+
+[Orca](https://100r.co/site/orca.html) immediately brought to my mind [Colorforth](https://colorforth.github.io) by Charles Moore. 
+
+Their minimalistic, prose-writing oriented editor [Left](https://100r.co/site/left.html) makes me write my own text editor. I donated $5 and downloaded Left. 
+
+
+Further reading:
+
+* Blogroll and travelogues on their [Home page](https://100r.co/site/home.html)
+* Their podcasts on Future of Coding -- 
+
+  * [#44 - Making Your Own Tools: Devine Lu Linvega] (https://futureofcoding.org/episodes/044)
+  * [#45 - Orca: Devine Lu Linvega](https://futureofcoding.org/episodes/045) 
+
+</div>
 <div class="post"><div class="post-title"><span id="18">°18 // <a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern
 </a></span> <span class="post-date"><date>2020-05-17</date></span></div>
 
@@ -201,44 +224,11 @@ When you consider that some of the most robust software things were built using 
 
 <a href="index.html#interesting" class="tag interesting">interesting                        </a>  <a href="index.html#ideas" class="tag ideas">ideas                        </a> 
 </div>
-<div class="post"><div class="post-title"><span id="14">°14 // <a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone
-</a></span> <span class="post-date"><date>2020-05-14</date></span></div>
-
-As a programmer, I have my [goldilocks zone](2020-05-06-06-happy-python.html) (Python).
-
-In order to reach for a different language, I'll expect to get comfortable doing the following things in a new language:
-
-* string manipulation - split, join etc
-* string formatting and printing
-* string templating
-* reading and writing to files
-* iterating over the contents of a file
-* json parsing and generation
-* reading and writing csv files
-* regular expressions
-* command line arguments and parsing them
-* http client operations - GET, POST
-* reading configurations from a file - toml, yaml, ini
-* processing xml files
-* generating HTML files
-* dealing with unicode encoding
-* unit testing
-* connecting to and querying sql databases
-* shelling out and calling external processes
-* threads
-* multiprocessing
-* asynchronous programming
-* using third party code and library
-* packaging code for reuse
-* packaging binaries for deployment
-* cross-platform compilation
-
-<a href="index.html#programming" class="tag programming">programming                        </a> 
-</div>
 
 ## Archive
 (Reverse chronologic)<dl id="archive-links"><dt class="archive-year" id="y2020">2020</dt>
-<dd class="archive-item"><p><span id="13">°13. <a href="2020-05-13-2-notes.html">Some interesting things
+<dd class="archive-item"><p><span id="14">°14. <a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone
+</a></span>                        <date>2020-05-14</date></p></dd><dd class="archive-item"><p><span id="13">°13. <a href="2020-05-13-2-notes.html">Some interesting things
 </a></span>                        <date>2020-05-13</date></p></dd><dd class="archive-item"><p><span id="12">°12. <a href="2020-05-12-01-notes.html">A few interesting things
 </a></span>                        <date>2020-05-12</date></p></dd><dd class="archive-item"><p><span id="11">°11. <a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages
 </a></span>                        <date>2020-05-08</date></p></dd><dd class="archive-item"><p><span id="10">°10. <a href="2020-05-07-02-code-in-books.html">My code in books

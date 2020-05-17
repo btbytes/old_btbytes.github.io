@@ -8,6 +8,13 @@
             </author>
             <id>https://btbytes.github.io/</id>
                 <entry>
+            <title>Sustainable tech by The Rabbits</title>
+            <link href="https://btbytes.github.io/2020-05-17-2-the-rabbits.html"/>
+            <id>https://btbytes.github.io/2020-05-17-2-the-rabbits.html</id>
+            <updated>2020-05-17T00:00:00.00Z</updated>
+            <summary>Sustainable tech by The Rabbits</summary>
+            </entry>
+        <entry>
             <title>Python Line Processing Pattern</title>
             <link href="https://btbytes.github.io/2020-05-17-1-python-lineprocessing.html"/>
             <id>https://btbytes.github.io/2020-05-17-1-python-lineprocessing.html</id>
@@ -34,13 +41,6 @@
             <id>https://btbytes.github.io/2020-05-14-4-notes.html</id>
             <updated>2020-05-14T00:00:00.00Z</updated>
             <summary>gistash, RFCs</summary>
-            </entry>
-        <entry>
-            <title>Getting Out of the Programming Goldilocks Zone</title>
-            <link href="https://btbytes.github.io/2020-05-14-1-getting-out-of-goldilocks-zone.html"/>
-            <id>https://btbytes.github.io/2020-05-14-1-getting-out-of-goldilocks-zone.html</id>
-            <updated>2020-05-14T00:00:00.00Z</updated>
-            <summary>Getting Out of the Programming Goldilocks Zone</summary>
             </entry>
         
              </feed>
