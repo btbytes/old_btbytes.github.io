@@ -58,8 +58,7 @@ def main():
     for mdfile in files:
         temp = tempfile.NamedTemporaryFile('w', delete=False)
         with open(mdfile) as inp:
-            lines = inp.readlines()
-            for line in lines:
+            for line in inp:
                 if line.startswith('date: '):
                     timestamp = line.split('date: ')[1]
                     dt = timestamp[:10]
