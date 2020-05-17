@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="alternate" type="application/atom+xml" title="Atom Feed"  href="https://btbytes.github.io/atom.xml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-05-17" />
+  <title>Python Line Processing Pattern</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; } /* Alert */
+    code span.an { color: #008000; } /* Annotation */
+    code span.at { } /* Attribute */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #0000ff; } /* ControlFlow */
+    code span.ch { color: #008080; } /* Char */
+    code span.cn { } /* Constant */
+    code span.co { color: #008000; } /* Comment */
+    code span.cv { color: #008000; } /* CommentVar */
+    code span.do { color: #008000; } /* Documentation */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.im { } /* Import */
+    code span.in { color: #008000; } /* Information */
+    code span.kw { color: #0000ff; } /* Keyword */
+    code span.op { } /* Operator */
+    code span.ot { color: #ff4000; } /* Other */
+    code span.pp { color: #ff4000; } /* Preprocessor */
+    code span.sc { color: #008080; } /* SpecialChar */
+    code span.ss { color: #008080; } /* SpecialString */
+    code span.st { color: #008080; } /* String */
+    code span.va { } /* Variable */
+    code span.vs { color: #008080; } /* VerbatimString */
+    code span.wa { color: #008000; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav>
+  <span class="sitetitle"><em>Pradeep Gowda's</em> <a href="/" title="Home Page">gitblog</a></span>
+  <span class="sitelinks"><a href="index.html" title="Home">Home</a> ◊ <a href="index.html#tags">Tags</a> ◊ <a href="index.html#archive">Archive</a>  ◊ <a href="/atom.xml">Feed</a></span>
+</nav>
+<article>
+
+<header id="title-block-header">
+<h1 class="title">Python Line Processing Pattern</h1>
+<p class="date">2020-05-17</p>
+</header>
+<p>Sometimes you want to write a program that has to modify line(s) in a text file. The “UNIX” way of doing this is of course to use <code>sed</code> (stream editor) or <code>awk</code>. Since I can type faster than think in <code>awk</code>, I write python instead.</p>
+<p>The common pattern for such programs is:</p>
+<pre><code>    for file in matching_files
+        for line in file
+            if line matches pattern
+                modify the line
+                print the line
+            else
+                write the line</code></pre>
+<p>One twist to the above is, you don’t want to overwrite the file before you know the overwriting can complete successfully.</p>
+<p>The defensive way to handle this is: put the source files in a git repo, so that you can always revert the changes back.</p>
+<p>Alternatively, you can write the changed contents to a temporary file, and rename that file to the original file if there were no errors. Essentially.</p>
+<pre><code>$ ./processing_script original.txt &gt; temp.txt &amp;&amp; mv temp.txt original.txt</code></pre>
+<p>I learnt about <code>NamedTemporaryFile</code> module recently, and I used it to do the following.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">This program will rewrite the following:</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">    ---</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">    title: AWK programming language</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">    kind: notebook</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">    tags: programming-language</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">    date: 2020-02-12T05:51:45</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">    ---</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">to:</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">    ---</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">    title: AWK programming language</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">    kind: notebook</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">    tags: programming-language</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">    date: 2020-02-12</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">    updated: 2020-02-12T05:51:45</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">    ---</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="im">import</span> glob</span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="im">import</span> shutil</span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="im">import</span> tempfile</span>
+<span id="cb3-24"><a href="#cb3-24"></a></span>
+<span id="cb3-25"><a href="#cb3-25"></a></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="kw">def</span> main():</span>
+<span id="cb3-27"><a href="#cb3-27"></a>    files <span class="op">=</span> glob.glob(<span class="st">&#39;*.md&#39;</span>)</span>
+<span id="cb3-28"><a href="#cb3-28"></a>    <span class="cf">for</span> mdfile <span class="kw">in</span> files:</span>
+<span id="cb3-29"><a href="#cb3-29"></a>        temp <span class="op">=</span> tempfile.NamedTemporaryFile(<span class="st">&#39;w&#39;</span>, delete<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-30"><a href="#cb3-30"></a>        <span class="cf">with</span> <span class="bu">open</span>(mdfile) <span class="im">as</span> inp:</span>
+<span id="cb3-31"><a href="#cb3-31"></a>            lines <span class="op">=</span> inp.readlines()</span>
+<span id="cb3-32"><a href="#cb3-32"></a>            <span class="cf">for</span> line <span class="kw">in</span> lines:</span>
+<span id="cb3-33"><a href="#cb3-33"></a>                <span class="cf">if</span> line.startswith(<span class="st">&#39;date: &#39;</span>):</span>
+<span id="cb3-34"><a href="#cb3-34"></a>                    timestamp <span class="op">=</span> line.split(<span class="st">&#39;date: &#39;</span>)[<span class="dv">1</span>]</span>
+<span id="cb3-35"><a href="#cb3-35"></a>                    dt <span class="op">=</span> timestamp[:<span class="dv">10</span>]</span>
+<span id="cb3-36"><a href="#cb3-36"></a>                    <span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>mdfile<span class="sc">}</span><span class="ss"> </span><span class="sc">{dt}</span><span class="ss">&#39;</span>)</span>
+<span id="cb3-37"><a href="#cb3-37"></a>                    temp.write(<span class="ss">f&#39;date: </span><span class="sc">{dt}</span><span class="ch">\n</span><span class="ss">&#39;</span>)</span>
+<span id="cb3-38"><a href="#cb3-38"></a>                    temp.write(<span class="ss">f&#39;updated: </span><span class="sc">{</span>timestamp<span class="sc">}</span><span class="ss">&#39;</span>)</span>
+<span id="cb3-39"><a href="#cb3-39"></a>                <span class="cf">else</span>:</span>
+<span id="cb3-40"><a href="#cb3-40"></a>                    temp.write(line)</span>
+<span id="cb3-41"><a href="#cb3-41"></a>        temp.close()</span>
+<span id="cb3-42"><a href="#cb3-42"></a>        shutil.move(temp.name, mdfile)</span>
+<span id="cb3-43"><a href="#cb3-43"></a></span>
+<span id="cb3-44"><a href="#cb3-44"></a></span>
+<span id="cb3-45"><a href="#cb3-45"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb3-46"><a href="#cb3-46"></a>    main()</span></code></pre></div>
+<p><a href="index.html#python" class="tag python">python </a></p>
+</article>
+<footer>
+  <p>&copy; 2020&mdash; <a href="//twitter.com/btbytes" title="Twitter page of Pradeep Gowda">PG</a>. Made with <a href="https://github.com/btbytes/btbytes.github.io/blob/master/bari">bari</a> with help from <a href="https://pandoc.org">pandoc</a>, <a href="https://www.gnu.org/software/make/">make</a> and <a href="https://www.python.org">python</a>. </p>
+</footer>
+<script>
+// adapted from https://github.com/attacomsian/code-examples/blob/master/others/anchor-links/anchor-javascript.html
+window.onload = function () {
+	//add anchor link to all headings
+	document.querySelectorAll('article h1, article h2, article h3, article h4').forEach($heading => {
+
+		//create id from heading text
+		var id = $heading.getAttribute("id") || $heading.innerText.toLowerCase().replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '').replace(/ +/g, '-');
+
+		//add id to heading
+		$heading.setAttribute('id', id);
+
+		//append parent class to heading
+		$heading.classList.add('anchor-heading');
+
+		//create anchor
+		$anchor = document.createElement('a');
+		$anchor.className = 'anchor-link';
+		$anchor.href = '#' + id;
+		$anchor.innerText = '#';
+
+		//append anchor link after heading text
+		$heading.appendChild($anchor);
+	});
+
+	//add smooth scroll for anchor links
+	document.querySelectorAll('a.anchor-link').forEach($anchor => {
+		$anchor.addEventListener('click', function (e) {
+			e.preventDefault();
+			document.querySelector(this.getAttribute('href')).scrollIntoView({
+				behavior: 'smooth',
+				block: 'start' //scroll to top of the target element
+			});
+		});
+	});
+
+	//navigate to anchor if available
+	if (window.location.hash.length > 0) {
+		setTimeout(function () {
+			document.querySelector('a[href="' + window.location.hash + '"]').click();
+		}, 150);
+	}
+};
+</script>
+<script data-goatcounter="https://btbytes-github.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,3 +1,85 @@
+<div class="post"><div class="post-title"><span id="18">°18 // <a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern
+</a></span> <span class="post-date"><date>2020-05-17</date></span></div>
+
+
+Sometimes you want to write a program that has to modify line(s) in a text file. The "UNIX" way of doing this is of course to use `sed` (stream editor) or `awk`. Since I can type faster than think in `awk`, I write python instead.
+
+The common pattern for such programs is:
+
+
+```
+	for file in matching_files
+		for line in file
+			if line matches pattern
+				modify the line
+				print the line
+			else
+				write the line
+```
+
+One twist to the above is, you don't want to overwrite the file before you know the overwriting can complete successfully. 
+
+The defensive way to handle this is: put the source files in a git repo, so that you can always revert the changes back.
+
+Alternatively, you can write the changed contents to a temporary file, and rename that file to the original file if there were no errors. Essentially.
+
+	$ ./processing_script original.txt > temp.txt && mv temp.txt original.txt
+
+I learnt about `NamedTemporaryFile` module recently, and I used it to do the following. 
+
+
+```python
+#!/usr/bin/env python
+"""
+This program will rewrite the following:
+
+    ---
+    title: AWK programming language
+    kind: notebook
+    tags: programming-language
+    date: 2020-02-12T05:51:45
+    ---
+
+to:
+    ---
+    title: AWK programming language
+    kind: notebook
+    tags: programming-language
+    date: 2020-02-12
+    updated: 2020-02-12T05:51:45
+    ---
+"""
+import glob
+import shutil
+import tempfile
+
+
+def main():
+    files = glob.glob('*.md')
+    for mdfile in files:
+        temp = tempfile.NamedTemporaryFile('w', delete=False)
+        with open(mdfile) as inp:
+            lines = inp.readlines()
+            for line in lines:
+                if line.startswith('date: '):
+                    timestamp = line.split('date: ')[1]
+                    dt = timestamp[:10]
+                    print(f'{mdfile} {dt}')
+                    temp.write(f'date: {dt}\n')
+                    temp.write(f'updated: {timestamp}')
+                else:
+                    temp.write(line)
+        temp.close()
+        shutil.move(temp.name, mdfile)
+
+
+if __name__ == '__main__':
+    main()
+
+```
+
+<a href="index.html#python" class="tag python">python                        </a> 
+</div>
 <div class="post"><div class="post-title"><span id="17">°17 // <a href="2020-05-15-2.html">Some Interesting Links
 </a></span> <span class="post-date"><date>2020-05-15</date></span></div>
 
@@ -151,43 +233,11 @@ In order to reach for a different language, I'll expect to get comfortable doing
 
 <a href="index.html#programming" class="tag programming">programming                        </a> 
 </div>
-<div class="post"><div class="post-title"><span id="13">°13 // <a href="2020-05-13-2-notes.html">Some interesting things
-</a></span> <span class="post-date"><date>2020-05-13</date></span></div>
-
-[Your Makefiles are wrong](https://tech.davis-hansson.com/p/make/) taught me some good tricks about writing make files.
-
-----
-
-"Move slow and make things." -- \@stevelosh (on his twitter profile). I often think about that.
-
-Steve's [A Road to Common Lisp](https://stevelosh.com/blog/2018/08/a-road-to-common-lisp/) is an excellent article that captures some of his thought process behind that "motto". I particularly like the "*Escaping the Hamster Wheel of Backwards Incompatibility*" section.
-
-If you desire to make things that are solving *unusual* and *novel* things, and you see the things you build last for years, if not decades, you *have* consider what technologies you put your time into. Steve chose Common Lisp, and I think its a solid choice.
-
-----
-
-[Deno](https://deno.land) 1.0 [was announced today](https://deno.land/v1). I've long ignored node.js, and the ecosystem around it primarily because I think the situation around `node_modules` is ridiculous. My hope for deno is that it can become a replacement for Python (and Go) for many tasks.
-
-----
-
-Common Lisp things:
-
-Using a portacle instance instead of trying to configure my emacs installation to avoid [*the Omnibus configuration pattern*](https://twitter.com/btbytes/status/1259890526242983939).
-
-Trying to familiarize myself with [str](https://github.com/vindarel/cl-str/) library. 
-
-Common characters:
-
-	#\Space #\Newline #\Backspace #\Tab #\Linefeed #\Page #\Return
-
-Spelled out: "Hash-Backslash-NAME" - `#\Space`.
-
-<a href="index.html#interesting" class="tag interesting">interesting                        </a> 
-</div>
 
 ## Archive
 (Reverse chronologic)<dl id="archive-links"><dt class="archive-year" id="y2020">2020</dt>
-<dd class="archive-item"><p><span id="12">°12. <a href="2020-05-12-01-notes.html">A few interesting things
+<dd class="archive-item"><p><span id="13">°13. <a href="2020-05-13-2-notes.html">Some interesting things
+</a></span>                        <date>2020-05-13</date></p></dd><dd class="archive-item"><p><span id="12">°12. <a href="2020-05-12-01-notes.html">A few interesting things
 </a></span>                        <date>2020-05-12</date></p></dd><dd class="archive-item"><p><span id="11">°11. <a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages
 </a></span>                        <date>2020-05-08</date></p></dd><dd class="archive-item"><p><span id="10">°10. <a href="2020-05-07-02-code-in-books.html">My code in books
 </a></span>                        <date>2020-05-07</date></p></dd><dd class="archive-item"><p><span id="9">°9. <a href="2020-05-06-06-happy-python.html">My Happy Python Workflow
@@ -202,5 +252,5 @@ Spelled out: "Hash-Backslash-NAME" - `#\Space`.
 </a></span>                        <date>2020-04-29</date></p></dd></dl>
 ## Tags
 (Chronologic)
-<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a>                    <date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a>                    <date style="float:right;">2020-05-08</date></p></dd> <dt><span id="grammar" class="tagged">grammar</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="ideas" class="tagged">ideas</span></dt><dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a>                    <date style="float:right;">2020-05-12</date></p></dd> <dd><p><a href="2020-05-13-2-notes.html">Some interesting things</a>                    <date style="float:right;">2020-05-13</date></p></dd> <dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dd><p><a href="2020-05-15-2.html">Some Interesting Links</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a>                    <date style="float:right;">2020-05-01</date></p></dd> <dt><span id="patterns" class="tagged">patterns</span></dt><dd><p><a href="2020-05-15-2.html">Some Interesting Links</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="philosophy" class="tagged">philosophy</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a>                    <date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a>                    <date style="float:right;">2020-05-07</date></p></dd> <dd><p><a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a>                    <date style="float:right;">2020-05-06</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a>                    <date style="float:right;">2020-05-02</date></p></dd> <dt><span id="zettelkasten" class="tagged">zettelkasten</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> </dl>
+<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a>                    <date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a>                    <date style="float:right;">2020-05-08</date></p></dd> <dt><span id="grammar" class="tagged">grammar</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="ideas" class="tagged">ideas</span></dt><dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a>                    <date style="float:right;">2020-05-12</date></p></dd> <dd><p><a href="2020-05-13-2-notes.html">Some interesting things</a>                    <date style="float:right;">2020-05-13</date></p></dd> <dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dd><p><a href="2020-05-15-2.html">Some Interesting Links</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a>                    <date style="float:right;">2020-05-01</date></p></dd> <dt><span id="patterns" class="tagged">patterns</span></dt><dd><p><a href="2020-05-15-2.html">Some Interesting Links</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="philosophy" class="tagged">philosophy</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a>                    <date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a>                    <date style="float:right;">2020-05-07</date></p></dd> <dd><p><a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a>                    <date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern</a>                    <date style="float:right;">2020-05-17</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a>                    <date style="float:right;">2020-05-02</date></p></dd> <dt><span id="zettelkasten" class="tagged">zettelkasten</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> </dl>
 
