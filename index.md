@@ -19,7 +19,7 @@ The common pattern for such programs is:
 
 One twist to the above is, you don't want to overwrite the file before you know the overwriting can complete successfully. 
 
-The defensive way to handle this is: put the source files in a git repo, so that you can always revert the changes back.
+The defensive way to handle this is: put the source files in a git repo, so that you can always revert the changes back. This is also useful in `git diff`ing the changes so that you can verify your program actually does what you wanted. 
 
 In addition, you can write the changed contents to a temporary file, and rename that file to the original file if there were no errors. Essentially.
 
