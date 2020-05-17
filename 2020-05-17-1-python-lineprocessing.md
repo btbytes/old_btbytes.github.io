@@ -76,4 +76,7 @@ if __name__ == '__main__':
 
 ```
 
+Update: [David Glick](https://twitter.com/davisagli/status/1262092392959787008) pointed out that -- *You can skip "lines = inp.readlines()" and just iterate over inp; it'll give you one line at a time.*
+
+
 ◊python
