@@ -94,7 +94,7 @@
                 write the line</code></pre>
 <p>One twist to the above is, you don’t want to overwrite the file before you know the overwriting can complete successfully.</p>
 <p>The defensive way to handle this is: put the source files in a git repo, so that you can always revert the changes back.</p>
-<p>Alternatively, you can write the changed contents to a temporary file, and rename that file to the original file if there were no errors. Essentially.</p>
+<p>In addition, you can write the changed contents to a temporary file, and rename that file to the original file if there were no errors. Essentially.</p>
 <pre><code>$ ./processing_script original.txt &gt; temp.txt &amp;&amp; mv temp.txt original.txt</code></pre>
 <p>I learnt about <code>NamedTemporaryFile</code> module recently, and I used it to do the following.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#!/usr/bin/env python</span></span>

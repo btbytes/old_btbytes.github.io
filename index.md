@@ -21,7 +21,7 @@ One twist to the above is, you don't want to overwrite the file before you know 
 
 The defensive way to handle this is: put the source files in a git repo, so that you can always revert the changes back.
 
-Alternatively, you can write the changed contents to a temporary file, and rename that file to the original file if there were no errors. Essentially.
+In addition, you can write the changed contents to a temporary file, and rename that file to the original file if there were no errors. Essentially.
 
 	$ ./processing_script original.txt > temp.txt && mv temp.txt original.txt
 
