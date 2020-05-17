@@ -17,7 +17,7 @@ Further reading:
 * Blogroll and travelogues on their [Home page](https://100r.co/site/home.html)
 * Their podcasts on Future of Coding -- 
 
-  * [#44 - Making Your Own Tools: Devine Lu Linvega] (https://futureofcoding.org/episodes/044)
+  * [#44 - Making Your Own Tools: Devine Lu Linvega](https://futureofcoding.org/episodes/044)
   * [#45 - Orca: Devine Lu Linvega](https://futureofcoding.org/episodes/045) 
 
 </div>
