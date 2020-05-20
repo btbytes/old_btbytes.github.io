@@ -89,4 +89,7 @@ if __name__ == '__main__':
     if args.clickable:
         source = ''.join([c for c in source if c not in dirty])
     print(apikeygen(args.length, source))
+
 ```
+
+◊python
