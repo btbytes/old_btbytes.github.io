@@ -2,12 +2,19 @@
             <feed xmlns="http://www.w3.org/2005/Atom">
             <title>btbytes.github.io feed</title>
             <link href="https://btbytes.github.io/"/>
-            <updated>2020-05-17T00:00:00.00Z</updated>
+            <updated>2020-05-19T00:00:00.00Z</updated>
             <author>
             <name>Pradeep Gowda</name>
             </author>
             <id>https://btbytes.github.io/</id>
                 <entry>
+            <title>Shell Safe API key / Password Generator</title>
+            <link href="https://btbytes.github.io/2020-05-19-1-shell-safe-api-key-password-generator.html"/>
+            <id>https://btbytes.github.io/2020-05-19-1-shell-safe-api-key-password-generator.html</id>
+            <updated>2020-05-19T00:00:00.00Z</updated>
+            <summary>Shell Safe API key / Password Generator</summary>
+            </entry>
+        <entry>
             <title>Sustainable tech by The Rabbits</title>
             <link href="https://btbytes.github.io/2020-05-17-2-the-rabbits.html"/>
             <id>https://btbytes.github.io/2020-05-17-2-the-rabbits.html</id>
@@ -34,13 +41,6 @@
             <id>https://btbytes.github.io/2020-05-15-1.html</id>
             <updated>2020-05-15T00:00:00.00Z</updated>
             <summary>About Grammarians and Philosophers</summary>
-            </entry>
-        <entry>
-            <title>gistash, RFCs</title>
-            <link href="https://btbytes.github.io/2020-05-14-4-notes.html"/>
-            <id>https://btbytes.github.io/2020-05-14-4-notes.html</id>
-            <updated>2020-05-14T00:00:00.00Z</updated>
-            <summary>gistash, RFCs</summary>
             </entry>
         
              </feed>

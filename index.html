@@ -81,86 +81,188 @@
 
 <div class="post">
 <div class="post-title">
-<span id="19">°19 // <a href="2020-05-17-2-the-rabbits.html">Sustainable tech by The Rabbits </a></span> <span class="post-date"><date>2020-05-17</date></span>
+<span id="20">°20 // <a href="2020-05-19-1-shell-safe-api-key-password-generator.html">Shell Safe API key / Password Generator </a></span> <span class="post-date"><date>2020-05-19</date></span>
 </div>
-<p>Came across <a href="https://100r.co/site/about_us.html">The Rabbits</a> via <a href="https://news.ycombinator.com/item?id=23211273">HN</a>. Two tech folks who are building stuff in the way of “resilience and self-reliance using low-tech solutions.”. They appear to building most of their stuff in <a href="https://100r.co/site/philosophy.html#accessibility">C99, ASM and JS</a>.</p>
-<p>Their <a href="https://100r.co/site/ronin.html">Ronin</a> project implements a browser based lisp interpreter, which can be used for making generative art. You can play with a program in <a href="https://hundredrabbits.github.io/Ronin/">the playground</a>.</p>
-<p><a href="https://100r.co/site/dotgrid.html">Dotgrid</a> is a grid-based vector drawing software designed to create logos, icons and type. Like their applications, being able to drive the program with keystrokes seems like a feature I’d like to explore. I’m a total dummy when it comes to vector graphics. The simplicity of this tool might help exploration and learning.</p>
-<p><a href="https://100r.co/site/orca.html">Orca</a> immediately brought to my mind <a href="https://colorforth.github.io">Colorforth</a> by Charles Moore.</p>
-<p>Their minimalistic, prose-writing oriented editor <a href="https://100r.co/site/left.html">Left</a> makes me write my own text editor. I donated $5 and downloaded Left.</p>
-<p>Further reading:</p>
+<p>Recently I became aware of an instance where a program broke because the AWS secrets they were using contained special characters that are not shell safe.</p>
+<p>Examples of such characters are:</p>
 <ul>
-<li><p>Blogroll and travelogues on their <a href="https://100r.co/site/home.html">Home page</a></p></li>
-<li><p>Their podcasts on Future of Coding –</p>
-<ul>
-<li><a href="https://futureofcoding.org/episodes/044">#44 - Making Your Own Tools: Devine Lu Linvega</a></li>
-<li><a href="https://futureofcoding.org/episodes/045">#45 - Orca: Devine Lu Linvega</a></li>
-</ul></li>
+<li><code>$ &amp; ' " ; |</code> – shell syntax</li>
+<li><code>!</code> – history expansion</li>
+<li><code>[</code> – shell wildcard</li>
 </ul>
-</div>
-<div class="post">
-<div class="post-title">
-<span id="18">°18 // <a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern </a></span> <span class="post-date"><date>2020-05-17</date></span>
-</div>
-<p>Sometimes you want to write a program that has to modify line(s) in a text file. The “UNIX” way of doing this is of course to use <code>sed</code> (stream editor) or <code>awk</code>. Since I can type faster than think in <code>awk</code>, I write python instead.</p>
-<p>The common pattern for such programs is:</p>
-<pre><code>    for file in matching_files
-        for line in file
-            if line matches pattern
-                modify the line
-                print the line
-            else
-                write the line</code></pre>
-<p>One twist to the above is, you don’t want to overwrite the file before you know the overwriting can complete successfully.</p>
-<p>The defensive way to handle this is: put the source files in a git repo, so that you can always revert the changes back. This is also useful in <code>git diff</code>ing the changes so that you can verify your program actually does what you wanted.</p>
-<p>In addition, you can write the changed contents to a temporary file, and rename that file to the original file if there were no errors. Essentially.</p>
-<pre><code>$ ./processing_script original.txt &gt; temp.txt &amp;&amp; mv temp.txt original.txt</code></pre>
-<p>I learnt about <code>NamedTemporaryFile</code> module recently, and I used it to do the following.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#!/usr/bin/env python</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">This program will rewrite the following:</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">    ---</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">    title: AWK programming language</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co">    kind: notebook</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">    tags: programming-language</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">    date: 2020-02-12T05:51:45</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">    ---</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">to:</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co">    ---</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co">    title: AWK programming language</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">    kind: notebook</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">    tags: programming-language</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">    date: 2020-02-12</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co">    updated: 2020-02-12T05:51:45</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="co">    ---</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="im">import</span> glob</span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="im">import</span> shutil</span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="im">import</span> tempfile</span>
-<span id="cb3-24"><a href="#cb3-24"></a></span>
-<span id="cb3-25"><a href="#cb3-25"></a></span>
-<span id="cb3-26"><a href="#cb3-26"></a><span class="kw">def</span> main():</span>
-<span id="cb3-27"><a href="#cb3-27"></a>    files <span class="op">=</span> glob.glob(<span class="st">&#39;*.md&#39;</span>)</span>
-<span id="cb3-28"><a href="#cb3-28"></a>    <span class="cf">for</span> mdfile <span class="kw">in</span> files:</span>
-<span id="cb3-29"><a href="#cb3-29"></a>        temp <span class="op">=</span> tempfile.NamedTemporaryFile(<span class="st">&#39;w&#39;</span>, delete<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb3-30"><a href="#cb3-30"></a>        <span class="cf">with</span> <span class="bu">open</span>(mdfile) <span class="im">as</span> inp:</span>
-<span id="cb3-31"><a href="#cb3-31"></a>            <span class="cf">for</span> line <span class="kw">in</span> inp:</span>
-<span id="cb3-32"><a href="#cb3-32"></a>                <span class="cf">if</span> line.startswith(<span class="st">&#39;date: &#39;</span>):</span>
-<span id="cb3-33"><a href="#cb3-33"></a>                    timestamp <span class="op">=</span> line.split(<span class="st">&#39;date: &#39;</span>)[<span class="dv">1</span>]</span>
-<span id="cb3-34"><a href="#cb3-34"></a>                    dt <span class="op">=</span> timestamp[:<span class="dv">10</span>]</span>
-<span id="cb3-35"><a href="#cb3-35"></a>                    <span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>mdfile<span class="sc">}</span><span class="ss"> </span><span class="sc">{dt}</span><span class="ss">&#39;</span>)</span>
-<span id="cb3-36"><a href="#cb3-36"></a>                    temp.write(<span class="ss">f&#39;date: </span><span class="sc">{dt}</span><span class="ch">\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb3-37"><a href="#cb3-37"></a>                    temp.write(<span class="ss">f&#39;updated: </span><span class="sc">{</span>timestamp<span class="sc">}</span><span class="ss">&#39;</span>)</span>
-<span id="cb3-38"><a href="#cb3-38"></a>                <span class="cf">else</span>:</span>
-<span id="cb3-39"><a href="#cb3-39"></a>                    temp.write(line)</span>
-<span id="cb3-40"><a href="#cb3-40"></a>        temp.close()</span>
-<span id="cb3-41"><a href="#cb3-41"></a>        shutil.move(temp.name, mdfile)</span>
-<span id="cb3-42"><a href="#cb3-42"></a></span>
-<span id="cb3-43"><a href="#cb3-43"></a></span>
-<span id="cb3-44"><a href="#cb3-44"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb3-45"><a href="#cb3-45"></a>    main()</span></code></pre></div>
+<p>You can be extra caution and use only the alphanumeric range, that is</p>
+<ul>
+<li>A-Z</li>
+<li>a-z</li>
+<li>0-9</li>
+</ul>
+<p>But, you will also miss out on some characters that are benign.</p>
+<p>So, I wrote this little script, which probably has 1:30::code:documentation ration ;)</p>
+<p>I also added a little nice UX improvement. Often times, random strings have a character or two that make it hard to double click and select the whole string. In my experience it is <code>@</code> and <code>%</code>.</p>
+<p>So you can choose to generate API key/passwords of any length, that are even easy double-click and copy from the shell.</p>
+<ul>
+<li>not easy – <code>lD53xg6sjT4dRZ0anO@u+V</code> (selection stops at the <code>@</code> character)</li>
+<li>easy – <code>sQt03aBrXhPbOU+K9WwI/_</code> (double click selects the whole string)</li>
+</ul>
+<p>The code for <a href="https://gist.github.com/btbytes/87e10bc7768b67cd1435eefa332ef971"><code>apikeygen.py</code></a>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">apikeygen.py</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">Generate a shell safe API key (or password)</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">Generated string should not have any characters that need to be escaped in</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">the shell. The following characters have special meaning in some shell contexts</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">    ! # $ &#39; ( ) * , ; . &lt; = &gt; ? [ ] ^ { } | ~ - . : \</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">Arguments:</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co">    -l --length length of the API key to be generated. Default is 32.</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co">    -s --source a string of characters to use</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co">Revision:</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co">    2020-05-19: Initial revision</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co">Reference:</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="co">    https://unix.stackexchange.com/a/357932</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="im">import</span> random</span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a></span>
+<span id="cb1-26"><a href="#cb1-26"></a><span class="kw">def</span> apikeygen(length, source):</span>
+<span id="cb1-27"><a href="#cb1-27"></a>    <span class="cf">return</span> <span class="st">&#39;&#39;</span>.join(random.sample(source, length))</span>
+<span id="cb1-28"><a href="#cb1-28"></a></span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb1-31"><a href="#cb1-31"></a>    <span class="im">import</span> argparse</span>
+<span id="cb1-32"><a href="#cb1-32"></a>    <span class="im">import</span> string</span>
+<span id="cb1-33"><a href="#cb1-33"></a>    source <span class="op">=</span> string.ascii_lowercase<span class="op">\</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a>        <span class="op">+</span> string.ascii_uppercase<span class="op">\</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>        <span class="op">+</span> string.digits<span class="op">\</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a>        <span class="op">+</span> <span class="st">&#39;@%_/+&#39;</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a>    dirty <span class="op">=</span> <span class="st">&#39;@%&#39;</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a>    parser <span class="op">=</span> argparse.ArgumentParser()</span>
+<span id="cb1-39"><a href="#cb1-39"></a>    parser.add_argument(</span>
+<span id="cb1-40"><a href="#cb1-40"></a>        <span class="st">&#39;-l&#39;</span>,</span>
+<span id="cb1-41"><a href="#cb1-41"></a>        <span class="st">&#39;--length&#39;</span>,</span>
+<span id="cb1-42"><a href="#cb1-42"></a>        <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>,</span>
+<span id="cb1-43"><a href="#cb1-43"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;length of the API key to be generated.&#39;</span>,</span>
+<span id="cb1-44"><a href="#cb1-44"></a>        default<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb1-45"><a href="#cb1-45"></a>    parser.add_argument(</span>
+<span id="cb1-46"><a href="#cb1-46"></a>        <span class="st">&#39;-s&#39;</span>,</span>
+<span id="cb1-47"><a href="#cb1-47"></a>        <span class="st">&#39;--source&#39;</span>,</span>
+<span id="cb1-48"><a href="#cb1-48"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;a string of characters to use.&#39;</span>,</span>
+<span id="cb1-49"><a href="#cb1-49"></a>        default<span class="op">=</span>source)</span>
+<span id="cb1-50"><a href="#cb1-50"></a>    parser.add_argument(</span>
+<span id="cb1-51"><a href="#cb1-51"></a>        <span class="st">&#39;-c&#39;</span>,</span>
+<span id="cb1-52"><a href="#cb1-52"></a>        <span class="st">&#39;--clickable&#39;</span>,</span>
+<span id="cb1-53"><a href="#cb1-53"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;make the string clickable.&#39;</span>,</span>
+<span id="cb1-54"><a href="#cb1-54"></a>        action<span class="op">=</span><span class="st">&#39;store_true&#39;</span>,</span>
+<span id="cb1-55"><a href="#cb1-55"></a>        default<span class="op">=</span>source)</span>
+<span id="cb1-56"><a href="#cb1-56"></a>    args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb1-57"><a href="#cb1-57"></a>    source <span class="op">=</span> args.source</span>
+<span id="cb1-58"><a href="#cb1-58"></a>    <span class="cf">if</span> args.clickable:</span>
+<span id="cb1-59"><a href="#cb1-59"></a>        source <span class="op">=</span> <span class="st">&#39;&#39;</span>.join([c <span class="cf">for</span> c <span class="kw">in</span> source <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> dirty])</span>
+<span id="cb1-60"><a href="#cb1-60"></a>    <span class="bu">print</span>(apikeygen(args.length, source))</span>
+<span id="cb1-61"><a href="#cb1-61"></a>```<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb1-62"><a href="#cb1-62"></a><span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">&quot;post&quot;</span><span class="op">&gt;&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">&quot;post-title&quot;</span><span class="op">&gt;&lt;</span>span <span class="bu">id</span><span class="op">=</span><span class="st">&quot;19&quot;</span><span class="op">&gt;</span>°<span class="dv">19</span> <span class="op">//</span> <span class="op">&lt;</span>a href<span class="op">=</span><span class="st">&quot;2020-05-17-2-the-rabbits.html&quot;</span><span class="op">&gt;</span>Sustainable tech by The Rabbits</span>
+<span id="cb1-63"><a href="#cb1-63"></a><span class="op">&lt;/</span>a<span class="op">&gt;&lt;/</span>span<span class="op">&gt;</span> <span class="op">&lt;</span>span <span class="kw">class</span><span class="op">=</span><span class="st">&quot;post-date&quot;</span><span class="op">&gt;&lt;</span>date<span class="op">&gt;</span><span class="dv">2020-05-17</span><span class="op">&lt;/</span>date<span class="op">&gt;&lt;/</span>span<span class="op">&gt;&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb1-64"><a href="#cb1-64"></a></span>
+<span id="cb1-65"><a href="#cb1-65"></a>Came across [The Rabbits](https:<span class="op">//</span>100r.co<span class="op">/</span>site<span class="op">/</span>about_us.html) via [HN](https:<span class="op">//</span>news.ycombinator.com<span class="op">/</span>item?<span class="bu">id</span><span class="op">=</span><span class="dv">23211273</span>). Two tech folks who are building stuff  <span class="kw">in</span> the way of <span class="st">&quot;resilience and self-reliance using low-tech solutions.&quot;</span>. They appear to building most of their stuff <span class="kw">in</span> [C99, ASM <span class="kw">and</span> JS](https:<span class="op">//</span>100r.co<span class="op">/</span>site<span class="op">/</span>philosophy.html<span class="co">#accessibility).</span></span>
+<span id="cb1-66"><a href="#cb1-66"></a></span>
+<span id="cb1-67"><a href="#cb1-67"></a>Their [Ronin](https:<span class="op">//</span>100r.co<span class="op">/</span>site<span class="op">/</span>ronin.html) project implements a browser based lisp interpreter, which can be used <span class="cf">for</span> making generative art. You can play <span class="cf">with</span> a program <span class="kw">in</span> [the playground](https:<span class="op">//</span>hundredrabbits.github.io<span class="op">/</span>Ronin<span class="op">/</span>). </span>
+<span id="cb1-68"><a href="#cb1-68"></a></span>
+<span id="cb1-69"><a href="#cb1-69"></a>[Dotgrid](https:<span class="op">//</span>100r.co<span class="op">/</span>site<span class="op">/</span>dotgrid.html) <span class="kw">is</span>  a grid<span class="op">-</span>based vector drawing software designed to create logos, icons <span class="kw">and</span> <span class="bu">type</span>. Like their applications, being able to drive the program <span class="cf">with</span> keystrokes seems like a feature I<span class="st">&#39;d like to explore. I&#39;</span>m a total dummy when it comes to vector graphics. The simplicity of this tool might <span class="bu">help</span> exploration <span class="kw">and</span> learning.</span>
+<span id="cb1-70"><a href="#cb1-70"></a></span>
+<span id="cb1-71"><a href="#cb1-71"></a>[Orca](https:<span class="op">//</span>100r.co<span class="op">/</span>site<span class="op">/</span>orca.html) immediately brought to my mind [Colorforth](https:<span class="op">//</span>colorforth.github.io) by Charles Moore. </span>
+<span id="cb1-72"><a href="#cb1-72"></a></span>
+<span id="cb1-73"><a href="#cb1-73"></a>Their minimalistic, prose<span class="op">-</span>writing oriented editor [Left](https:<span class="op">//</span>100r.co<span class="op">/</span>site<span class="op">/</span>left.html) makes me write my own text editor. I donated $<span class="dv">5</span> <span class="kw">and</span> downloaded Left. </span>
+<span id="cb1-74"><a href="#cb1-74"></a></span>
+<span id="cb1-75"><a href="#cb1-75"></a></span>
+<span id="cb1-76"><a href="#cb1-76"></a>Further reading:</span>
+<span id="cb1-77"><a href="#cb1-77"></a></span>
+<span id="cb1-78"><a href="#cb1-78"></a><span class="op">*</span> Blogroll <span class="kw">and</span> travelogues on their [Home page](https:<span class="op">//</span>100r.co<span class="op">/</span>site<span class="op">/</span>home.html)</span>
+<span id="cb1-79"><a href="#cb1-79"></a><span class="op">*</span> Their podcasts on Future of Coding <span class="op">--</span> </span>
+<span id="cb1-80"><a href="#cb1-80"></a></span>
+<span id="cb1-81"><a href="#cb1-81"></a>  <span class="op">*</span> [<span class="co">#44 - Making Your Own Tools: Devine Lu Linvega](https://futureofcoding.org/episodes/044)</span></span>
+<span id="cb1-82"><a href="#cb1-82"></a>  <span class="op">*</span> [<span class="co">#45 - Orca: Devine Lu Linvega](https://futureofcoding.org/episodes/045) </span></span>
+<span id="cb1-83"><a href="#cb1-83"></a></span>
+<span id="cb1-84"><a href="#cb1-84"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb1-85"><a href="#cb1-85"></a><span class="op">&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">&quot;post&quot;</span><span class="op">&gt;&lt;</span>div <span class="kw">class</span><span class="op">=</span><span class="st">&quot;post-title&quot;</span><span class="op">&gt;&lt;</span>span <span class="bu">id</span><span class="op">=</span><span class="st">&quot;18&quot;</span><span class="op">&gt;</span>°<span class="dv">18</span> <span class="op">//</span> <span class="op">&lt;</span>a href<span class="op">=</span><span class="st">&quot;2020-05-17-1-python-lineprocessing.html&quot;</span><span class="op">&gt;</span>Python Line Processing Pattern</span>
+<span id="cb1-86"><a href="#cb1-86"></a><span class="op">&lt;/</span>a<span class="op">&gt;&lt;/</span>span<span class="op">&gt;</span> <span class="op">&lt;</span>span <span class="kw">class</span><span class="op">=</span><span class="st">&quot;post-date&quot;</span><span class="op">&gt;&lt;</span>date<span class="op">&gt;</span><span class="dv">2020-05-17</span><span class="op">&lt;/</span>date<span class="op">&gt;&lt;/</span>span<span class="op">&gt;&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb1-87"><a href="#cb1-87"></a></span>
+<span id="cb1-88"><a href="#cb1-88"></a></span>
+<span id="cb1-89"><a href="#cb1-89"></a>Sometimes you want to write a program that has to modify line(s) <span class="kw">in</span> a text <span class="bu">file</span>. The <span class="st">&quot;UNIX&quot;</span> way of doing this <span class="kw">is</span> of course to use `sed` (stream editor) <span class="kw">or</span> `awk`. Since I can <span class="bu">type</span> faster than think <span class="kw">in</span> `awk`, I write python instead.</span>
+<span id="cb1-90"><a href="#cb1-90"></a></span>
+<span id="cb1-91"><a href="#cb1-91"></a>The common pattern <span class="cf">for</span> such programs <span class="kw">is</span>:</span>
+<span id="cb1-92"><a href="#cb1-92"></a></span></code></pre></div>
+<pre><code>for file in matching_files
+    for line in file
+        if line matches pattern
+            modify the line
+            print the line
+        else
+            write the line</code></pre>
+<pre><code>
+One twist to the above is, you don&#39;t want to overwrite the file before you know the overwriting can complete successfully. 
+
+The defensive way to handle this is: put the source files in a git repo, so that you can always revert the changes back. This is also useful in `git diff`ing the changes so that you can verify your program actually does what you wanted. 
+
+In addition, you can write the changed contents to a temporary file, and rename that file to the original file if there were no errors. Essentially.
+
+    $ ./processing_script original.txt &gt; temp.txt &amp;&amp; mv temp.txt original.txt
+
+I learnt about `NamedTemporaryFile` module recently, and I used it to do the following. 
+
+
+```python
+#!/usr/bin/env python
+&quot;&quot;&quot;
+This program will rewrite the following:
+
+    ---
+    title: AWK programming language
+    kind: notebook
+    tags: programming-language
+    date: 2020-02-12T05:51:45
+    ---
+
+to:
+    ---
+    title: AWK programming language
+    kind: notebook
+    tags: programming-language
+    date: 2020-02-12
+    updated: 2020-02-12T05:51:45
+    ---
+&quot;&quot;&quot;
+import glob
+import shutil
+import tempfile
+
+
+def main():
+    files = glob.glob(&#39;*.md&#39;)
+    for mdfile in files:
+        temp = tempfile.NamedTemporaryFile(&#39;w&#39;, delete=False)
+        with open(mdfile) as inp:
+            for line in inp:
+                if line.startswith(&#39;date: &#39;):
+                    timestamp = line.split(&#39;date: &#39;)[1]
+                    dt = timestamp[:10]
+                    print(f&#39;{mdfile} {dt}&#39;)
+                    temp.write(f&#39;date: {dt}\n&#39;)
+                    temp.write(f&#39;updated: {timestamp}&#39;)
+                else:
+                    temp.write(line)
+        temp.close()
+        shutil.move(temp.name, mdfile)
+
+
+if __name__ == &#39;__main__&#39;:
+    main()
+</code></pre>
 <p>Update: <a href="https://twitter.com/davisagli/status/1262092392959787008">David Glick</a> pointed out that – <em>You can skip “lines = inp.readlines()” and just iterate over inp; it’ll give you one line at a time.</em></p>
 <p><a href="index.html#python" class="tag python">python </a></p>
 </div>
@@ -217,36 +319,17 @@
 <p>Linking to definitions and concepts much like a Wiki is a great concept. The next step in that interaction is “immediate lookup/linking” model <a href="https://notes.andymatuschak.org/About_these_notes">shown here</a> in <em>Evergreen Notes</em>.</p>
 <a href="index.html#grammar" class="tag grammar">grammar </a> <a href="index.html#zettelkasten" class="tag zettelkasten">zettelkasten </a> <a href="index.html#philosophy" class="tag philosophy">philosophy </a>
 </div>
-<div class="post">
-<div class="post-title">
-<span id="15">°15 // <a href="2020-05-14-4-notes.html">gistash, RFCs </a></span> <span class="post-date"><date>2020-05-14</date></span>
-</div>
-<p><a name="gistash"><strong>Project Idea: gistash</strong></a></p>
-<p>What if we can use Github’s gist as we use <code>git stash</code>? I initially thought of this as a way to “backup” drafts I’m working on here. I start writing posts with a <code>.txt</code> extension that I <code>.gitignore</code>, so that I don’t commit half finished posts to git plus also my <a href="https://github.com/btbytes/btbytes.github.io/blob/master/bari">blog generation script</a> won’t pick up the <code>.txt</code> files for processing. It will be nice to stash them away to a private gist.</p>
-<p>The solution is a script to store given files in a <a href="https://gist.github.com/">github gist</a>, update them in place if they already exist.</p>
-<p>When creating a new gist:</p>
-<pre><code>$ gistash *.txt
-    uploading a.txt
-    uploading b.txt
-    done.</code></pre>
-<p>When updating an existing, gist(say <code>28fe346dc83fd26a43c351c507c6599d</code>) that you have permissions to update:</p>
-<pre><code>$ gistash *.txt 28fe346dc83fd26a43c351c507c6599d
-    updating a.txt
-    updating b.txt
-    uploading c.txt
-    done.</code></pre>
-<p>Gist has an API to <a href="https://developer.github.com/v3/gists/#update-a-gist">update a gist</a> which can be used to implment this.</p>
-<p>Only thing remaining is to actually write the code ;). The little “write up”, is a nice segue to this article I read today:</p>
-<p><a href="https://blog.pragmaticengineer.com/scaling-engineering-teams-via-writing-things-down-rfcs/">Scaling Engineering Teams via Writing Things Down and Sharing - aka RFCs</a>.</p>
-<p>When you consider that some of the most robust software things were built using the RFC process, involving people working in different organizations, often with conflicting interests, using “written down” things to make engineering decisions is a great practice.</p>
-<p><a href="index.html#interesting" class="tag interesting">interesting </a> <a href="index.html#ideas" class="tag ideas">ideas </a></p>
-</div>
 <h2 id="archive">Archive</h2>
 (Reverse chronologic)
 <dl id="archive-links">
 <dt class="archive-year" id="y2020">
 2020
 </dt>
+<dd class="archive-item">
+<p>
+<span id="15">°15. <a href="2020-05-14-4-notes.html">gistash, RFCs </a></span> <date>2020-05-14</date>
+</p>
+</dd>
 <dd class="archive-item">
 <p>
 <span id="14">°14. <a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone </a></span> <date>2020-05-14</date>
