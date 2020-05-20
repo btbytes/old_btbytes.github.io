@@ -42,7 +42,8 @@ the shell. The following characters have special meaning in some shell contexts
 
 Arguments:
     -l --length length of the API key to be generated. Default is 32.
-    -s --source a string of characters to use
+    -s --source a string of characters to use.
+    -c --clickable make the string clickable.
 
 Revision:
     2020-05-19: Initial revision
