@@ -78,5 +78,6 @@ if __name__ == '__main__':
 
 Update: [David Glick](https://twitter.com/davisagli/status/1262092392959787008) pointed out that -- *You can skip "lines = inp.readlines()" and just iterate over inp; it'll give you one line at a time.*
 
+Update-2 (2020/5/20): If you want to know more about `awk`, which is really the best know "line processing" language, see [this video](https://youtu.be/43BNFcOdBlY) by Ben Porter from Apr 2020. 
 
 ◊python

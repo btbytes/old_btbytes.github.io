@@ -81,6 +81,15 @@
 
 <div class="post">
 <div class="post-title">
+<span id="21">°21 // <a href="2020-05-20-1-threadreaderapp-bookmark.html">Thread reader app browser bookmark </a></span> <span class="post-date"><date>2020-05-20</date></span>
+</div>
+<p><a href="https://threadreaderapp.com/">Thread reader</a> is a website that allows you to read twitter threads as a single page, example – <a href="https://threadreaderapp.com/thread/1262700517714788354.html">this thread on Acropolis of Athens</a>.</p>
+<p>When I want to search for a twitter thread on their website or crete a new page of a twitter thread, I have to copy the top tweet of the thread, head over to <a href="https://threadreaderapp.com/" class="uri">https://threadreaderapp.com/</a> and paste the URL in the search box.</p>
+<p>This is something that should be automated, so I created a bookmark that you can drag to the bookmarks toolbar. When you see a twitter thread, hit the bookmark, to be taken to the thread’s page on Thread reader.</p>
+<p>Drag this bookmark to your browser’s bookmark toolbar » <em><a href="javascript:q=location.href;void(t=open('https://threadreaderapp.com/search?q='+encodeURIComponent(q)));">Thread Reader</a></em></p>
+</div>
+<div class="post">
+<div class="post-title">
 <span id="20">°20 // <a href="2020-05-19-1-shell-safe-api-key-password-generator.html">Shell Safe API key / Password Generator </a></span> <span class="post-date"><date>2020-05-19</date></span>
 </div>
 <p>Recently I became aware of an instance where a program broke because the AWS secrets they were using contained special characters that are not shell safe.</p>
@@ -251,6 +260,7 @@
 <span id="cb4-44"><a href="#cb4-44"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
 <span id="cb4-45"><a href="#cb4-45"></a>    main()</span></code></pre></div>
 <p>Update: <a href="https://twitter.com/davisagli/status/1262092392959787008">David Glick</a> pointed out that – <em>You can skip “lines = inp.readlines()” and just iterate over inp; it’ll give you one line at a time.</em></p>
+<p>Update-2 (2020/5/20): If you want to know more about <code>awk</code>, which is really the best know “line processing” language, see <a href="https://youtu.be/43BNFcOdBlY">this video</a> by Ben Porter from Apr 2020.</p>
 <p><a href="index.html#python" class="tag python">python </a></p>
 </div>
 <div class="post">
@@ -269,49 +279,17 @@
 <p><a href="http://www.pointer.io/archives/">Pointer</a> – “.. is a reading club for developers.”</p>
 <a href="index.html#interesting" class="tag interesting">interesting </a> <a href="index.html#patterns" class="tag patterns">patterns </a>
 </div>
-<div class="post">
-<div class="post-title">
-<span id="16">°16 // <a href="2020-05-15-1.html">About Grammarians and Philosophers </a></span> <span class="post-date"><date>2020-05-15</date></span>
-</div>
-<p>Found this paper - <a href="https://web.stanford.edu/~kiparsky/Papers/hyderabad.pdf">On the Architecture of Pāṇini’s Grammar</a> (2002) by <a href="https://web.stanford.edu/~kiparsky/">Paul Kiparsky</a> via <a href="https://twitter.com/kaeshour/status/1261266973343784960">kaeshour</a></p>
-<p>Kaeshour made this observation – <strong>Greece : Geometry :: India : Grammar</strong>.</p>
-<h2 id="pāṇinis-razor">Pāṇini’s Razor</h2>
-<p>Browsing around on Prof Kiparsky’s website, I found another paper - <a href="https://web.stanford.edu/~kiparsky/Papers/panini_hist_of_phon_handbook.pdf">Pāṇini</a> in Handbook of the History of Phonology. A very interesting point about Pāṇini’s contribution:</p>
-<blockquote>
-<p>Pāṇini’s achievement was to extend and formalize these initiatives in a vastly more ambitious undertaking: a grammar of the entire language that relates sound and meaning through rules for building words and sentences from their minimal parts. It is not intended to be a practical reference grammar, still less a textbook; simplified and condensed works suitable for these purposes were produced later. It seeks solely to extract all grammatical regularities, rigorously guided by the twin imperatives of complete coverage and the principle of Minimum Description Length. The latter requires the grammar to be the shortest overall representation of the data, crucially including the principles and abbreviatory conventions by which it the data is encoded.</p>
-</blockquote>
-<blockquote>
-<p>The simplicity principle adopted by Pāṇini – call it Pāṇini’s Razor – is conceptually related both to Occam’s Razor and to the simplicity criterion of Chomsky and Halle (1968). Occam’s Razor, as understood in modern science, requires making the fewest assumptions and postulating the fewest entities. Pāṇini’s Minimum Description Length principle relativizes Occam’s Razor by pitting the cost of assumptions and postulates against the work they do. They are welcome as long as the complexity that their formulation incurs earns its keep by simplifying the overall grammar. This means that complexity is calculated on the entire grammar, not only the operative rules but also the conventions that govern their application and interpret their abbreviatory conventions, as well as the list of roots and the Sivas ´ utras. The idea is essentially what is known as Minimum Description Length (Rissanen 1998) or Kolmogorov Complexity (Li and Vitányi 2008), see Nannen 2010 for a concise review.</p>
-</blockquote>
-<blockquote>
-<p>Pāṇini’s Razor is not limited to the Minimum Description Length principle. It also subsumes a form of Occam’s Razor, which requires selecting among equally simple descriptions the one that minimizes new theoretical terms. For example, the grammar uses the minimum necessary number of pratyah¯ aras ¯ , even though they are all generated free of charge.</p>
-</blockquote>
-<blockquote>
-<p>Another aspect of Pāṇini’s Razor is the preference for SPECIFICITY. Among equally simple formulations compatible with the data, Pāṇini systematically chooses the most restricted one — if possible, one which covers only the actually occurring cases. Thus specificity is a conservative curb on overgeneralization.</p>
-</blockquote>
-<blockquote>
-<p>Pāṇini’s Razor. <strong>Minimum Description Length ≫ Occam’s Razor ≫ Specificity</strong></p>
-</blockquote>
-<blockquote>
-<p>From a modern perspective (which would have been totally alien to Pāṇini of course) Pāṇini’s Razor offers an interesting approach to induction, especially in language acquisition, where the problem is to find a learning mechanism that avoids overgeneralization on the one hand, and undergeneralization by overfitting the description to the data on the other.</p>
-</blockquote>
-<hr class="part" id="denizcemonduygu"/>
-<p>Found this “Zettelkasten like” <a href="https://www.denizcemonduygu.com/philo/browse/">notes on western philosophy</a> by <a href="https://twitter.com/denizcemonduygu">Deniz Cem Önduygu</a> via <a href="https://twitter.com/dhrumilwbc/status/1261080204908171265">dhrumilwbc</a>. <em>creating a history of yourself using your daily note dates as the axis… the bidirectional links on each date and u can see the links between them like in this site</em></p>
-<p>Most of the paragraphs I clicked and read were referencing “The Story of Philosophy” by Bryan McGee.</p>
-<p>It will be a great project to do something similar for Indian philosophy.</p>
-<p>This format allows the reader to visualize the chronology, who said what, were they agreeing with someone before them or refuting them? etc.,</p>
-<p>I’m going to order McGee’s book. It’s published by DK. It’s one of their “picture books”.</p>
-<hr class="part" id="statselect"/>
-<p>Continuing on the theme of “Connectedness” of Zettelkasten, <a href="https://www.statlect.com/" class="uri">https://www.statlect.com/</a> is a digital textbook for probability and statistics. One thing I liked about this book is links to key phrases are provided where they are used. For example, the page on <a href="https://www.statlect.com/probability-distributions/Bernoulli-distribution">Bernoulli Distribution</a> links to <a href="https://www.statlect.com/glossary/support-of-a-random-variable">support</a>, the definition of which I was shaky on.</p>
-<p>Linking to definitions and concepts much like a Wiki is a great concept. The next step in that interaction is “immediate lookup/linking” model <a href="https://notes.andymatuschak.org/About_these_notes">shown here</a> in <em>Evergreen Notes</em>.</p>
-<a href="index.html#grammar" class="tag grammar">grammar </a> <a href="index.html#zettelkasten" class="tag zettelkasten">zettelkasten </a> <a href="index.html#philosophy" class="tag philosophy">philosophy </a>
-</div>
 <h2 id="archive">Archive</h2>
 (Reverse chronologic)
 <dl id="archive-links">
 <dt class="archive-year" id="y2020">
 2020
 </dt>
+<dd class="archive-item">
+<p>
+<span id="16">°16. <a href="2020-05-15-1.html">About Grammarians and Philosophers </a></span> <date>2020-05-15</date>
+</p>
+</dd>
 <dd class="archive-item">
 <p>
 <span id="15">°15. <a href="2020-05-14-4-notes.html">gistash, RFCs </a></span> <date>2020-05-14</date>

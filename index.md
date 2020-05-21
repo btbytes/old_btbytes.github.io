@@ -1,3 +1,14 @@
+<div class="post"><div class="post-title"><span id="21">°21 // <a href="2020-05-20-1-threadreaderapp-bookmark.html">Thread reader app browser bookmark
+</a></span> <span class="post-date"><date>2020-05-20</date></span></div>
+
+[Thread reader](https://threadreaderapp.com/) is a website that allows you to read twitter threads as a single page, example -- [this thread on Acropolis of Athens](https://threadreaderapp.com/thread/1262700517714788354.html).
+
+When I want to search for a twitter thread on their website or crete a new page of a twitter thread, I have to copy the top tweet of the thread, head over to <https://threadreaderapp.com/> and paste the URL in the search box.
+
+This is something that should be automated, so I created a bookmark that you can drag to the bookmarks toolbar. When you see a twitter thread, hit the bookmark, to be taken to the thread's page on Thread reader.
+
+Drag this bookmark to your browser's bookmark toolbar &raquo; <em><a href="javascript:q=location.href;void(t=open('https://threadreaderapp.com/search?q='+encodeURIComponent(q)));">Thread Reader</a></em>
+</div>
 <div class="post"><div class="post-title"><span id="20">°20 // <a href="2020-05-19-1-shell-safe-api-key-password-generator.html">Shell Safe API key / Password Generator
 </a></span> <span class="post-date"><date>2020-05-19</date></span></div>
 
@@ -200,6 +211,7 @@ if __name__ == '__main__':
 
 Update: [David Glick](https://twitter.com/davisagli/status/1262092392959787008) pointed out that -- *You can skip "lines = inp.readlines()" and just iterate over inp; it'll give you one line at a time.*
 
+Update-2 (2020/5/20): If you want to know more about `awk`, which is really the best know "line processing" language, see [this video](https://youtu.be/43BNFcOdBlY) by Ben Porter from Apr 2020. 
 
 <a href="index.html#python" class="tag python">python                        </a> 
 </div>
@@ -226,72 +238,11 @@ Update: [David Glick](https://twitter.com/davisagli/status/1262092392959787008) 
 
 <a href="index.html#interesting" class="tag interesting">interesting                        </a>  <a href="index.html#patterns" class="tag patterns">patterns                        </a> 
 </div>
-<div class="post"><div class="post-title"><span id="16">°16 // <a href="2020-05-15-1.html">About Grammarians and Philosophers
-</a></span> <span class="post-date"><date>2020-05-15</date></span></div>
-
-Found this paper - [On the Architecture of Pāṇini's Grammar](https://web.stanford.edu/~kiparsky/Papers/hyderabad.pdf) (2002) by [Paul Kiparsky](https://web.stanford.edu/~kiparsky/) via [kaeshour](https://twitter.com/kaeshour/status/1261266973343784960)
-
-Kaeshour made this observation --  **Greece : Geometry :: India : Grammar**.
-
-## Pāṇini's Razor
-
-Browsing around on Prof Kiparsky's website, I found another paper - [Pāṇini](https://web.stanford.edu/~kiparsky/Papers/panini_hist_of_phon_handbook.pdf) in Handbook of the History of Phonology. A very interesting point about Pāṇini's contribution:
-
-> Pāṇini's achievement was to extend and formalize these initiatives in a vastly more ambitious undertaking: a grammar of the entire language that relates sound and meaning through rules for building words
-and sentences from their minimal parts. It is not intended to be a practical reference grammar, still less a textbook; simplified and condensed works suitable for these purposes were produced later. It seeks solely
-to extract all grammatical regularities, rigorously guided by the twin imperatives of complete coverage and
-the principle of Minimum Description Length. The latter requires the grammar to be the shortest overall
-representation of the data, crucially including the principles and abbreviatory conventions by which it the
-data is encoded.
-
-> The simplicity principle adopted by Pāṇini – call it Pāṇini's Razor – is conceptually related both to Occam’s
-Razor and to the simplicity criterion of Chomsky and Halle (1968). Occam’s Razor, as understood in modern science, requires making the fewest assumptions and postulating the fewest entities. Pāṇini's Minimum
-Description Length principle relativizes Occam’s Razor by pitting the cost of assumptions and postulates
-against the work they do. They are welcome as long as the complexity that their formulation incurs earns its
-keep by simplifying the overall grammar. This means that complexity is calculated on the entire grammar,
-not only the operative rules but also the conventions that govern their application and interpret their abbreviatory conventions, as well as the list of roots and the Sivas ´ utras. The idea is essentially what is known as Minimum Description Length (Rissanen 1998) or Kolmogorov Complexity (Li and Vitányi 2008), see
-Nannen 2010 for a concise review.
-
-> Pāṇini's Razor is not limited to the Minimum Description Length principle. It also subsumes a form
-of Occam’s Razor, which requires selecting among equally simple descriptions the one that minimizes new
-theoretical terms. For example, the grammar uses the minimum necessary number of pratyah¯ aras ¯ , even
-though they are all generated free of charge.
-
-> Another aspect of Pāṇini's Razor is the preference for SPECIFICITY. Among equally simple formulations
-compatible with the data, Pāṇini systematically chooses the most restricted one — if possible, one which
-covers only the actually occurring cases. Thus specificity is a conservative curb on overgeneralization.
-
-> Pāṇini's Razor.  **Minimum Description Length ≫ Occam’s Razor ≫ Specificity**
-
-> From a modern perspective (which would have been totally alien to Pāṇini of course) Pāṇini's Razor offers
-an interesting approach to induction, especially in language acquisition, where the problem is to find a
-learning mechanism that avoids overgeneralization on the one hand, and undergeneralization by overfitting
-the description to the data on the other.
-
-<hr class="part" id="denizcemonduygu"/>
-
-Found this "Zettelkasten like" [notes on western philosophy](https://www.denizcemonduygu.com/philo/browse/) by [Deniz Cem Önduygu](https://twitter.com/denizcemonduygu) via [dhrumilwbc](https://twitter.com/dhrumilwbc/status/1261080204908171265). *creating a history of yourself using your daily note dates as the axis... the bidirectional links on each date and u can see the links between them like in this site*
-
-Most of the paragraphs I clicked and read were referencing "The Story of Philosophy" by Bryan McGee.
-
-It will be a great project to do something similar for Indian philosophy. 
-
-This format allows the reader to visualize the chronology, who said what, were they agreeing with someone before them or refuting them? etc.,
-
-I'm going to order McGee's book. It's published by DK. It's one of their "picture books".
-
-<hr class="part" id="statselect"/>
-
-Continuing on the theme of "Connectedness" of Zettelkasten, <https://www.statlect.com/> is a digital textbook for probability and statistics. One thing I liked about this book is links to key phrases are provided where they are used. For example, the page on  [Bernoulli Distribution](https://www.statlect.com/probability-distributions/Bernoulli-distribution) links to [support](https://www.statlect.com/glossary/support-of-a-random-variable), the definition of which I was shaky on. 
-
-Linking to definitions and concepts much like a Wiki is a great concept. The next step in that interaction is "immediate lookup/linking" model [shown here](https://notes.andymatuschak.org/About_these_notes) in *Evergreen Notes*.
-
-<a href="index.html#grammar" class="tag grammar">grammar                        </a>  <a href="index.html#zettelkasten" class="tag zettelkasten">zettelkasten                        </a>  <a href="index.html#philosophy" class="tag philosophy">philosophy                        </a> 
-</div>
 
 ## Archive
 (Reverse chronologic)<dl id="archive-links"><dt class="archive-year" id="y2020">2020</dt>
-<dd class="archive-item"><p><span id="15">°15. <a href="2020-05-14-4-notes.html">gistash, RFCs
+<dd class="archive-item"><p><span id="16">°16. <a href="2020-05-15-1.html">About Grammarians and Philosophers
+</a></span>                        <date>2020-05-15</date></p></dd><dd class="archive-item"><p><span id="15">°15. <a href="2020-05-14-4-notes.html">gistash, RFCs
 </a></span>                        <date>2020-05-14</date></p></dd><dd class="archive-item"><p><span id="14">°14. <a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone
 </a></span>                        <date>2020-05-14</date></p></dd><dd class="archive-item"><p><span id="13">°13. <a href="2020-05-13-2-notes.html">Some interesting things
 </a></span>                        <date>2020-05-13</date></p></dd><dd class="archive-item"><p><span id="12">°12. <a href="2020-05-12-01-notes.html">A few interesting things
