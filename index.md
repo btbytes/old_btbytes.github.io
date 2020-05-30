@@ -45,7 +45,7 @@ You can be extra caution and use only the alphanumeric range, that is
 
 But, you will also miss out on some characters that are benign.
 
-So, I wrote this little script, which probably has 1:30::code:documentation ration ;)
+So, I wrote this little script, which probably has 1:30::code:documentation ratio ;)
 
 I also added a little nice UX improvement. Often times, random strings have a character or two that make it hard to double click and select the whole string. In my experience it is `@` and `%`.
 

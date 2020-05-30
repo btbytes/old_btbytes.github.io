@@ -29,4 +29,6 @@ In order to reach for a different language, I'll expect to get comfortable doing
 * packaging binaries for deployment
 * cross-platform compilation
 
+update 2020-05-30: Read [The Hard Part of Learning a Language • Hillel Wayne](https://www.hillelwayne.com/post/learning-a-language/)
+
 ◊programming
