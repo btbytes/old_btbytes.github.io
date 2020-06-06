@@ -81,6 +81,73 @@
 
 <div class="post">
 <div class="post-title">
+<span id="23">°23 // <a href="2020-06-05-1-jsonfmt.html">jsonfmt </a></span> <span class="post-date"><date>2020-06-05</date></span>
+</div>
+<p>Sometime you would like to format a JSON file, and you think a command called <code>jsonfmt</code> like <code>gofmt</code> would be handy.</p>
+<p>If you have Python3 installed on your system, you already have such a tool installed, its just called with a different name.</p>
+<p>Let’s say you have this file - <code>two.json</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">{</span><span class="dt">&quot;glossary&quot;</span><span class="fu">:{</span><span class="dt">&quot;title&quot;</span><span class="fu">:</span><span class="st">&quot;example glossary&quot;</span><span class="fu">,</span><span class="dt">&quot;GlossDiv&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossList&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossEntry&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossDef&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossSeeAlso&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="st">&quot;GML&quot;</span><span class="ot">,</span><span class="st">&quot;XML&quot;</span><span class="ot">]</span><span class="fu">,</span><span class="dt">&quot;para&quot;</span><span class="fu">:</span><span class="st">&quot;A meta-markup language, used to create markup languages such as DocBook.&quot;</span><span class="fu">},</span><span class="dt">&quot;Abbrev&quot;</span><span class="fu">:</span><span class="st">&quot;ISO 8879:1986&quot;</span><span class="fu">,</span><span class="dt">&quot;GlossSee&quot;</span><span class="fu">:</span><span class="st">&quot;markup&quot;</span><span class="fu">,</span><span class="dt">&quot;SortAs&quot;</span><span class="fu">:</span><span class="st">&quot;SGML&quot;</span><span class="fu">,</span><span class="dt">&quot;GlossTerm&quot;</span><span class="fu">:</span><span class="st">&quot;Standard Generalized Markup Language&quot;</span><span class="fu">,</span><span class="dt">&quot;Acronym&quot;</span><span class="fu">:</span><span class="st">&quot;SGML&quot;</span><span class="fu">,</span><span class="dt">&quot;ID&quot;</span><span class="fu">:</span><span class="st">&quot;SGML&quot;</span><span class="fu">}},</span><span class="dt">&quot;title&quot;</span><span class="fu">:</span><span class="st">&quot;S&quot;</span><span class="fu">}}}</span></span></code></pre></div>
+<p>Not very readable, is it? You can “pretty-print” it like this:</p>
+<pre><code>$ python3 -m json.tool two.json
+{
+    &quot;glossary&quot;: {
+        &quot;title&quot;: &quot;example glossary&quot;,
+        &quot;GlossDiv&quot;: {
+            &quot;GlossList&quot;: {
+                &quot;GlossEntry&quot;: {
+                    &quot;GlossDef&quot;: {
+                        &quot;GlossSeeAlso&quot;: [
+                            &quot;GML&quot;,
+                            &quot;XML&quot;
+                        ],
+                        &quot;para&quot;: &quot;A meta-markup language, used to create markup languages such as DocBook.&quot;
+                    },
+                    &quot;Abbrev&quot;: &quot;ISO 8879:1986&quot;,
+                    &quot;GlossSee&quot;: &quot;markup&quot;,
+                    &quot;SortAs&quot;: &quot;SGML&quot;,
+                    &quot;GlossTerm&quot;: &quot;Standard Generalized Markup Language&quot;,
+                    &quot;Acronym&quot;: &quot;SGML&quot;,
+                    &quot;ID&quot;: &quot;SGML&quot;
+                }
+            },
+            &quot;title&quot;: &quot;S&quot;
+        }
+    }
+}</code></pre>
+<p>You can output the formatted JSON to a file like this:</p>
+<pre><code>$ python3 -m json.tool two.json three.json</code></pre>
+<p>Further, you can sort the keys with the <code>--sort-keys option</code></p>
+<pre><code>$ python3 -m json.tool two.json --sort-keys
+
+{
+    &quot;glossary&quot;: {
+        &quot;GlossDiv&quot;: {
+            &quot;GlossList&quot;: {
+                &quot;GlossEntry&quot;: {
+                    &quot;Abbrev&quot;: &quot;ISO 8879:1986&quot;,
+                    &quot;Acronym&quot;: &quot;SGML&quot;,
+                    &quot;GlossDef&quot;: {
+                        &quot;GlossSeeAlso&quot;: [
+                            &quot;GML&quot;,
+                            &quot;XML&quot;
+                        ],
+                        &quot;para&quot;: &quot;A meta-markup language, used to create markup languages such as DocBook.&quot;
+                    },
+                    &quot;GlossSee&quot;: &quot;markup&quot;,
+                    &quot;GlossTerm&quot;: &quot;Standard Generalized Markup Language&quot;,
+                    &quot;ID&quot;: &quot;SGML&quot;,
+                    &quot;SortAs&quot;: &quot;SGML&quot;
+                }
+            },
+            &quot;title&quot;: &quot;S&quot;
+        },
+        &quot;title&quot;: &quot;example glossary&quot;
+    }
+}</code></pre>
+If you want further explore json related tools, look at my <a href="https://www.btbytes.com/json.html">json</a> and <a href="https://www.btbytes.com/jq.html">jq</a> pages.
+</div>
+<div class="post">
+<div class="post-title">
 <span id="22">°22 // <a href="2020-05-22-1-thread-reaper.html">Thread Reaper </a></span> <span class="post-date"><date>2020-05-22</date></span>
 </div>
 <p>A simple utitlity to convert <a href="https://threadreaderapp.com/">Thread Reader</a> pages into simpler HTML pages. You can find the code on <a href="https://github.com/btbytes/threadreaper">github/btbytes/theadreaper</a></p>
@@ -126,67 +193,67 @@
 <li>easy – <code>sQt03aBrXhPbOU+K9WwI/_</code> (double click selects the whole string)</li>
 </ul>
 <p>The code for <a href="https://gist.github.com/btbytes/87e10bc7768b67cd1435eefa332ef971"><code>apikeygen.py</code></a>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#!/usr/bin/env python</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co">apikeygen.py</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">Generate a shell safe API key (or password)</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">Generated string should not have any characters that need to be escaped in</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">the shell. The following characters have special meaning in some shell contexts</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">    ! # $ &#39; ( ) * , ; . &lt; = &gt; ? [ ] ^ { } | ~ - . : \</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">Arguments:</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">    -l --length length of the API key to be generated. Default is 32.</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">    -s --source a string of characters to use.</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co">    -c --clickable make the string clickable.</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="co">Revision:</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co">    2020-05-19: Initial revision</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="co">Reference:</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="co">    https://unix.stackexchange.com/a/357932</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a><span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="im">import</span> random</span>
-<span id="cb2-25"><a href="#cb2-25"></a></span>
-<span id="cb2-26"><a href="#cb2-26"></a></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="kw">def</span> apikeygen(length, source):</span>
-<span id="cb2-28"><a href="#cb2-28"></a>    <span class="cf">return</span> <span class="st">&#39;&#39;</span>.join(random.sample(source, length))</span>
-<span id="cb2-29"><a href="#cb2-29"></a></span>
-<span id="cb2-30"><a href="#cb2-30"></a></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb2-32"><a href="#cb2-32"></a>    <span class="im">import</span> argparse</span>
-<span id="cb2-33"><a href="#cb2-33"></a>    <span class="im">import</span> string</span>
-<span id="cb2-34"><a href="#cb2-34"></a>    source <span class="op">=</span> string.ascii_lowercase<span class="op">\</span></span>
-<span id="cb2-35"><a href="#cb2-35"></a>        <span class="op">+</span> string.ascii_uppercase<span class="op">\</span></span>
-<span id="cb2-36"><a href="#cb2-36"></a>        <span class="op">+</span> string.digits<span class="op">\</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a>        <span class="op">+</span> <span class="st">&#39;@%_/+&#39;</span></span>
-<span id="cb2-38"><a href="#cb2-38"></a>    dirty <span class="op">=</span> <span class="st">&#39;@%&#39;</span></span>
-<span id="cb2-39"><a href="#cb2-39"></a>    parser <span class="op">=</span> argparse.ArgumentParser()</span>
-<span id="cb2-40"><a href="#cb2-40"></a>    parser.add_argument(</span>
-<span id="cb2-41"><a href="#cb2-41"></a>        <span class="st">&#39;-l&#39;</span>,</span>
-<span id="cb2-42"><a href="#cb2-42"></a>        <span class="st">&#39;--length&#39;</span>,</span>
-<span id="cb2-43"><a href="#cb2-43"></a>        <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>,</span>
-<span id="cb2-44"><a href="#cb2-44"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;length of the API key to be generated.&#39;</span>,</span>
-<span id="cb2-45"><a href="#cb2-45"></a>        default<span class="op">=</span><span class="dv">32</span>)</span>
-<span id="cb2-46"><a href="#cb2-46"></a>    parser.add_argument(</span>
-<span id="cb2-47"><a href="#cb2-47"></a>        <span class="st">&#39;-s&#39;</span>,</span>
-<span id="cb2-48"><a href="#cb2-48"></a>        <span class="st">&#39;--source&#39;</span>,</span>
-<span id="cb2-49"><a href="#cb2-49"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;a string of characters to use.&#39;</span>,</span>
-<span id="cb2-50"><a href="#cb2-50"></a>        default<span class="op">=</span>source)</span>
-<span id="cb2-51"><a href="#cb2-51"></a>    parser.add_argument(</span>
-<span id="cb2-52"><a href="#cb2-52"></a>        <span class="st">&#39;-c&#39;</span>,</span>
-<span id="cb2-53"><a href="#cb2-53"></a>        <span class="st">&#39;--clickable&#39;</span>,</span>
-<span id="cb2-54"><a href="#cb2-54"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;make the string clickable.&#39;</span>,</span>
-<span id="cb2-55"><a href="#cb2-55"></a>        action<span class="op">=</span><span class="st">&#39;store_true&#39;</span>,</span>
-<span id="cb2-56"><a href="#cb2-56"></a>        default<span class="op">=</span>source)</span>
-<span id="cb2-57"><a href="#cb2-57"></a>    args <span class="op">=</span> parser.parse_args()</span>
-<span id="cb2-58"><a href="#cb2-58"></a>    source <span class="op">=</span> args.source</span>
-<span id="cb2-59"><a href="#cb2-59"></a>    <span class="cf">if</span> args.clickable:</span>
-<span id="cb2-60"><a href="#cb2-60"></a>        source <span class="op">=</span> <span class="st">&#39;&#39;</span>.join([c <span class="cf">for</span> c <span class="kw">in</span> source <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> dirty])</span>
-<span id="cb2-61"><a href="#cb2-61"></a>    <span class="bu">print</span>(apikeygen(args.length, source))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">apikeygen.py</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">Generate a shell safe API key (or password)</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">Generated string should not have any characters that need to be escaped in</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">the shell. The following characters have special meaning in some shell contexts</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">    ! # $ &#39; ( ) * , ; . &lt; = &gt; ? [ ] ^ { } | ~ - . : \</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">Arguments:</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">    -l --length length of the API key to be generated. Default is 32.</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">    -s --source a string of characters to use.</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">    -c --clickable make the string clickable.</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">Revision:</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co">    2020-05-19: Initial revision</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co">Reference:</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="co">    https://unix.stackexchange.com/a/357932</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a></span>
+<span id="cb6-24"><a href="#cb6-24"></a><span class="im">import</span> random</span>
+<span id="cb6-25"><a href="#cb6-25"></a></span>
+<span id="cb6-26"><a href="#cb6-26"></a></span>
+<span id="cb6-27"><a href="#cb6-27"></a><span class="kw">def</span> apikeygen(length, source):</span>
+<span id="cb6-28"><a href="#cb6-28"></a>    <span class="cf">return</span> <span class="st">&#39;&#39;</span>.join(random.sample(source, length))</span>
+<span id="cb6-29"><a href="#cb6-29"></a></span>
+<span id="cb6-30"><a href="#cb6-30"></a></span>
+<span id="cb6-31"><a href="#cb6-31"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb6-32"><a href="#cb6-32"></a>    <span class="im">import</span> argparse</span>
+<span id="cb6-33"><a href="#cb6-33"></a>    <span class="im">import</span> string</span>
+<span id="cb6-34"><a href="#cb6-34"></a>    source <span class="op">=</span> string.ascii_lowercase<span class="op">\</span></span>
+<span id="cb6-35"><a href="#cb6-35"></a>        <span class="op">+</span> string.ascii_uppercase<span class="op">\</span></span>
+<span id="cb6-36"><a href="#cb6-36"></a>        <span class="op">+</span> string.digits<span class="op">\</span></span>
+<span id="cb6-37"><a href="#cb6-37"></a>        <span class="op">+</span> <span class="st">&#39;@%_/+&#39;</span></span>
+<span id="cb6-38"><a href="#cb6-38"></a>    dirty <span class="op">=</span> <span class="st">&#39;@%&#39;</span></span>
+<span id="cb6-39"><a href="#cb6-39"></a>    parser <span class="op">=</span> argparse.ArgumentParser()</span>
+<span id="cb6-40"><a href="#cb6-40"></a>    parser.add_argument(</span>
+<span id="cb6-41"><a href="#cb6-41"></a>        <span class="st">&#39;-l&#39;</span>,</span>
+<span id="cb6-42"><a href="#cb6-42"></a>        <span class="st">&#39;--length&#39;</span>,</span>
+<span id="cb6-43"><a href="#cb6-43"></a>        <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>,</span>
+<span id="cb6-44"><a href="#cb6-44"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;length of the API key to be generated.&#39;</span>,</span>
+<span id="cb6-45"><a href="#cb6-45"></a>        default<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb6-46"><a href="#cb6-46"></a>    parser.add_argument(</span>
+<span id="cb6-47"><a href="#cb6-47"></a>        <span class="st">&#39;-s&#39;</span>,</span>
+<span id="cb6-48"><a href="#cb6-48"></a>        <span class="st">&#39;--source&#39;</span>,</span>
+<span id="cb6-49"><a href="#cb6-49"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;a string of characters to use.&#39;</span>,</span>
+<span id="cb6-50"><a href="#cb6-50"></a>        default<span class="op">=</span>source)</span>
+<span id="cb6-51"><a href="#cb6-51"></a>    parser.add_argument(</span>
+<span id="cb6-52"><a href="#cb6-52"></a>        <span class="st">&#39;-c&#39;</span>,</span>
+<span id="cb6-53"><a href="#cb6-53"></a>        <span class="st">&#39;--clickable&#39;</span>,</span>
+<span id="cb6-54"><a href="#cb6-54"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;make the string clickable.&#39;</span>,</span>
+<span id="cb6-55"><a href="#cb6-55"></a>        action<span class="op">=</span><span class="st">&#39;store_true&#39;</span>,</span>
+<span id="cb6-56"><a href="#cb6-56"></a>        default<span class="op">=</span>source)</span>
+<span id="cb6-57"><a href="#cb6-57"></a>    args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb6-58"><a href="#cb6-58"></a>    source <span class="op">=</span> args.source</span>
+<span id="cb6-59"><a href="#cb6-59"></a>    <span class="cf">if</span> args.clickable:</span>
+<span id="cb6-60"><a href="#cb6-60"></a>        source <span class="op">=</span> <span class="st">&#39;&#39;</span>.join([c <span class="cf">for</span> c <span class="kw">in</span> source <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> dirty])</span>
+<span id="cb6-61"><a href="#cb6-61"></a>    <span class="bu">print</span>(apikeygen(args.length, source))</span></code></pre></div>
 <p><a href="index.html#python" class="tag python">python </a></p>
 </div>
 <div class="post">
@@ -208,79 +275,17 @@
 </ul></li>
 </ul>
 </div>
-<div class="post">
-<div class="post-title">
-<span id="18">°18 // <a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern </a></span> <span class="post-date"><date>2020-05-17</date></span>
-</div>
-<p>Sometimes you want to write a program that has to modify line(s) in a text file. The “UNIX” way of doing this is of course to use <code>sed</code> (stream editor) or <code>awk</code>. Since I can type faster than think in <code>awk</code>, I write python instead.</p>
-<p>The common pattern for such programs is:</p>
-<pre><code>    for file in matching_files
-        for line in file
-            if line matches pattern
-                modify the line
-                print the line
-            else
-                write the line</code></pre>
-<p>One twist to the above is, you don’t want to overwrite the file before you know the overwriting can complete successfully.</p>
-<p>The defensive way to handle this is: put the source files in a git repo, so that you can always revert the changes back. This is also useful in <code>git diff</code>ing the changes so that you can verify your program actually does what you wanted.</p>
-<p>In addition, you can write the changed contents to a temporary file, and rename that file to the original file if there were no errors. Essentially.</p>
-<pre><code>$ ./processing_script original.txt &gt; temp.txt &amp;&amp; mv temp.txt original.txt</code></pre>
-<p>I learnt about <code>NamedTemporaryFile</code> module recently, and I used it to do the following.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#!/usr/bin/env python</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co">This program will rewrite the following:</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="co">    ---</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co">    title: AWK programming language</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co">    kind: notebook</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">    tags: programming-language</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co">    date: 2020-02-12T05:51:45</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co">    ---</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co">to:</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co">    ---</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co">    title: AWK programming language</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co">    kind: notebook</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">    tags: programming-language</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="co">    date: 2020-02-12</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="co">    updated: 2020-02-12T05:51:45</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co">    ---</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a><span class="im">import</span> glob</span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="im">import</span> shutil</span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="im">import</span> tempfile</span>
-<span id="cb5-24"><a href="#cb5-24"></a></span>
-<span id="cb5-25"><a href="#cb5-25"></a></span>
-<span id="cb5-26"><a href="#cb5-26"></a><span class="kw">def</span> main():</span>
-<span id="cb5-27"><a href="#cb5-27"></a>    files <span class="op">=</span> glob.glob(<span class="st">&#39;*.md&#39;</span>)</span>
-<span id="cb5-28"><a href="#cb5-28"></a>    <span class="cf">for</span> mdfile <span class="kw">in</span> files:</span>
-<span id="cb5-29"><a href="#cb5-29"></a>        temp <span class="op">=</span> tempfile.NamedTemporaryFile(<span class="st">&#39;w&#39;</span>, delete<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-30"><a href="#cb5-30"></a>        <span class="cf">with</span> <span class="bu">open</span>(mdfile) <span class="im">as</span> inp:</span>
-<span id="cb5-31"><a href="#cb5-31"></a>            <span class="cf">for</span> line <span class="kw">in</span> inp:</span>
-<span id="cb5-32"><a href="#cb5-32"></a>                <span class="cf">if</span> line.startswith(<span class="st">&#39;date: &#39;</span>):</span>
-<span id="cb5-33"><a href="#cb5-33"></a>                    timestamp <span class="op">=</span> line.split(<span class="st">&#39;date: &#39;</span>)[<span class="dv">1</span>]</span>
-<span id="cb5-34"><a href="#cb5-34"></a>                    dt <span class="op">=</span> timestamp[:<span class="dv">10</span>]</span>
-<span id="cb5-35"><a href="#cb5-35"></a>                    <span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>mdfile<span class="sc">}</span><span class="ss"> </span><span class="sc">{dt}</span><span class="ss">&#39;</span>)</span>
-<span id="cb5-36"><a href="#cb5-36"></a>                    temp.write(<span class="ss">f&#39;date: </span><span class="sc">{dt}</span><span class="ch">\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb5-37"><a href="#cb5-37"></a>                    temp.write(<span class="ss">f&#39;updated: </span><span class="sc">{</span>timestamp<span class="sc">}</span><span class="ss">&#39;</span>)</span>
-<span id="cb5-38"><a href="#cb5-38"></a>                <span class="cf">else</span>:</span>
-<span id="cb5-39"><a href="#cb5-39"></a>                    temp.write(line)</span>
-<span id="cb5-40"><a href="#cb5-40"></a>        temp.close()</span>
-<span id="cb5-41"><a href="#cb5-41"></a>        shutil.move(temp.name, mdfile)</span>
-<span id="cb5-42"><a href="#cb5-42"></a></span>
-<span id="cb5-43"><a href="#cb5-43"></a></span>
-<span id="cb5-44"><a href="#cb5-44"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb5-45"><a href="#cb5-45"></a>    main()</span></code></pre></div>
-<p>Update: <a href="https://twitter.com/davisagli/status/1262092392959787008">David Glick</a> pointed out that – <em>You can skip “lines = inp.readlines()” and just iterate over inp; it’ll give you one line at a time.</em></p>
-<p>Update-2 (2020/5/20): If you want to know more about <code>awk</code>, which is really the best know “line processing” language, see <a href="https://youtu.be/43BNFcOdBlY">this video</a> by Ben Porter from Apr 2020.</p>
-<p><a href="index.html#python" class="tag python">python </a></p>
-</div>
 <h2 id="archive">Archive</h2>
 (Reverse chronologic)
 <dl id="archive-links">
 <dt class="archive-year" id="y2020">
 2020
 </dt>
+<dd class="archive-item">
+<p>
+<span id="18">°18. <a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern </a></span> <date>2020-05-17</date>
+</p>
+</dd>
 <dd class="archive-item">
 <p>
 <span id="17">°17. <a href="2020-05-15-2.html">Some Interesting Links </a></span> <date>2020-05-15</date>
