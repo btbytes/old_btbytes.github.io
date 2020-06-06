@@ -84,35 +84,35 @@
 <span id="23">°23 // <a href="2020-06-05-1-jsonfmt.html">jsonfmt </a></span> <span class="post-date"><date>2020-06-05</date></span>
 </div>
 <p>Sometimes you would like to format a JSON file, and you wish a command called <code>jsonfmt</code> like <code>gofmt</code> would be handy. If you have Python3 installed on your system, you already have such a tool installed, its just called with a different name.</p>
-<p>Let’s say you have this file - <code>two.json</code> <a href="https://json.org/example.html">1</a>:</p>
+<p>Let’s say you have this file - <code>two.json</code> <a href="https://json.org/example.html">1</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">{</span><span class="dt">&quot;glossary&quot;</span><span class="fu">:{</span><span class="dt">&quot;title&quot;</span><span class="fu">:</span><span class="st">&quot;example glossary&quot;</span><span class="fu">,</span><span class="dt">&quot;GlossDiv&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossList&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossEntry&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossDef&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossSeeAlso&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="st">&quot;GML&quot;</span><span class="ot">,</span><span class="st">&quot;XML&quot;</span><span class="ot">]</span><span class="fu">,</span><span class="dt">&quot;para&quot;</span><span class="fu">:</span><span class="st">&quot;A meta-markup language, used to create markup languages such as DocBook.&quot;</span><span class="fu">},</span><span class="dt">&quot;Abbrev&quot;</span><span class="fu">:</span><span class="st">&quot;ISO 8879:1986&quot;</span><span class="fu">,</span><span class="dt">&quot;GlossSee&quot;</span><span class="fu">:</span><span class="st">&quot;markup&quot;</span><span class="fu">,</span><span class="dt">&quot;SortAs&quot;</span><span class="fu">:</span><span class="st">&quot;SGML&quot;</span><span class="fu">,</span><span class="dt">&quot;GlossTerm&quot;</span><span class="fu">:</span><span class="st">&quot;Standard Generalized Markup Language&quot;</span><span class="fu">,</span><span class="dt">&quot;Acronym&quot;</span><span class="fu">:</span><span class="st">&quot;SGML&quot;</span><span class="fu">,</span><span class="dt">&quot;ID&quot;</span><span class="fu">:</span><span class="st">&quot;SGML&quot;</span><span class="fu">}},</span><span class="dt">&quot;title&quot;</span><span class="fu">:</span><span class="st">&quot;S&quot;</span><span class="fu">}}}</span></span></code></pre></div>
 <p>Not very readable, is it? You can “pretty-print” it like this:</p>
-<pre><code>$ python3 -m json.tool two.json
-{
-    &quot;glossary&quot;: {
-        &quot;title&quot;: &quot;example glossary&quot;,
-        &quot;GlossDiv&quot;: {
-            &quot;GlossList&quot;: {
-                &quot;GlossEntry&quot;: {
-                    &quot;GlossDef&quot;: {
-                        &quot;GlossSeeAlso&quot;: [
-                            &quot;GML&quot;,
-                            &quot;XML&quot;
-                        ],
-                        &quot;para&quot;: &quot;A meta-markup language, used to create markup languages such as DocBook.&quot;
-                    },
-                    &quot;Abbrev&quot;: &quot;ISO 8879:1986&quot;,
-                    &quot;GlossSee&quot;: &quot;markup&quot;,
-                    &quot;SortAs&quot;: &quot;SGML&quot;,
-                    &quot;GlossTerm&quot;: &quot;Standard Generalized Markup Language&quot;,
-                    &quot;Acronym&quot;: &quot;SGML&quot;,
-                    &quot;ID&quot;: &quot;SGML&quot;
-                }
-            },
-            &quot;title&quot;: &quot;S&quot;
-        }
-    }
-}</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1"></a><span class="er">$</span> <span class="er">python3</span> <span class="er">-m</span> <span class="er">json.tool</span> <span class="er">two.json</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">{</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="dt">&quot;glossary&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>        <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;example glossary&quot;</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>        <span class="dt">&quot;GlossDiv&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>            <span class="dt">&quot;GlossList&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>                <span class="dt">&quot;GlossEntry&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>                    <span class="dt">&quot;GlossDef&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>                        <span class="dt">&quot;GlossSeeAlso&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>                            <span class="st">&quot;GML&quot;</span><span class="ot">,</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>                            <span class="st">&quot;XML&quot;</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>                        <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>                        <span class="dt">&quot;para&quot;</span><span class="fu">:</span> <span class="st">&quot;A meta-markup language, used to create markup languages such as DocBook.&quot;</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>                    <span class="fu">},</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>                    <span class="dt">&quot;Abbrev&quot;</span><span class="fu">:</span> <span class="st">&quot;ISO 8879:1986&quot;</span><span class="fu">,</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>                    <span class="dt">&quot;GlossSee&quot;</span><span class="fu">:</span> <span class="st">&quot;markup&quot;</span><span class="fu">,</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>                    <span class="dt">&quot;SortAs&quot;</span><span class="fu">:</span> <span class="st">&quot;SGML&quot;</span><span class="fu">,</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>                    <span class="dt">&quot;GlossTerm&quot;</span><span class="fu">:</span> <span class="st">&quot;Standard Generalized Markup Language&quot;</span><span class="fu">,</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>                    <span class="dt">&quot;Acronym&quot;</span><span class="fu">:</span> <span class="st">&quot;SGML&quot;</span><span class="fu">,</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>                    <span class="dt">&quot;ID&quot;</span><span class="fu">:</span> <span class="st">&quot;SGML&quot;</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>                <span class="fu">}</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>            <span class="fu">},</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>            <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;S&quot;</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>        <span class="fu">}</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>    <span class="fu">}</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a><span class="fu">}</span></span></code></pre></div>
 <p>You can output the formatted JSON to a file like this:</p>
 <pre><code>$ python3 -m json.tool two.json three.json</code></pre>
 <p>Further, you can sort the keys with the <code>--sort-keys option</code></p>
@@ -143,7 +143,8 @@
         &quot;title&quot;: &quot;example glossary&quot;
     }
 }</code></pre>
-<p>If you want further explore json related tools, look at my <a href="https://www.btbytes.com/json.html">json</a> and <a href="https://www.btbytes.com/jq.html">jq</a> pages.</p>
+<p>CAUTION: The one downside to this tool is, you can’t do an “in-place” formatting. That is, if you try – <code>$ python3 -m json.tool two.json two.json</code>, it will overwrite the original file.</p>
+<p>If you want further explore <code>json</code> related tools, look at my <a href="https://www.btbytes.com/json.html">json</a> and <a href="https://www.btbytes.com/jq.html">jq</a> pages.</p>
 </div>
 <div class="post">
 <div class="post-title">
