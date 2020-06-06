@@ -81,11 +81,36 @@
 
 <div class="post">
 <div class="post-title">
-<span id="23">°23 // <a href="2020-06-05-1-jsonfmt.html">jsonfmt </a></span> <span class="post-date"><date>2020-06-05</date></span>
+<span id="24">°24 // <a href="2020-06-05-2-csv2html.html">csv2html </a></span> <span class="post-date"><date>2020-06-05</date></span>
 </div>
-<p>Sometimes you would like to format a JSON file, and you wish a command called <code>jsonfmt</code> like <code>gofmt</code> would be handy. If you have Python3 installed on your system, you already have such a tool installed, its just called with a different name.</p>
-<p>Let’s say you have this file - <code>two.json</code> <a href="https://json.org/example.html">1</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">{</span><span class="dt">&quot;glossary&quot;</span><span class="fu">:{</span><span class="dt">&quot;title&quot;</span><span class="fu">:</span><span class="st">&quot;example glossary&quot;</span><span class="fu">,</span><span class="dt">&quot;GlossDiv&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossList&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossEntry&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossDef&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossSeeAlso&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="st">&quot;GML&quot;</span><span class="ot">,</span><span class="st">&quot;XML&quot;</span><span class="ot">]</span><span class="fu">,</span><span class="dt">&quot;para&quot;</span><span class="fu">:</span><span class="st">&quot;A meta-markup language, used to create markup languages such as DocBook.&quot;</span><span class="fu">},</span><span class="dt">&quot;Abbrev&quot;</span><span class="fu">:</span><span class="st">&quot;ISO 8879:1986&quot;</span><span class="fu">,</span><span class="dt">&quot;GlossSee&quot;</span><span class="fu">:</span><span class="st">&quot;markup&quot;</span><span class="fu">,</span><span class="dt">&quot;SortAs&quot;</span><span class="fu">:</span><span class="st">&quot;SGML&quot;</span><span class="fu">,</span><span class="dt">&quot;GlossTerm&quot;</span><span class="fu">:</span><span class="st">&quot;Standard Generalized Markup Language&quot;</span><span class="fu">,</span><span class="dt">&quot;Acronym&quot;</span><span class="fu">:</span><span class="st">&quot;SGML&quot;</span><span class="fu">,</span><span class="dt">&quot;ID&quot;</span><span class="fu">:</span><span class="st">&quot;SGML&quot;</span><span class="fu">}},</span><span class="dt">&quot;title&quot;</span><span class="fu">:</span><span class="st">&quot;S&quot;</span><span class="fu">}}}</span></span></code></pre></div>
+<p>Today, I had to create a paste a table of values into a JIRA ticket and I had a csv file. There are different ways to “paste” a nicely formatted table into a JIRA WYSIWYG text area, I’m sure.. but none of them fast enough to type: <code>$csv2html source.csv destation.html</code>. So, I wrote one.</p>
+<p>You can find it here <a href="https://github.com/btbytes.csv2html">https://github.com/btbytes.csv2html</a>. The help is self explanatory:</p>
+<p>```$./csv2html.py -h usage: csv2html.py [-h] [–delimiter DELIMITER] [–quotechar QUOTECHAR] [–title TITLE] [–caption CAPTION] [–header] csvfile</p>
+<p>CSV to HTML converter.</p>
+<p>positional arguments: csvfile</p>
+<p>optional arguments: -h, –help show this help message and exit –delimiter DELIMITER Field delimiter. Default is , . –quotechar QUOTECHAR Quote Character. Deault is nothing –title TITLE Page title. Will be printed in h1 tag. –caption CAPTION Table caption. –header data has header. First row will be “th”.</p>
+<pre><code>
+Ideally, I&#39;d have liked to use the [pandoc-csv2table](https://github.com/baig/pandoc-csv2table) pandoc filter. But, installing this filter using `cabal` and `stack` turned out to be disappointing. So instead of figuring out how to compile and install these Haskell packages, I wrote this script. 
+
+I can still do some improvements to this script, like:
+
+a. adding an `-o --output` flag to write the output to a file instead of stdout. 
+b. override the css
+
+
+But, that&#39;s for another day.
+
+&lt;a href=&quot;index.html#python&quot; class=&quot;tag python&quot;&gt;python                        &lt;/a&gt; 
+&lt;/div&gt;
+&lt;div class=&quot;post&quot;&gt;&lt;div class=&quot;post-title&quot;&gt;&lt;span id=&quot;23&quot;&gt;°23 // &lt;a href=&quot;2020-06-05-1-jsonfmt.html&quot;&gt;jsonfmt
+&lt;/a&gt;&lt;/span&gt; &lt;span class=&quot;post-date&quot;&gt;&lt;date&gt;2020-06-05&lt;/date&gt;&lt;/span&gt;&lt;/div&gt;
+
+Sometimes you would like to format a JSON file, and you wish a command called `jsonfmt` like `gofmt` would be handy. If you have Python3 installed on your system, you already have such a tool installed, its just called with a different name.
+
+Let&#39;s say you have this file - `two.json` [1].
+
+```json
+{&quot;glossary&quot;:{&quot;title&quot;:&quot;example glossary&quot;,&quot;GlossDiv&quot;:{&quot;GlossList&quot;:{&quot;GlossEntry&quot;:{&quot;GlossDef&quot;:{&quot;GlossSeeAlso&quot;:[&quot;GML&quot;,&quot;XML&quot;],&quot;para&quot;:&quot;A meta-markup language, used to create markup languages such as DocBook.&quot;},&quot;Abbrev&quot;:&quot;ISO 8879:1986&quot;,&quot;GlossSee&quot;:&quot;markup&quot;,&quot;SortAs&quot;:&quot;SGML&quot;,&quot;GlossTerm&quot;:&quot;Standard Generalized Markup Language&quot;,&quot;Acronym&quot;:&quot;SGML&quot;,&quot;ID&quot;:&quot;SGML&quot;}},&quot;title&quot;:&quot;S&quot;}}}</code></pre>
 <p>Not very readable, is it? You can “pretty-print” it like this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1"></a><span class="er">$</span> <span class="er">python3</span> <span class="er">-m</span> <span class="er">json.tool</span> <span class="er">two.json</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">{</span></span>
@@ -257,31 +282,17 @@
 <span id="cb6-61"><a href="#cb6-61"></a>    <span class="bu">print</span>(apikeygen(args.length, source))</span></code></pre></div>
 <p><a href="index.html#python" class="tag python">python </a></p>
 </div>
-<div class="post">
-<div class="post-title">
-<span id="19">°19 // <a href="2020-05-17-2-the-rabbits.html">Sustainable tech by The Rabbits </a></span> <span class="post-date"><date>2020-05-17</date></span>
-</div>
-<p>Came across <a href="https://100r.co/site/about_us.html">The Rabbits</a> via <a href="https://news.ycombinator.com/item?id=23211273">HN</a>. Two tech folks who are building stuff in the way of “resilience and self-reliance using low-tech solutions.”. They appear to building most of their stuff in <a href="https://100r.co/site/philosophy.html#accessibility">C99, ASM and JS</a>.</p>
-<p>Their <a href="https://100r.co/site/ronin.html">Ronin</a> project implements a browser based lisp interpreter, which can be used for making generative art. You can play with a program in <a href="https://hundredrabbits.github.io/Ronin/">the playground</a>.</p>
-<p><a href="https://100r.co/site/dotgrid.html">Dotgrid</a> is a grid-based vector drawing software designed to create logos, icons and type. Like their applications, being able to drive the program with keystrokes seems like a feature I’d like to explore. I’m a total dummy when it comes to vector graphics. The simplicity of this tool might help exploration and learning.</p>
-<p><a href="https://100r.co/site/orca.html">Orca</a> immediately brought to my mind <a href="https://colorforth.github.io">Colorforth</a> by Charles Moore.</p>
-<p>Their minimalistic, prose-writing oriented editor <a href="https://100r.co/site/left.html">Left</a> makes me write my own text editor. I donated $5 and downloaded Left.</p>
-<p>Further reading:</p>
-<ul>
-<li><p>Blogroll and travelogues on their <a href="https://100r.co/site/home.html">Home page</a></p></li>
-<li><p>Their podcasts on Future of Coding –</p>
-<ul>
-<li><a href="https://futureofcoding.org/episodes/044">#44 - Making Your Own Tools: Devine Lu Linvega</a></li>
-<li><a href="https://futureofcoding.org/episodes/045">#45 - Orca: Devine Lu Linvega</a></li>
-</ul></li>
-</ul>
-</div>
 <h2 id="archive">Archive</h2>
 (Reverse chronologic)
 <dl id="archive-links">
 <dt class="archive-year" id="y2020">
 2020
 </dt>
+<dd class="archive-item">
+<p>
+<span id="19">°19. <a href="2020-05-17-2-the-rabbits.html">Sustainable tech by The Rabbits </a></span> <date>2020-05-17</date>
+</p>
+</dd>
 <dd class="archive-item">
 <p>
 <span id="18">°18. <a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern </a></span> <date>2020-05-17</date>
@@ -533,6 +544,11 @@
 <dd>
 <p>
 <a href="2020-06-05-1-jsonfmt.html">jsonfmt</a> <date style="float:right;">2020-06-05</date>
+</p>
+</dd>
+<dd>
+<p>
+<a href="2020-06-05-2-csv2html.html">csv2html</a> <date style="float:right;">2020-06-05</date>
 </p>
 </dd>
 <dt>

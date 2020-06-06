@@ -8,6 +8,13 @@
             </author>
             <id>https://btbytes.github.io/</id>
                 <entry>
+            <title>csv2html</title>
+            <link href="https://btbytes.github.io/2020-06-05-2-csv2html.html"/>
+            <id>https://btbytes.github.io/2020-06-05-2-csv2html.html</id>
+            <updated>2020-06-05T00:00:00.00Z</updated>
+            <summary>csv2html</summary>
+            </entry>
+        <entry>
             <title>jsonfmt</title>
             <link href="https://btbytes.github.io/2020-06-05-1-jsonfmt.html"/>
             <id>https://btbytes.github.io/2020-06-05-1-jsonfmt.html</id>
@@ -34,13 +41,6 @@
             <id>https://btbytes.github.io/2020-05-19-1-shell-safe-api-key-password-generator.html</id>
             <updated>2020-05-19T00:00:00.00Z</updated>
             <summary>Shell Safe API key / Password Generator</summary>
-            </entry>
-        <entry>
-            <title>Sustainable tech by The Rabbits</title>
-            <link href="https://btbytes.github.io/2020-05-17-2-the-rabbits.html"/>
-            <id>https://btbytes.github.io/2020-05-17-2-the-rabbits.html</id>
-            <updated>2020-05-17T00:00:00.00Z</updated>
-            <summary>Sustainable tech by The Rabbits</summary>
             </entry>
         
              </feed>

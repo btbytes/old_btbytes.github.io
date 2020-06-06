@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="alternate" type="application/atom+xml" title="Atom Feed"  href="https://btbytes.github.io/atom.xml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-06-05" />
+  <title>csv2html</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav>
+  <span class="sitetitle"><em>Pradeep Gowda's</em> <a href="/" title="Home Page">gitblog</a></span>
+  <span class="sitelinks"><a href="index.html" title="Home">Home</a> ◊ <a href="index.html#tags">Tags</a> ◊ <a href="index.html#archive">Archive</a>  ◊ <a href="/atom.xml">Feed</a></span>
+</nav>
+<article>
+
+<header id="title-block-header">
+<h1 class="title">csv2html</h1>
+<p class="date">2020-06-05</p>
+</header>
+<p>Today, I had to create a paste a table of values into a JIRA ticket and I had a csv file. There are different ways to “paste” a nicely formatted table into a JIRA WYSIWYG text area, I’m sure.. but none of them fast enough to type: <code>$csv2html source.csv destation.html</code>. So, I wrote one.</p>
+<p>You can find it here <a href="https://github.com/btbytes.csv2html">https://github.com/btbytes.csv2html</a>. The help is self explanatory:</p>
+<p>```$./csv2html.py -h usage: csv2html.py [-h] [–delimiter DELIMITER] [–quotechar QUOTECHAR] [–title TITLE] [–caption CAPTION] [–header] csvfile</p>
+<p>CSV to HTML converter.</p>
+<p>positional arguments: csvfile</p>
+<p>optional arguments: -h, –help show this help message and exit –delimiter DELIMITER Field delimiter. Default is , . –quotechar QUOTECHAR Quote Character. Deault is nothing –title TITLE Page title. Will be printed in h1 tag. –caption CAPTION Table caption. –header data has header. First row will be “th”. ```</p>
+<p>Ideally, I’d have liked to use the <a href="https://github.com/baig/pandoc-csv2table">pandoc-csv2table</a> pandoc filter. But, installing this filter using <code>cabal</code> and <code>stack</code> turned out to be disappointing. So instead of figuring out how to compile and install these Haskell packages, I wrote this script.</p>
+<p>I can still do some improvements to this script, like:</p>
+<ol type="a">
+<li>adding an <code>-o --output</code> flag to write the output to a file instead of stdout.</li>
+<li>override the css</li>
+</ol>
+<p>But, that’s for another day.</p>
+<p><a href="index.html#python" class="tag python">python </a></p>
+</article>
+<footer>
+  <p>&copy; 2020&mdash; <a href="//twitter.com/btbytes" title="Twitter page of Pradeep Gowda">PG</a>. Made with <a href="https://github.com/btbytes/btbytes.github.io/blob/master/bari">bari</a> with help from <a href="https://pandoc.org">pandoc</a>, <a href="https://www.gnu.org/software/make/">make</a> and <a href="https://www.python.org">python</a>. </p>
+</footer>
+<script>
+// adapted from https://github.com/attacomsian/code-examples/blob/master/others/anchor-links/anchor-javascript.html
+window.onload = function () {
+	//add anchor link to all headings
+	document.querySelectorAll('article h1, article h2, article h3, article h4').forEach($heading => {
+
+		//create id from heading text
+		var id = $heading.getAttribute("id") || $heading.innerText.toLowerCase().replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '').replace(/ +/g, '-');
+
+		//add id to heading
+		$heading.setAttribute('id', id);
+
+		//append parent class to heading
+		$heading.classList.add('anchor-heading');
+
+		//create anchor
+		$anchor = document.createElement('a');
+		$anchor.className = 'anchor-link';
+		$anchor.href = '#' + id;
+		$anchor.innerText = '#';
+
+		//append anchor link after heading text
+		$heading.appendChild($anchor);
+	});
+
+	//add smooth scroll for anchor links
+	document.querySelectorAll('a.anchor-link').forEach($anchor => {
+		$anchor.addEventListener('click', function (e) {
+			e.preventDefault();
+			document.querySelector(this.getAttribute('href')).scrollIntoView({
+				behavior: 'smooth',
+				block: 'start' //scroll to top of the target element
+			});
+		});
+	});
+
+	//navigate to anchor if available
+	if (window.location.hash.length > 0) {
+		setTimeout(function () {
+			document.querySelector('a[href="' + window.location.hash + '"]').click();
+		}, 150);
+	}
+};
+</script>
+<script data-goatcounter="https://btbytes-github.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

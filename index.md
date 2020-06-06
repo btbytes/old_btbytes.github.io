@@ -1,3 +1,43 @@
+<div class="post"><div class="post-title"><span id="24">°24 // <a href="2020-06-05-2-csv2html.html">csv2html
+</a></span> <span class="post-date"><date>2020-06-05</date></span></div>
+
+Today, I had to create a paste a table of values into a JIRA ticket and I had a csv file. There are different ways to "paste" a nicely formatted table into a JIRA WYSIWYG text area, I'm sure.. but none of them fast enough to type: `$csv2html source.csv destation.html`. So, I wrote one.
+
+You can find it here [https://github.com/btbytes.csv2html](https://github.com/btbytes.csv2html). The help is self explanatory: 
+
+```$./csv2html.py -h
+usage: csv2html.py [-h] [--delimiter DELIMITER] [--quotechar QUOTECHAR]
+                   [--title TITLE] [--caption CAPTION] [--header]
+                   csvfile
+
+CSV to HTML converter.
+
+positional arguments:
+  csvfile
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --delimiter DELIMITER
+                        Field delimiter. Default is , .
+  --quotechar QUOTECHAR
+                        Quote Character. Deault is nothing
+  --title TITLE         Page title. Will be printed in h1 tag.
+  --caption CAPTION     Table caption.
+  --header              data has header. First row will be "th".
+```
+
+Ideally, I'd have liked to use the [pandoc-csv2table](https://github.com/baig/pandoc-csv2table) pandoc filter. But, installing this filter using `cabal` and `stack` turned out to be disappointing. So instead of figuring out how to compile and install these Haskell packages, I wrote this script. 
+
+I can still do some improvements to this script, like:
+
+a. adding an `-o --output` flag to write the output to a file instead of stdout. 
+b. override the css
+
+
+But, that's for another day.
+
+<a href="index.html#python" class="tag python">python                        </a> 
+</div>
 <div class="post"><div class="post-title"><span id="23">°23 // <a href="2020-06-05-1-jsonfmt.html">jsonfmt
 </a></span> <span class="post-date"><date>2020-06-05</date></span></div>
 
@@ -214,33 +254,11 @@ if __name__ == '__main__':
 
 <a href="index.html#python" class="tag python">python                        </a> 
 </div>
-<div class="post"><div class="post-title"><span id="19">°19 // <a href="2020-05-17-2-the-rabbits.html">Sustainable tech by The Rabbits
-</a></span> <span class="post-date"><date>2020-05-17</date></span></div>
-
-Came across [The Rabbits](https://100r.co/site/about_us.html) via [HN](https://news.ycombinator.com/item?id=23211273). Two tech folks who are building stuff  in the way of "resilience and self-reliance using low-tech solutions.". They appear to building most of their stuff in [C99, ASM and JS](https://100r.co/site/philosophy.html#accessibility).
-
-Their [Ronin](https://100r.co/site/ronin.html) project implements a browser based lisp interpreter, which can be used for making generative art. You can play with a program in [the playground](https://hundredrabbits.github.io/Ronin/). 
-
-[Dotgrid](https://100r.co/site/dotgrid.html) is  a grid-based vector drawing software designed to create logos, icons and type. Like their applications, being able to drive the program with keystrokes seems like a feature I'd like to explore. I'm a total dummy when it comes to vector graphics. The simplicity of this tool might help exploration and learning.
-
-[Orca](https://100r.co/site/orca.html) immediately brought to my mind [Colorforth](https://colorforth.github.io) by Charles Moore. 
-
-Their minimalistic, prose-writing oriented editor [Left](https://100r.co/site/left.html) makes me write my own text editor. I donated $5 and downloaded Left. 
-
-
-Further reading:
-
-* Blogroll and travelogues on their [Home page](https://100r.co/site/home.html)
-* Their podcasts on Future of Coding -- 
-
-  * [#44 - Making Your Own Tools: Devine Lu Linvega](https://futureofcoding.org/episodes/044)
-  * [#45 - Orca: Devine Lu Linvega](https://futureofcoding.org/episodes/045) 
-
-</div>
 
 ## Archive
 (Reverse chronologic)<dl id="archive-links"><dt class="archive-year" id="y2020">2020</dt>
-<dd class="archive-item"><p><span id="18">°18. <a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern
+<dd class="archive-item"><p><span id="19">°19. <a href="2020-05-17-2-the-rabbits.html">Sustainable tech by The Rabbits
+</a></span>                        <date>2020-05-17</date></p></dd><dd class="archive-item"><p><span id="18">°18. <a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern
 </a></span>                        <date>2020-05-17</date></p></dd><dd class="archive-item"><p><span id="17">°17. <a href="2020-05-15-2.html">Some Interesting Links
 </a></span>                        <date>2020-05-15</date></p></dd><dd class="archive-item"><p><span id="16">°16. <a href="2020-05-15-1.html">About Grammarians and Philosophers
 </a></span>                        <date>2020-05-15</date></p></dd><dd class="archive-item"><p><span id="15">°15. <a href="2020-05-14-4-notes.html">gistash, RFCs
@@ -261,5 +279,5 @@ Further reading:
 </a></span>                        <date>2020-04-29</date></p></dd></dl>
 ## Tags
 (Chronologic)
-<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a>                    <date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a>                    <date style="float:right;">2020-05-08</date></p></dd> <dd><p><a href="2020-05-22-1-thread-reaper.html">Thread Reaper</a>                    <date style="float:right;">2020-05-22</date></p></dd> <dt><span id="grammar" class="tagged">grammar</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="ideas" class="tagged">ideas</span></dt><dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a>                    <date style="float:right;">2020-05-12</date></p></dd> <dd><p><a href="2020-05-13-2-notes.html">Some interesting things</a>                    <date style="float:right;">2020-05-13</date></p></dd> <dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dd><p><a href="2020-05-15-2.html">Some Interesting Links</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="javascript" class="tagged">javascript</span></dt><dd><p><a href="2020-05-20-1-threadreaderapp-bookmark.html">Thread reader app browser bookmark</a>                    <date style="float:right;">2020-05-20</date></p></dd> <dt><span id="json" class="tagged">json</span></dt><dd><p><a href="2020-06-05-1-jsonfmt.html">jsonfmt</a>                    <date style="float:right;">2020-06-05</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a>                    <date style="float:right;">2020-05-01</date></p></dd> <dt><span id="patterns" class="tagged">patterns</span></dt><dd><p><a href="2020-05-15-2.html">Some Interesting Links</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="philosophy" class="tagged">philosophy</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a>                    <date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a>                    <date style="float:right;">2020-05-07</date></p></dd> <dd><p><a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a>                    <date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern</a>                    <date style="float:right;">2020-05-17</date></p></dd> <dd><p><a href="2020-05-19-1-shell-safe-api-key-password-generator.html">Shell Safe API key / Password Generator</a>                    <date style="float:right;">2020-05-19</date></p></dd> <dd><p><a href="2020-06-05-1-jsonfmt.html">jsonfmt</a>                    <date style="float:right;">2020-06-05</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a>                    <date style="float:right;">2020-05-02</date></p></dd> <dt><span id="zettelkasten" class="tagged">zettelkasten</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> </dl>
+<dl><dt><span id="computing" class="tagged">computing</span></dt><dd><p><a href="2020-04-29-conwayslaw.html">Conway's law</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dt><span id="fonts" class="tagged">fonts</span></dt><dd><p><a href="2020-04-29-courier.html">Courier is a nice monospace font</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dt><span id="golang" class="tagged">golang</span></dt><dd><p><a href="2020-05-05-01-golang-hash-builds.html">Building Go Programs with Source File Hash baked in</a>                    <date style="float:right;">2020-05-05</date></p></dd> <dd><p><a href="2020-05-08-01-go-third-party-packages.html">Notes to self: How to use Go Third Party Packages</a>                    <date style="float:right;">2020-05-08</date></p></dd> <dd><p><a href="2020-05-22-1-thread-reaper.html">Thread Reaper</a>                    <date style="float:right;">2020-05-22</date></p></dd> <dt><span id="grammar" class="tagged">grammar</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="ideas" class="tagged">ideas</span></dt><dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dt><span id="interesting" class="tagged">interesting</span></dt><dd><p><a href="2020-05-12-01-notes.html">A few interesting things</a>                    <date style="float:right;">2020-05-12</date></p></dd> <dd><p><a href="2020-05-13-2-notes.html">Some interesting things</a>                    <date style="float:right;">2020-05-13</date></p></dd> <dd><p><a href="2020-05-14-4-notes.html">gistash, RFCs</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dd><p><a href="2020-05-15-2.html">Some Interesting Links</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="javascript" class="tagged">javascript</span></dt><dd><p><a href="2020-05-20-1-threadreaderapp-bookmark.html">Thread reader app browser bookmark</a>                    <date style="float:right;">2020-05-20</date></p></dd> <dt><span id="json" class="tagged">json</span></dt><dd><p><a href="2020-06-05-1-jsonfmt.html">jsonfmt</a>                    <date style="float:right;">2020-06-05</date></p></dd> <dt><span id="mathematics" class="tagged">mathematics</span></dt><dd><p><a href="2020-05-01-01-interest-calculation.html">A worked exmaple of - A persian folk method of figuring interest</a>                    <date style="float:right;">2020-05-01</date></p></dd> <dt><span id="patterns" class="tagged">patterns</span></dt><dd><p><a href="2020-05-15-2.html">Some Interesting Links</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="philosophy" class="tagged">philosophy</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> <dt><span id="programming" class="tagged">programming</span></dt><dd><p><a href="2020-05-06-04-codespaces.html">github codespaces</a>                    <date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-07-02-code-in-books.html">My code in books</a>                    <date style="float:right;">2020-05-07</date></p></dd> <dd><p><a href="2020-05-14-1-getting-out-of-goldilocks-zone.html">Getting Out of the Programming Goldilocks Zone</a>                    <date style="float:right;">2020-05-14</date></p></dd> <dt><span id="python" class="tagged">python</span></dt><dd><p><a href="2020-04-29-pipx.html">pipx is like brew for python applications</a>                    <date style="float:right;">2020-04-29</date></p></dd> <dd><p><a href="2020-05-06-06-happy-python.html">My Happy Python Workflow</a>                    <date style="float:right;">2020-05-06</date></p></dd> <dd><p><a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern</a>                    <date style="float:right;">2020-05-17</date></p></dd> <dd><p><a href="2020-05-19-1-shell-safe-api-key-password-generator.html">Shell Safe API key / Password Generator</a>                    <date style="float:right;">2020-05-19</date></p></dd> <dd><p><a href="2020-06-05-1-jsonfmt.html">jsonfmt</a>                    <date style="float:right;">2020-06-05</date></p></dd> <dd><p><a href="2020-06-05-2-csv2html.html">csv2html</a>                    <date style="float:right;">2020-06-05</date></p></dd> <dt><span id="software" class="tagged">software</span></dt><dd><p><a href="2020-05-02-01-quip.html">Quip</a>                    <date style="float:right;">2020-05-02</date></p></dd> <dt><span id="zettelkasten" class="tagged">zettelkasten</span></dt><dd><p><a href="2020-05-15-1.html">About Grammarians and Philosophers</a>                    <date style="float:right;">2020-05-15</date></p></dd> </dl>
 
