@@ -13,6 +13,63 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; } /* Alert */
+    code span.an { color: #008000; } /* Annotation */
+    code span.at { } /* Attribute */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #0000ff; } /* ControlFlow */
+    code span.ch { color: #008080; } /* Char */
+    code span.cn { } /* Constant */
+    code span.co { color: #008000; } /* Comment */
+    code span.cv { color: #008000; } /* CommentVar */
+    code span.do { color: #008000; } /* Documentation */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.im { } /* Import */
+    code span.in { color: #008000; } /* Information */
+    code span.kw { color: #0000ff; } /* Keyword */
+    code span.op { } /* Operator */
+    code span.ot { color: #ff4000; } /* Other */
+    code span.pp { color: #ff4000; } /* Preprocessor */
+    code span.sc { color: #008080; } /* SpecialChar */
+    code span.ss { color: #008080; } /* SpecialString */
+    code span.st { color: #008080; } /* String */
+    code span.va { } /* Variable */
+    code span.vs { color: #008080; } /* VerbatimString */
+    code span.wa { color: #008000; font-weight: bold; } /* Warning */
   </style>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -29,10 +86,25 @@
 </header>
 <p>Today, I had to create a paste a table of values into a JIRA ticket and I had a csv file. There are different ways to “paste” a nicely formatted table into a JIRA WYSIWYG text area, I’m sure.. but none of them fast enough to type: <code>$csv2html source.csv destation.html</code>. So, I wrote one.</p>
 <p>You can find it here <a href="https://github.com/btbytes.csv2html">https://github.com/btbytes.csv2html</a>. The help is self explanatory:</p>
-<p>```$./csv2html.py -h usage: csv2html.py [-h] [–delimiter DELIMITER] [–quotechar QUOTECHAR] [–title TITLE] [–caption CAPTION] [–header] csvfile</p>
-<p>CSV to HTML converter.</p>
-<p>positional arguments: csvfile</p>
-<p>optional arguments: -h, –help show this help message and exit –delimiter DELIMITER Field delimiter. Default is , . –quotechar QUOTECHAR Quote Character. Deault is nothing –title TITLE Page title. Will be printed in h1 tag. –caption CAPTION Table caption. –header data has header. First row will be “th”. ```</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a>$<span class="ex">./csv2html.py</span> -h</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="ex">usage</span>: csv2html.py [-h] [--delimiter DELIMITER] [--quotechar QUOTECHAR]</span>
+<span id="cb1-3"><a href="#cb1-3"></a>                   [<span class="ex">--title</span> TITLE] [--caption CAPTION] [--header]</span>
+<span id="cb1-4"><a href="#cb1-4"></a>                   <span class="ex">csvfile</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="ex">CSV</span> to HTML converter.</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="ex">positional</span> arguments:</span>
+<span id="cb1-9"><a href="#cb1-9"></a>  <span class="ex">csvfile</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="ex">optional</span> arguments:</span>
+<span id="cb1-12"><a href="#cb1-12"></a>  <span class="ex">-h</span>, --help            show this help message and exit</span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="ex">--delimiter</span> DELIMITER</span>
+<span id="cb1-14"><a href="#cb1-14"></a>                        <span class="ex">Field</span> delimiter. Default is , .</span>
+<span id="cb1-15"><a href="#cb1-15"></a>  <span class="ex">--quotechar</span> QUOTECHAR</span>
+<span id="cb1-16"><a href="#cb1-16"></a>                        <span class="ex">Quote</span> Character. Deault is nothing</span>
+<span id="cb1-17"><a href="#cb1-17"></a>  <span class="ex">--title</span> TITLE         Page title. Will be printed in h1 tag.</span>
+<span id="cb1-18"><a href="#cb1-18"></a>  <span class="ex">--caption</span> CAPTION     Table caption.</span>
+<span id="cb1-19"><a href="#cb1-19"></a>  <span class="ex">--header</span>              data has header. First row will be <span class="st">&quot;th&quot;</span>.</span></code></pre></div>
 <p>Ideally, I’d have liked to use the <a href="https://github.com/baig/pandoc-csv2table">pandoc-csv2table</a> pandoc filter. But, installing this filter using <code>cabal</code> and <code>stack</code> turned out to be disappointing. So instead of figuring out how to compile and install these Haskell packages, I wrote this script.</p>
 <p>I can still do some improvements to this script, like:</p>
 <ol type="a">

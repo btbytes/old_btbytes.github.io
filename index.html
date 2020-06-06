@@ -85,59 +85,68 @@
 </div>
 <p>Today, I had to create a paste a table of values into a JIRA ticket and I had a csv file. There are different ways to “paste” a nicely formatted table into a JIRA WYSIWYG text area, I’m sure.. but none of them fast enough to type: <code>$csv2html source.csv destation.html</code>. So, I wrote one.</p>
 <p>You can find it here <a href="https://github.com/btbytes.csv2html">https://github.com/btbytes.csv2html</a>. The help is self explanatory:</p>
-<p>```$./csv2html.py -h usage: csv2html.py [-h] [–delimiter DELIMITER] [–quotechar QUOTECHAR] [–title TITLE] [–caption CAPTION] [–header] csvfile</p>
-<p>CSV to HTML converter.</p>
-<p>positional arguments: csvfile</p>
-<p>optional arguments: -h, –help show this help message and exit –delimiter DELIMITER Field delimiter. Default is , . –quotechar QUOTECHAR Quote Character. Deault is nothing –title TITLE Page title. Will be printed in h1 tag. –caption CAPTION Table caption. –header data has header. First row will be “th”.</p>
-<pre><code>
-Ideally, I&#39;d have liked to use the [pandoc-csv2table](https://github.com/baig/pandoc-csv2table) pandoc filter. But, installing this filter using `cabal` and `stack` turned out to be disappointing. So instead of figuring out how to compile and install these Haskell packages, I wrote this script. 
-
-I can still do some improvements to this script, like:
-
-a. adding an `-o --output` flag to write the output to a file instead of stdout. 
-b. override the css
-
-
-But, that&#39;s for another day.
-
-&lt;a href=&quot;index.html#python&quot; class=&quot;tag python&quot;&gt;python                        &lt;/a&gt; 
-&lt;/div&gt;
-&lt;div class=&quot;post&quot;&gt;&lt;div class=&quot;post-title&quot;&gt;&lt;span id=&quot;23&quot;&gt;°23 // &lt;a href=&quot;2020-06-05-1-jsonfmt.html&quot;&gt;jsonfmt
-&lt;/a&gt;&lt;/span&gt; &lt;span class=&quot;post-date&quot;&gt;&lt;date&gt;2020-06-05&lt;/date&gt;&lt;/span&gt;&lt;/div&gt;
-
-Sometimes you would like to format a JSON file, and you wish a command called `jsonfmt` like `gofmt` would be handy. If you have Python3 installed on your system, you already have such a tool installed, its just called with a different name.
-
-Let&#39;s say you have this file - `two.json` [1].
-
-```json
-{&quot;glossary&quot;:{&quot;title&quot;:&quot;example glossary&quot;,&quot;GlossDiv&quot;:{&quot;GlossList&quot;:{&quot;GlossEntry&quot;:{&quot;GlossDef&quot;:{&quot;GlossSeeAlso&quot;:[&quot;GML&quot;,&quot;XML&quot;],&quot;para&quot;:&quot;A meta-markup language, used to create markup languages such as DocBook.&quot;},&quot;Abbrev&quot;:&quot;ISO 8879:1986&quot;,&quot;GlossSee&quot;:&quot;markup&quot;,&quot;SortAs&quot;:&quot;SGML&quot;,&quot;GlossTerm&quot;:&quot;Standard Generalized Markup Language&quot;,&quot;Acronym&quot;:&quot;SGML&quot;,&quot;ID&quot;:&quot;SGML&quot;}},&quot;title&quot;:&quot;S&quot;}}}</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a>$<span class="ex">./csv2html.py</span> -h</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="ex">usage</span>: csv2html.py [-h] [--delimiter DELIMITER] [--quotechar QUOTECHAR]</span>
+<span id="cb1-3"><a href="#cb1-3"></a>                   [<span class="ex">--title</span> TITLE] [--caption CAPTION] [--header]</span>
+<span id="cb1-4"><a href="#cb1-4"></a>                   <span class="ex">csvfile</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="ex">CSV</span> to HTML converter.</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="ex">positional</span> arguments:</span>
+<span id="cb1-9"><a href="#cb1-9"></a>  <span class="ex">csvfile</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="ex">optional</span> arguments:</span>
+<span id="cb1-12"><a href="#cb1-12"></a>  <span class="ex">-h</span>, --help            show this help message and exit</span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="ex">--delimiter</span> DELIMITER</span>
+<span id="cb1-14"><a href="#cb1-14"></a>                        <span class="ex">Field</span> delimiter. Default is , .</span>
+<span id="cb1-15"><a href="#cb1-15"></a>  <span class="ex">--quotechar</span> QUOTECHAR</span>
+<span id="cb1-16"><a href="#cb1-16"></a>                        <span class="ex">Quote</span> Character. Deault is nothing</span>
+<span id="cb1-17"><a href="#cb1-17"></a>  <span class="ex">--title</span> TITLE         Page title. Will be printed in h1 tag.</span>
+<span id="cb1-18"><a href="#cb1-18"></a>  <span class="ex">--caption</span> CAPTION     Table caption.</span>
+<span id="cb1-19"><a href="#cb1-19"></a>  <span class="ex">--header</span>              data has header. First row will be <span class="st">&quot;th&quot;</span>.</span></code></pre></div>
+<p>Ideally, I’d have liked to use the <a href="https://github.com/baig/pandoc-csv2table">pandoc-csv2table</a> pandoc filter. But, installing this filter using <code>cabal</code> and <code>stack</code> turned out to be disappointing. So instead of figuring out how to compile and install these Haskell packages, I wrote this script.</p>
+<p>I can still do some improvements to this script, like:</p>
+<ol type="a">
+<li>adding an <code>-o --output</code> flag to write the output to a file instead of stdout.</li>
+<li>override the css</li>
+</ol>
+<p>But, that’s for another day.</p>
+<p><a href="index.html#python" class="tag python">python </a></p>
+</div>
+<div class="post">
+<div class="post-title">
+<span id="23">°23 // <a href="2020-06-05-1-jsonfmt.html">jsonfmt </a></span> <span class="post-date"><date>2020-06-05</date></span>
+</div>
+<p>Sometimes you would like to format a JSON file, and you wish a command called <code>jsonfmt</code> like <code>gofmt</code> would be handy. If you have Python3 installed on your system, you already have such a tool installed, its just called with a different name.</p>
+<p>Let’s say you have this file - <code>two.json</code> <a href="https://json.org/example.html">1</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">{</span><span class="dt">&quot;glossary&quot;</span><span class="fu">:{</span><span class="dt">&quot;title&quot;</span><span class="fu">:</span><span class="st">&quot;example glossary&quot;</span><span class="fu">,</span><span class="dt">&quot;GlossDiv&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossList&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossEntry&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossDef&quot;</span><span class="fu">:{</span><span class="dt">&quot;GlossSeeAlso&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="st">&quot;GML&quot;</span><span class="ot">,</span><span class="st">&quot;XML&quot;</span><span class="ot">]</span><span class="fu">,</span><span class="dt">&quot;para&quot;</span><span class="fu">:</span><span class="st">&quot;A meta-markup language, used to create markup languages such as DocBook.&quot;</span><span class="fu">},</span><span class="dt">&quot;Abbrev&quot;</span><span class="fu">:</span><span class="st">&quot;ISO 8879:1986&quot;</span><span class="fu">,</span><span class="dt">&quot;GlossSee&quot;</span><span class="fu">:</span><span class="st">&quot;markup&quot;</span><span class="fu">,</span><span class="dt">&quot;SortAs&quot;</span><span class="fu">:</span><span class="st">&quot;SGML&quot;</span><span class="fu">,</span><span class="dt">&quot;GlossTerm&quot;</span><span class="fu">:</span><span class="st">&quot;Standard Generalized Markup Language&quot;</span><span class="fu">,</span><span class="dt">&quot;Acronym&quot;</span><span class="fu">:</span><span class="st">&quot;SGML&quot;</span><span class="fu">,</span><span class="dt">&quot;ID&quot;</span><span class="fu">:</span><span class="st">&quot;SGML&quot;</span><span class="fu">}},</span><span class="dt">&quot;title&quot;</span><span class="fu">:</span><span class="st">&quot;S&quot;</span><span class="fu">}}}</span></span></code></pre></div>
 <p>Not very readable, is it? You can “pretty-print” it like this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1"></a><span class="er">$</span> <span class="er">python3</span> <span class="er">-m</span> <span class="er">json.tool</span> <span class="er">two.json</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">{</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="dt">&quot;glossary&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>        <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;example glossary&quot;</span><span class="fu">,</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>        <span class="dt">&quot;GlossDiv&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>            <span class="dt">&quot;GlossList&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>                <span class="dt">&quot;GlossEntry&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>                    <span class="dt">&quot;GlossDef&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>                        <span class="dt">&quot;GlossSeeAlso&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>                            <span class="st">&quot;GML&quot;</span><span class="ot">,</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>                            <span class="st">&quot;XML&quot;</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>                        <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>                        <span class="dt">&quot;para&quot;</span><span class="fu">:</span> <span class="st">&quot;A meta-markup language, used to create markup languages such as DocBook.&quot;</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>                    <span class="fu">},</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>                    <span class="dt">&quot;Abbrev&quot;</span><span class="fu">:</span> <span class="st">&quot;ISO 8879:1986&quot;</span><span class="fu">,</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>                    <span class="dt">&quot;GlossSee&quot;</span><span class="fu">:</span> <span class="st">&quot;markup&quot;</span><span class="fu">,</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a>                    <span class="dt">&quot;SortAs&quot;</span><span class="fu">:</span> <span class="st">&quot;SGML&quot;</span><span class="fu">,</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a>                    <span class="dt">&quot;GlossTerm&quot;</span><span class="fu">:</span> <span class="st">&quot;Standard Generalized Markup Language&quot;</span><span class="fu">,</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>                    <span class="dt">&quot;Acronym&quot;</span><span class="fu">:</span> <span class="st">&quot;SGML&quot;</span><span class="fu">,</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a>                    <span class="dt">&quot;ID&quot;</span><span class="fu">:</span> <span class="st">&quot;SGML&quot;</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>                <span class="fu">}</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a>            <span class="fu">},</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>            <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;S&quot;</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a>        <span class="fu">}</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>    <span class="fu">}</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="fu">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1"></a><span class="er">$</span> <span class="er">python3</span> <span class="er">-m</span> <span class="er">json.tool</span> <span class="er">two.json</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">{</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="dt">&quot;glossary&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>        <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;example glossary&quot;</span><span class="fu">,</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="dt">&quot;GlossDiv&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>            <span class="dt">&quot;GlossList&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>                <span class="dt">&quot;GlossEntry&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>                    <span class="dt">&quot;GlossDef&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>                        <span class="dt">&quot;GlossSeeAlso&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>                            <span class="st">&quot;GML&quot;</span><span class="ot">,</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>                            <span class="st">&quot;XML&quot;</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>                        <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>                        <span class="dt">&quot;para&quot;</span><span class="fu">:</span> <span class="st">&quot;A meta-markup language, used to create markup languages such as DocBook.&quot;</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>                    <span class="fu">},</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>                    <span class="dt">&quot;Abbrev&quot;</span><span class="fu">:</span> <span class="st">&quot;ISO 8879:1986&quot;</span><span class="fu">,</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>                    <span class="dt">&quot;GlossSee&quot;</span><span class="fu">:</span> <span class="st">&quot;markup&quot;</span><span class="fu">,</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>                    <span class="dt">&quot;SortAs&quot;</span><span class="fu">:</span> <span class="st">&quot;SGML&quot;</span><span class="fu">,</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a>                    <span class="dt">&quot;GlossTerm&quot;</span><span class="fu">:</span> <span class="st">&quot;Standard Generalized Markup Language&quot;</span><span class="fu">,</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a>                    <span class="dt">&quot;Acronym&quot;</span><span class="fu">:</span> <span class="st">&quot;SGML&quot;</span><span class="fu">,</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a>                    <span class="dt">&quot;ID&quot;</span><span class="fu">:</span> <span class="st">&quot;SGML&quot;</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>                <span class="fu">}</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a>            <span class="fu">},</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a>            <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;S&quot;</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a>        <span class="fu">}</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a>    <span class="fu">}</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="fu">}</span></span></code></pre></div>
 <p>You can output the formatted JSON to a file like this:</p>
 <pre><code>$ python3 -m json.tool two.json three.json</code></pre>
 <p>Further, you can sort the keys with the <code>--sort-keys option</code></p>
@@ -219,67 +228,67 @@ Let&#39;s say you have this file - `two.json` [1].
 <li>easy – <code>sQt03aBrXhPbOU+K9WwI/_</code> (double click selects the whole string)</li>
 </ul>
 <p>The code for <a href="https://gist.github.com/btbytes/87e10bc7768b67cd1435eefa332ef971"><code>apikeygen.py</code></a>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#!/usr/bin/env python</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">apikeygen.py</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">Generate a shell safe API key (or password)</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">Generated string should not have any characters that need to be escaped in</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">the shell. The following characters have special meaning in some shell contexts</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">    ! # $ &#39; ( ) * , ; . &lt; = &gt; ? [ ] ^ { } | ~ - . : \</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">Arguments:</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">    -l --length length of the API key to be generated. Default is 32.</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">    -s --source a string of characters to use.</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">    -c --clickable make the string clickable.</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">Revision:</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="co">    2020-05-19: Initial revision</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a></span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="co">Reference:</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="co">    https://unix.stackexchange.com/a/357932</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a></span>
-<span id="cb6-24"><a href="#cb6-24"></a><span class="im">import</span> random</span>
-<span id="cb6-25"><a href="#cb6-25"></a></span>
-<span id="cb6-26"><a href="#cb6-26"></a></span>
-<span id="cb6-27"><a href="#cb6-27"></a><span class="kw">def</span> apikeygen(length, source):</span>
-<span id="cb6-28"><a href="#cb6-28"></a>    <span class="cf">return</span> <span class="st">&#39;&#39;</span>.join(random.sample(source, length))</span>
-<span id="cb6-29"><a href="#cb6-29"></a></span>
-<span id="cb6-30"><a href="#cb6-30"></a></span>
-<span id="cb6-31"><a href="#cb6-31"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb6-32"><a href="#cb6-32"></a>    <span class="im">import</span> argparse</span>
-<span id="cb6-33"><a href="#cb6-33"></a>    <span class="im">import</span> string</span>
-<span id="cb6-34"><a href="#cb6-34"></a>    source <span class="op">=</span> string.ascii_lowercase<span class="op">\</span></span>
-<span id="cb6-35"><a href="#cb6-35"></a>        <span class="op">+</span> string.ascii_uppercase<span class="op">\</span></span>
-<span id="cb6-36"><a href="#cb6-36"></a>        <span class="op">+</span> string.digits<span class="op">\</span></span>
-<span id="cb6-37"><a href="#cb6-37"></a>        <span class="op">+</span> <span class="st">&#39;@%_/+&#39;</span></span>
-<span id="cb6-38"><a href="#cb6-38"></a>    dirty <span class="op">=</span> <span class="st">&#39;@%&#39;</span></span>
-<span id="cb6-39"><a href="#cb6-39"></a>    parser <span class="op">=</span> argparse.ArgumentParser()</span>
-<span id="cb6-40"><a href="#cb6-40"></a>    parser.add_argument(</span>
-<span id="cb6-41"><a href="#cb6-41"></a>        <span class="st">&#39;-l&#39;</span>,</span>
-<span id="cb6-42"><a href="#cb6-42"></a>        <span class="st">&#39;--length&#39;</span>,</span>
-<span id="cb6-43"><a href="#cb6-43"></a>        <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>,</span>
-<span id="cb6-44"><a href="#cb6-44"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;length of the API key to be generated.&#39;</span>,</span>
-<span id="cb6-45"><a href="#cb6-45"></a>        default<span class="op">=</span><span class="dv">32</span>)</span>
-<span id="cb6-46"><a href="#cb6-46"></a>    parser.add_argument(</span>
-<span id="cb6-47"><a href="#cb6-47"></a>        <span class="st">&#39;-s&#39;</span>,</span>
-<span id="cb6-48"><a href="#cb6-48"></a>        <span class="st">&#39;--source&#39;</span>,</span>
-<span id="cb6-49"><a href="#cb6-49"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;a string of characters to use.&#39;</span>,</span>
-<span id="cb6-50"><a href="#cb6-50"></a>        default<span class="op">=</span>source)</span>
-<span id="cb6-51"><a href="#cb6-51"></a>    parser.add_argument(</span>
-<span id="cb6-52"><a href="#cb6-52"></a>        <span class="st">&#39;-c&#39;</span>,</span>
-<span id="cb6-53"><a href="#cb6-53"></a>        <span class="st">&#39;--clickable&#39;</span>,</span>
-<span id="cb6-54"><a href="#cb6-54"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;make the string clickable.&#39;</span>,</span>
-<span id="cb6-55"><a href="#cb6-55"></a>        action<span class="op">=</span><span class="st">&#39;store_true&#39;</span>,</span>
-<span id="cb6-56"><a href="#cb6-56"></a>        default<span class="op">=</span>source)</span>
-<span id="cb6-57"><a href="#cb6-57"></a>    args <span class="op">=</span> parser.parse_args()</span>
-<span id="cb6-58"><a href="#cb6-58"></a>    source <span class="op">=</span> args.source</span>
-<span id="cb6-59"><a href="#cb6-59"></a>    <span class="cf">if</span> args.clickable:</span>
-<span id="cb6-60"><a href="#cb6-60"></a>        source <span class="op">=</span> <span class="st">&#39;&#39;</span>.join([c <span class="cf">for</span> c <span class="kw">in</span> source <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> dirty])</span>
-<span id="cb6-61"><a href="#cb6-61"></a>    <span class="bu">print</span>(apikeygen(args.length, source))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">apikeygen.py</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">Generate a shell safe API key (or password)</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">Generated string should not have any characters that need to be escaped in</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">the shell. The following characters have special meaning in some shell contexts</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">    ! # $ &#39; ( ) * , ; . &lt; = &gt; ? [ ] ^ { } | ~ - . : \</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">Arguments:</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">    -l --length length of the API key to be generated. Default is 32.</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">    -s --source a string of characters to use.</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co">    -c --clickable make the string clickable.</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="co">Revision:</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="co">    2020-05-19: Initial revision</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="co">Reference:</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="co">    https://unix.stackexchange.com/a/357932</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a></span>
+<span id="cb7-24"><a href="#cb7-24"></a><span class="im">import</span> random</span>
+<span id="cb7-25"><a href="#cb7-25"></a></span>
+<span id="cb7-26"><a href="#cb7-26"></a></span>
+<span id="cb7-27"><a href="#cb7-27"></a><span class="kw">def</span> apikeygen(length, source):</span>
+<span id="cb7-28"><a href="#cb7-28"></a>    <span class="cf">return</span> <span class="st">&#39;&#39;</span>.join(random.sample(source, length))</span>
+<span id="cb7-29"><a href="#cb7-29"></a></span>
+<span id="cb7-30"><a href="#cb7-30"></a></span>
+<span id="cb7-31"><a href="#cb7-31"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb7-32"><a href="#cb7-32"></a>    <span class="im">import</span> argparse</span>
+<span id="cb7-33"><a href="#cb7-33"></a>    <span class="im">import</span> string</span>
+<span id="cb7-34"><a href="#cb7-34"></a>    source <span class="op">=</span> string.ascii_lowercase<span class="op">\</span></span>
+<span id="cb7-35"><a href="#cb7-35"></a>        <span class="op">+</span> string.ascii_uppercase<span class="op">\</span></span>
+<span id="cb7-36"><a href="#cb7-36"></a>        <span class="op">+</span> string.digits<span class="op">\</span></span>
+<span id="cb7-37"><a href="#cb7-37"></a>        <span class="op">+</span> <span class="st">&#39;@%_/+&#39;</span></span>
+<span id="cb7-38"><a href="#cb7-38"></a>    dirty <span class="op">=</span> <span class="st">&#39;@%&#39;</span></span>
+<span id="cb7-39"><a href="#cb7-39"></a>    parser <span class="op">=</span> argparse.ArgumentParser()</span>
+<span id="cb7-40"><a href="#cb7-40"></a>    parser.add_argument(</span>
+<span id="cb7-41"><a href="#cb7-41"></a>        <span class="st">&#39;-l&#39;</span>,</span>
+<span id="cb7-42"><a href="#cb7-42"></a>        <span class="st">&#39;--length&#39;</span>,</span>
+<span id="cb7-43"><a href="#cb7-43"></a>        <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>,</span>
+<span id="cb7-44"><a href="#cb7-44"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;length of the API key to be generated.&#39;</span>,</span>
+<span id="cb7-45"><a href="#cb7-45"></a>        default<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb7-46"><a href="#cb7-46"></a>    parser.add_argument(</span>
+<span id="cb7-47"><a href="#cb7-47"></a>        <span class="st">&#39;-s&#39;</span>,</span>
+<span id="cb7-48"><a href="#cb7-48"></a>        <span class="st">&#39;--source&#39;</span>,</span>
+<span id="cb7-49"><a href="#cb7-49"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;a string of characters to use.&#39;</span>,</span>
+<span id="cb7-50"><a href="#cb7-50"></a>        default<span class="op">=</span>source)</span>
+<span id="cb7-51"><a href="#cb7-51"></a>    parser.add_argument(</span>
+<span id="cb7-52"><a href="#cb7-52"></a>        <span class="st">&#39;-c&#39;</span>,</span>
+<span id="cb7-53"><a href="#cb7-53"></a>        <span class="st">&#39;--clickable&#39;</span>,</span>
+<span id="cb7-54"><a href="#cb7-54"></a>        <span class="bu">help</span><span class="op">=</span><span class="st">&#39;make the string clickable.&#39;</span>,</span>
+<span id="cb7-55"><a href="#cb7-55"></a>        action<span class="op">=</span><span class="st">&#39;store_true&#39;</span>,</span>
+<span id="cb7-56"><a href="#cb7-56"></a>        default<span class="op">=</span>source)</span>
+<span id="cb7-57"><a href="#cb7-57"></a>    args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb7-58"><a href="#cb7-58"></a>    source <span class="op">=</span> args.source</span>
+<span id="cb7-59"><a href="#cb7-59"></a>    <span class="cf">if</span> args.clickable:</span>
+<span id="cb7-60"><a href="#cb7-60"></a>        source <span class="op">=</span> <span class="st">&#39;&#39;</span>.join([c <span class="cf">for</span> c <span class="kw">in</span> source <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> dirty])</span>
+<span id="cb7-61"><a href="#cb7-61"></a>    <span class="bu">print</span>(apikeygen(args.length, source))</span></code></pre></div>
 <p><a href="index.html#python" class="tag python">python </a></p>
 </div>
 <h2 id="archive">Archive</h2>
