@@ -1,9 +1,7 @@
 <div class="post"><div class="post-title"><span id="23">°23 // <a href="2020-06-05-1-jsonfmt.html">jsonfmt
 </a></span> <span class="post-date"><date>2020-06-05</date></span></div>
 
-Sometime you would like to format a JSON file, and you think a command called `jsonfmt` like `gofmt` would be handy.
-
-If you have Python3 installed on your system, you already have such a tool installed, its just called with a different name.
+Sometimes you would like to format a JSON file, and you wish a command called `jsonfmt` like `gofmt` would be handy. If you have Python3 installed on your system, you already have such a tool installed, its just called with a different name.
 
 Let's say you have this file - `two.json` [1]:
 
