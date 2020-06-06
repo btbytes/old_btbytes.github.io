@@ -5,7 +5,7 @@ Sometime you would like to format a JSON file, and you think a command called `j
 
 If you have Python3 installed on your system, you already have such a tool installed, its just called with a different name.
 
-Let's say you have this file - `two.json`:
+Let's say you have this file - `two.json` [1]:
 
 ```json
 {"glossary":{"title":"example glossary","GlossDiv":{"GlossList":{"GlossEntry":{"GlossDef":{"GlossSeeAlso":["GML","XML"],"para":"A meta-markup language, used to create markup languages such as DocBook."},"Abbrev":"ISO 8879:1986","GlossSee":"markup","SortAs":"SGML","GlossTerm":"Standard Generalized Markup Language","Acronym":"SGML","ID":"SGML"}},"title":"S"}}}
@@ -82,7 +82,10 @@ $ python3 -m json.tool two.json --sort-keys
 }
 ```
 
-If you want further explore json related tools, look at my [json](https://www.btbytes.com/json.html) and [jq](https://www.btbytes.com/jq.html) pages.</div>
+If you want further explore json related tools, look at my [json](https://www.btbytes.com/json.html) and [jq](https://www.btbytes.com/jq.html) pages.
+
+[1]: https://json.org/example.html
+</div>
 <div class="post"><div class="post-title"><span id="22">°22 // <a href="2020-05-22-1-thread-reaper.html">Thread Reaper
 </a></span> <span class="post-date"><date>2020-05-22</date></span></div>
 
