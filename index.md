@@ -101,7 +101,7 @@ You can see that I'm defining the `argparse` third party dependency in the nimbl
 The project can be compiled into a binary file with: `nimble build` which will produce  `csv2html` binary.
 
 
-The idea of using source code filters came to me via [this Nim forum thread](https://forum.nim-lang.org/t/6403) -- "AWK-style processing with Nim" mentioned by [@deech](https://twitter.com/deech/status/1268690739413819392?s=20)
+The idea of using source code filters came to me via [this Nim forum thread](https://forum.nim-lang.org/t/6403) -- "AWK-style processing with Nim" mentioned by [\@deech](https://twitter.com/deech/status/1268690739413819392?s=20).
 
 
 <a href="index.html#python" class="tag python">python                        </a>  <a href="index.html#nim" class="tag nim">nim                        </a> 
