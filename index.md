@@ -1,3 +1,108 @@
+<div class="post"><div class="post-title"><span id="25">°25 // <a href="2020-06-10-1-csv2html.nim.html">CSV2HTML in Nim
+</a></span> <span class="post-date"><date>2020-06-10</date></span></div>
+
+I implemented the [csv2html](https://btbytes.github.io/2020-06-05-2-csv2html.html) idea in [nim](https://nim-lang.org) -- [github repo](https://github.com/btbytes/csv2html.nim). Nim is a strongly typed, compiles-to-c/c++/js-to-metal language that has advanced programming features, yet looks very friendly (Python-ish syntax).
+
+Here is the core of the `csv2html` program in `nim`:
+
+```nim
+import parsecsv
+import argparse
+import os
+import system
+
+
+include "row.nimf"
+include "table.nimf"
+include "html.nimf"
+
+proc csv2html(csvfile: string, delimiter: string, quotechar: string, caption: string, title: string, header: bool, cssurl: string) = 
+  var p: CsvParser
+  var headerRow = ""
+  p.open(csvfile)
+  if header:
+    p.readHeaderRow()
+    headerRow = renderRow(p.headers, rowtype="th")
+  var rows = newSeq[string](2)
+  while p.readRow():
+    rows.add(renderRow(p.row))
+  p.close()
+  echo renderHtml(renderTable(caption, headerRow, rows), title, cssurl)
+  
+  
+  
+when isMainModule:
+  var p = newParser("CSV2HTML"):
+    arg("csvfile")
+    option("-d", "--delimiter", help="Field Delimiter. Default is ,.", default=",")
+    option("-q", "--quotechar", help="Quote Character. Default is nothing")
+    option("-t", "--title", help="Page Title. Will be printed in h1 tag")
+    option("-c", "--caption", help="Table Caption")
+    option("-s", "--css", help="Override CSS URL")
+    flag("-f", "--header", help="Data has Header. First row will be rendered as `th`")
+  if paramCount() < 1:
+    echo p.help()
+    quit(0)
+  var args = p.parse()
+  csv2html(args.csvfile, args.delimiter, args.quotechar, args.caption, ar
+```
+
+This looks very familiar to a Python programmer. 
+
+It is said that the language you write programs in, influences how you think. While nim is very close to Python syntax wise there are some standard library features of nim, that made me implement a feature differently. 
+
+In python, I wanted to keep to using just the standard library, and not pull in a templating language (I like Jinja2), to render the data into an HTML file. So, I ended up mixing the HTML template into the code. Which is fine for a small program like this. 
+
+In nim, the [Source Code Filters](https://nim-lang.org/docs/filters.html)  library allows you to easily template things without having to reach for a "proper" templating language. 
+
+You might have wondered about lines starting with `include` above. I'm "including" the source code filter templates. For example, this is the code that renderes the csv data into an html table:
+
+```
+#? stdtmpl(subChar='$', metaChar='#')
+#proc renderTable*(caption: string, headerRow: string, rows: seq[string]) : string = 
+#  result = ""
+<table>
+  #if caption != "":
+    <caption>${caption}</caption>
+  #end if
+  ${headerRow}
+  #for row in items(rows):
+    $row
+  #end for
+</table>
+#end proc
+```
+
+
+Its clear looking at the template, what's happening. At the top, we are defining `subChar=$`, which means the strings with `$` prefix will be replaced with the actual value. `metaChar=#` stands for the character that means something to the nim compiler. Essentially the lines starting with `#` will be treated as nim code.
+
+
+The files `included`d will be compiled at compile time into corresponding nim code. This allows us to write templating code without having to worry about escaping etc.
+
+The project is defined as a nim project using the [nimble](https://github.com/nim-lang/nimble) package manager definition file:
+
+```
+# csv2html package
+version = "0.1.0"
+author = "Pradeep Gowda"
+description = "render csv files as html files"
+license = "BSD3"
+
+# deps
+requires "nim >= 1.0.0", "argparse >= 0.10.0"
+
+srcDir = "src"
+bin = @["csv2html"]
+
+```
+
+You can see that I'm defining the `argparse` third party dependency in the nimble file. Argparse is very much influenced by Python's stdlib - `argparse`.
+
+The project can be compiled into a binary file with: `nimble build` which will produce  `csv2html` binary.
+
+
+The idea of using source code filters came to me via [this Nim forum thread](https://forum.nim-lang.org/t/6403) -- "AWK-style processing with Nim" mentioned by [@deech](https://twitter.com/deech/status/1268690739413819392?s=20)
+</div>
 <div class="post"><div class="post-title"><span id="24">°24 // <a href="2020-06-05-2-csv2html.html">csv2html
 </a></span> <span class="post-date"><date>2020-06-05</date></span></div>
 
@@ -157,108 +262,11 @@ Drag this bookmark to your browser's bookmark toolbar &raquo; <em><a href="javas
 
 <a href="index.html#javascript" class="tag javascript">javascript                        </a> 
 </div>
-<div class="post"><div class="post-title"><span id="20">°20 // <a href="2020-05-19-1-shell-safe-api-key-password-generator.html">Shell Safe API key / Password Generator
-</a></span> <span class="post-date"><date>2020-05-19</date></span></div>
-
-Recently I became aware of an instance where a program broke because the AWS secrets they were using contained special characters that are not shell safe.
-
-Examples of such characters are:
-
-* `$ & ' " ; | ` -- shell syntax
-* `!` -- history expansion
-* `[ ` -- shell wildcard
-
-You can be extra caution and use only the alphanumeric range, that is
-
-* A-Z
-* a-z
-* 0-9
-
-But, you will also miss out on some characters that are benign.
-
-So, I wrote this little script, which probably has 1:30::code:documentation ratio ;)
-
-I also added a little nice UX improvement. Often times, random strings have a character or two that make it hard to double click and select the whole string. In my experience it is `@` and `%`.
-
-So you can choose to generate API key/passwords of any length, that are even easy double-click and copy from the shell.
-
-* not easy -- `lD53xg6sjT4dRZ0anO@u+V` (selection stops at the `@` character)
-* easy -- `sQt03aBrXhPbOU+K9WwI/_` (double click selects the whole string)
-
-
-The code for [`apikeygen.py`](https://gist.github.com/btbytes/87e10bc7768b67cd1435eefa332ef971):
-
-```python
-#!/usr/bin/env python
-"""
-apikeygen.py
-
-Generate a shell safe API key (or password)
-
-Generated string should not have any characters that need to be escaped in
-the shell. The following characters have special meaning in some shell contexts
-
-    ! # $ ' ( ) * , ; . < = > ? [ ] ^ { } | ~ - . : \
-
-Arguments:
-    -l --length length of the API key to be generated. Default is 32.
-    -s --source a string of characters to use.
-    -c --clickable make the string clickable.
-
-Revision:
-    2020-05-19: Initial revision
-
-Reference:
-    https://unix.stackexchange.com/a/357932
-"""
-
-import random
-
-
-def apikeygen(length, source):
-    return ''.join(random.sample(source, length))
-
-
-if __name__ == '__main__':
-    import argparse
-    import string
-    source = string.ascii_lowercase\
-        + string.ascii_uppercase\
-        + string.digits\
-        + '@%_/+'
-    dirty = '@%'
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '-l',
-        '--length',
-        type=int,
-        help='length of the API key to be generated.',
-        default=32)
-    parser.add_argument(
-        '-s',
-        '--source',
-        help='a string of characters to use.',
-        default=source)
-    parser.add_argument(
-        '-c',
-        '--clickable',
-        help='make the string clickable.',
-        action='store_true',
-        default=source)
-    args = parser.parse_args()
-    source = args.source
-    if args.clickable:
-        source = ''.join([c for c in source if c not in dirty])
-    print(apikeygen(args.length, source))
-
-```
-
-<a href="index.html#python" class="tag python">python                        </a> 
-</div>
 
 ## Archive
 (Reverse chronologic)<dl id="archive-links"><dt class="archive-year" id="y2020">2020</dt>
-<dd class="archive-item"><p><span id="19">°19. <a href="2020-05-17-2-the-rabbits.html">Sustainable tech by The Rabbits
+<dd class="archive-item"><p><span id="20">°20. <a href="2020-05-19-1-shell-safe-api-key-password-generator.html">Shell Safe API key / Password Generator
+</a></span>                        <date>2020-05-19</date></p></dd><dd class="archive-item"><p><span id="19">°19. <a href="2020-05-17-2-the-rabbits.html">Sustainable tech by The Rabbits
 </a></span>                        <date>2020-05-17</date></p></dd><dd class="archive-item"><p><span id="18">°18. <a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern
 </a></span>                        <date>2020-05-17</date></p></dd><dd class="archive-item"><p><span id="17">°17. <a href="2020-05-15-2.html">Some Interesting Links
 </a></span>                        <date>2020-05-15</date></p></dd><dd class="archive-item"><p><span id="16">°16. <a href="2020-05-15-1.html">About Grammarians and Philosophers

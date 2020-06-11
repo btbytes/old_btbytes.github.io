@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="alternate" type="application/atom+xml" title="Atom Feed"  href="https://btbytes.github.io/atom.xml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-06-10" />
+  <title>CSV2HTML in Nim</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav>
+  <span class="sitetitle"><em>Pradeep Gowda's</em> <a href="/" title="Home Page">gitblog</a></span>
+  <span class="sitelinks"><a href="index.html" title="Home">Home</a> ◊ <a href="index.html#tags">Tags</a> ◊ <a href="index.html#archive">Archive</a>  ◊ <a href="/atom.xml">Feed</a></span>
+</nav>
+<article>
+
+<header id="title-block-header">
+<h1 class="title">CSV2HTML in Nim</h1>
+<p class="date">2020-06-10</p>
+</header>
+<p>I implemented the <a href="https://btbytes.github.io/2020-06-05-2-csv2html.html">csv2html</a> idea in <a href="https://nim-lang.org">nim</a> – <a href="https://github.com/btbytes/csv2html.nim">github repo</a>. Nim is a strongly typed, compiles-to-c/c++/js-to-metal language that has advanced programming features, yet looks very friendly (Python-ish syntax).</p>
+<p>Here is the core of the <code>csv2html</code> program in <code>nim</code>:</p>
+<pre class="nim"><code>import parsecsv
+import argparse
+import os
+import system
+
+
+include &quot;row.nimf&quot;
+include &quot;table.nimf&quot;
+include &quot;html.nimf&quot;
+
+proc csv2html(csvfile: string, delimiter: string, quotechar: string, caption: string, title: string, header: bool, cssurl: string) = 
+  var p: CsvParser
+  var headerRow = &quot;&quot;
+  p.open(csvfile)
+  if header:
+    p.readHeaderRow()
+    headerRow = renderRow(p.headers, rowtype=&quot;th&quot;)
+  var rows = newSeq[string](2)
+  while p.readRow():
+    rows.add(renderRow(p.row))
+  p.close()
+  echo renderHtml(renderTable(caption, headerRow, rows), title, cssurl)
+  
+  
+  
+when isMainModule:
+  var p = newParser(&quot;CSV2HTML&quot;):
+    arg(&quot;csvfile&quot;)
+    option(&quot;-d&quot;, &quot;--delimiter&quot;, help=&quot;Field Delimiter. Default is ,.&quot;, default=&quot;,&quot;)
+    option(&quot;-q&quot;, &quot;--quotechar&quot;, help=&quot;Quote Character. Default is nothing&quot;)
+    option(&quot;-t&quot;, &quot;--title&quot;, help=&quot;Page Title. Will be printed in h1 tag&quot;)
+    option(&quot;-c&quot;, &quot;--caption&quot;, help=&quot;Table Caption&quot;)
+    option(&quot;-s&quot;, &quot;--css&quot;, help=&quot;Override CSS URL&quot;)
+    flag(&quot;-f&quot;, &quot;--header&quot;, help=&quot;Data has Header. First row will be rendered as `th`&quot;)
+  if paramCount() &lt; 1:
+    echo p.help()
+    quit(0)
+  var args = p.parse()
+  csv2html(args.csvfile, args.delimiter, args.quotechar, args.caption, ar</code></pre>
+<p>This looks very familiar to a Python programmer.</p>
+<p>It is said that the language you write programs in, influences how you think. While nim is very close to Python syntax wise there are some standard library features of nim, that made me implement a feature differently.</p>
+<p>In python, I wanted to keep to using just the standard library, and not pull in a templating language (I like Jinja2), to render the data into an HTML file. So, I ended up mixing the HTML template into the code. Which is fine for a small program like this.</p>
+<p>In nim, the <a href="https://nim-lang.org/docs/filters.html">Source Code Filters</a> library allows you to easily template things without having to reach for a “proper” templating language.</p>
+<p>You might have wondered about lines starting with <code>include</code> above. I’m “including” the source code filter templates. For example, this is the code that renderes the csv data into an html table:</p>
+<pre><code>#? stdtmpl(subChar=&#39;$&#39;, metaChar=&#39;#&#39;)
+#proc renderTable*(caption: string, headerRow: string, rows: seq[string]) : string = 
+#  result = &quot;&quot;
+&lt;table&gt;
+  #if caption != &quot;&quot;:
+    &lt;caption&gt;${caption}&lt;/caption&gt;
+  #end if
+  ${headerRow}
+  #for row in items(rows):
+    $row
+  #end for
+&lt;/table&gt;
+#end proc</code></pre>
+<p>Its clear looking at the template, what’s happening. At the top, we are defining <code>subChar=$</code>, which means the strings with <code>$</code> prefix will be replaced with the actual value. <code>metaChar=#</code> stands for the character that means something to the nim compiler. Essentially the lines starting with <code>#</code> will be treated as nim code.</p>
+<p>The files <code>included</code>d will be compiled at compile time into corresponding nim code. This allows us to write templating code without having to worry about escaping etc.</p>
+<p>The project is defined as a nim project using the <a href="https://github.com/nim-lang/nimble">nimble</a> package manager definition file:</p>
+<pre><code># csv2html package
+version = &quot;0.1.0&quot;
+author = &quot;Pradeep Gowda&quot;
+description = &quot;render csv files as html files&quot;
+license = &quot;BSD3&quot;
+
+# deps
+requires &quot;nim &gt;= 1.0.0&quot;, &quot;argparse &gt;= 0.10.0&quot;
+
+srcDir = &quot;src&quot;
+bin = @[&quot;csv2html&quot;]
+</code></pre>
+<p>You can see that I’m defining the <code>argparse</code> third party dependency in the nimble file. Argparse is very much influenced by Python’s stdlib - <code>argparse</code>.</p>
+<p>The project can be compiled into a binary file with: <code>nimble build</code> which will produce <code>csv2html</code> binary.</p>
+<p>The idea of using source code filters came to me via <a href="https://forum.nim-lang.org/t/6403">this Nim forum thread</a> – “AWK-style processing with Nim” mentioned by <span class="citation" data-cites="deech">[@deech]</span>(https://twitter.com/deech/status/1268690739413819392?s=20)</p>
+</article>
+<footer>
+  <p>&copy; 2020&mdash; <a href="//twitter.com/btbytes" title="Twitter page of Pradeep Gowda">PG</a>. Made with <a href="https://github.com/btbytes/btbytes.github.io/blob/master/bari">bari</a> with help from <a href="https://pandoc.org">pandoc</a>, <a href="https://www.gnu.org/software/make/">make</a> and <a href="https://www.python.org">python</a>. </p>
+</footer>
+<script>
+// adapted from https://github.com/attacomsian/code-examples/blob/master/others/anchor-links/anchor-javascript.html
+window.onload = function () {
+	//add anchor link to all headings
+	document.querySelectorAll('article h1, article h2, article h3, article h4').forEach($heading => {
+
+		//create id from heading text
+		var id = $heading.getAttribute("id") || $heading.innerText.toLowerCase().replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '').replace(/ +/g, '-');
+
+		//add id to heading
+		$heading.setAttribute('id', id);
+
+		//append parent class to heading
+		$heading.classList.add('anchor-heading');
+
+		//create anchor
+		$anchor = document.createElement('a');
+		$anchor.className = 'anchor-link';
+		$anchor.href = '#' + id;
+		$anchor.innerText = '#';
+
+		//append anchor link after heading text
+		$heading.appendChild($anchor);
+	});
+
+	//add smooth scroll for anchor links
+	document.querySelectorAll('a.anchor-link').forEach($anchor => {
+		$anchor.addEventListener('click', function (e) {
+			e.preventDefault();
+			document.querySelector(this.getAttribute('href')).scrollIntoView({
+				behavior: 'smooth',
+				block: 'start' //scroll to top of the target element
+			});
+		});
+	});
+
+	//navigate to anchor if available
+	if (window.location.hash.length > 0) {
+		setTimeout(function () {
+			document.querySelector('a[href="' + window.location.hash + '"]').click();
+		}, 150);
+	}
+};
+</script>
+<script data-goatcounter="https://btbytes-github.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
