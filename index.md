@@ -1,9 +1,9 @@
 <div class="post"><div class="post-title"><span id="26">°26 // <a href="2020-09-09-1-shiftit.html">Hammerspoon ShiftIt Window Manager
 </a></span> <span class="post-date"><date>2020-09-09</date></span></div>
 
-In the past I've used [Spectacle App](https://www.spectacleapp.com/)[^1], for managing windows on Mac OS. 
+In the past I've used [Spectacle App](https://www.spectacleapp.com/)[^1], for managing windows on MacOS.
 
-As of today, I have shifted to using [Hammerspoon Shiftit](https://github.com/peterklijn/hammerspoon-shiftit) a configuration for [Hammerspoon](http://www.hammerspoon.org/) which gives me same functionality without having to use yet another app (I already have Hammerspoon installed and Hammerspoon is a powerful automation tool which can be programmed using the [Lua](https://www.lua.org/) programming language. )
+As of today, I have shifted to using [Hammerspoon Shiftit](https://github.com/peterklijn/hammerspoon-shiftit) a configuration for [Hammerspoon](http://www.hammerspoon.org/) which gives me same functionality without having to use yet another app (I have Hammerspoon installed; Hammerspoon is a powerful automation tool which can be programmed using the [Lua](https://www.lua.org/) programming language).
 
 [^1]: the development of Spectacle continues under a new name -- [Rectangle](https://github.com/rxhanson/Rectangle).
 
