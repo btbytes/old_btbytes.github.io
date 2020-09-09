@@ -1,3 +1,12 @@
+<div class="post"><div class="post-title"><span id="26">°26 // <a href="2020-09-09-1-shiftit.html">Hammerspoon ShiftIt Window Manager
+</a></span> <span class="post-date"><date>2020-09-09</date></span></div>
+
+In the past I've used [Spectacle App](https://www.spectacleapp.com/)[^1], for managing windows on Mac OS. 
+
+As of today, I have shifted to using [Hammerspoon Shiftit](https://github.com/peterklijn/hammerspoon-shiftit) a configuration for [Hammerspoon](http://www.hammerspoon.org/) which gives me same functionality without having to use yet another app (I already have Hammerspoon installed and Hammerspoon is a powerful automation tool which can be programmed using the [Lua](https://www.lua.org/) programming language. )
+
+[^1]: the development of Spectacle continues under a new name -- [Rectangle](https://github.com/rxhanson/Rectangle).
+</div>
 <div class="post"><div class="post-title"><span id="25">°25 // <a href="2020-06-10-1-csv2html.nim.html">CSV2HTML in Nim
 </a></span> <span class="post-date"><date>2020-06-10</date></span></div>
 
@@ -251,24 +260,11 @@ This program also fixes an issue with embedded images that you would have if you
 
 <a href="index.html#golang" class="tag golang">golang                        </a> 
 </div>
-<div class="post"><div class="post-title"><span id="21">°21 // <a href="2020-05-20-1-threadreaderapp-bookmark.html">Thread reader app browser bookmark
-</a></span> <span class="post-date"><date>2020-05-20</date></span></div>
-
-[Thread reader](https://threadreaderapp.com/) is a website that allows you to read twitter threads as a single page, example -- [this thread on Acropolis of Athens](https://threadreaderapp.com/thread/1262700517714788354.html).
-
-When I want to search for a twitter thread on their website or crete a new page of a twitter thread, I have to copy the top tweet of the thread, head over to <https://threadreaderapp.com/> and paste the URL in the search box.
-
-This is something that should be automated, so I created a bookmark that you can drag to the bookmarks toolbar. When you see a twitter thread, hit the bookmark, to be taken to the thread's page on Thread reader.
-
-Drag this bookmark to your browser's bookmark toolbar &raquo; <em><a href="javascript:q=location.href;void(t=open('https://threadreaderapp.com/search?q='+encodeURIComponent(q)));">Thread Reader</a></em>
-
-
-<a href="index.html#javascript" class="tag javascript">javascript                        </a> 
-</div>
 
 ## Archive
 (Reverse chronologic)<dl id="archive-links"><dt class="archive-year" id="y2020">2020</dt>
-<dd class="archive-item"><p><span id="20">°20. <a href="2020-05-19-1-shell-safe-api-key-password-generator.html">Shell Safe API key / Password Generator
+<dd class="archive-item"><p><span id="21">°21. <a href="2020-05-20-1-threadreaderapp-bookmark.html">Thread reader app browser bookmark
+</a></span>                        <date>2020-05-20</date></p></dd><dd class="archive-item"><p><span id="20">°20. <a href="2020-05-19-1-shell-safe-api-key-password-generator.html">Shell Safe API key / Password Generator
 </a></span>                        <date>2020-05-19</date></p></dd><dd class="archive-item"><p><span id="19">°19. <a href="2020-05-17-2-the-rabbits.html">Sustainable tech by The Rabbits
 </a></span>                        <date>2020-05-17</date></p></dd><dd class="archive-item"><p><span id="18">°18. <a href="2020-05-17-1-python-lineprocessing.html">Python Line Processing Pattern
 </a></span>                        <date>2020-05-17</date></p></dd><dd class="archive-item"><p><span id="17">°17. <a href="2020-05-15-2.html">Some Interesting Links

@@ -2,12 +2,19 @@
             <feed xmlns="http://www.w3.org/2005/Atom">
             <title>btbytes.github.io feed</title>
             <link href="https://btbytes.github.io/"/>
-            <updated>2020-06-10T00:00:00.00Z</updated>
+            <updated>2020-09-09T00:00:00.00Z</updated>
             <author>
             <name>Pradeep Gowda</name>
             </author>
             <id>https://btbytes.github.io/</id>
                 <entry>
+            <title>Hammerspoon ShiftIt Window Manager</title>
+            <link href="https://btbytes.github.io/2020-09-09-1-shiftit.html"/>
+            <id>https://btbytes.github.io/2020-09-09-1-shiftit.html</id>
+            <updated>2020-09-09T00:00:00.00Z</updated>
+            <summary>Hammerspoon ShiftIt Window Manager</summary>
+            </entry>
+        <entry>
             <title>CSV2HTML in Nim</title>
             <link href="https://btbytes.github.io/2020-06-10-1-csv2html.nim.html"/>
             <id>https://btbytes.github.io/2020-06-10-1-csv2html.nim.html</id>
@@ -34,13 +41,6 @@
             <id>https://btbytes.github.io/2020-05-22-1-thread-reaper.html</id>
             <updated>2020-05-22T00:00:00.00Z</updated>
             <summary>Thread Reaper</summary>
-            </entry>
-        <entry>
-            <title>Thread reader app browser bookmark</title>
-            <link href="https://btbytes.github.io/2020-05-20-1-threadreaderapp-bookmark.html"/>
-            <id>https://btbytes.github.io/2020-05-20-1-threadreaderapp-bookmark.html</id>
-            <updated>2020-05-20T00:00:00.00Z</updated>
-            <summary>Thread reader app browser bookmark</summary>
             </entry>
         
              </feed>
