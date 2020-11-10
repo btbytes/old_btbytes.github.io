@@ -4,10 +4,10 @@ import glob
 outline = '''
 <!doctype html>
 <head>
-  <meta http-equiv="refresh" content="2; URL=https://cortex.btbytes.com/%s" />
+  <meta http-equiv="refresh" content="0; URL=https://www.btbytes.com/posts/%s" />
 </head>
 <body>
-  <p>If you are not redirected in five seconds, <a href="https://cortex.btbytes.com/%s">click here</a>.</p>
+  <p>If you are not redirected in five seconds, <a href="https://www.btbytes.com/posts/%s">click here</a>.</p>
 </body>
 '''
 
